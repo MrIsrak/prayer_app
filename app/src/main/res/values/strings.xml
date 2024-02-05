@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Test</string>
+
+    <string name="greeting">Shalom!</string>
+    <string name="profile_photo">profile_photo</string>
+    <string name="whats_name"><u>what is your name?</u></string>
+
+    <string name="name">Name</string>
+    <string name="location">Location access</string>
+    <string name="gallery">Gallery access</string>
+    <string name="privacy_policy">Privacy policy</string>
+
+</resources>

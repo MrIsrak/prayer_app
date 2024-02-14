@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     `HADDING`
-    <style name="hadding">
+    <style name="hedding">
         <item name="android:textSize">32sp</item>
         <item name="android:fontFamily">@font/tttravaler_black</item>
     </style>
 
 
     `SMALL HEDDING`
-    <style name="small_hadding">
-        <item name="android:fontFamily">@font/tttravels_extrabold"</item>
+    <style name="small_hedding">
+        <item name="android:fontFamily">@font/tttravels_extrabold</item>
 
         <item name="android:textSize">16sp</item>
         `Size need to be half from size of main hadding`
@@ -36,4 +36,32 @@
         <item name="android:textColor">@color/second_color</item>
         <item name="android:textStyle">italic</item>
     </style>
+
+    <style name="enter_button">
+<!--        color-->
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundColor">@color/second_color</item>
+<!--        padding-->
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+
+        <item name="paddingStart">50dp</item>
+        <item name="paddingEnd">50dp</item>
+
+
+    </style>
+
+    <style name="main_menu_btn">
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundColor">@color/second_color</item>
+        
+
+
+    </style>
+
 </resources>

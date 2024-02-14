@@ -22,7 +22,7 @@
         android:id="@+id/hi_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/hadding"
+        style="@style/hedding"
         android:text="@string/greeting"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
@@ -86,9 +86,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/privacy_policy"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gall_btn" />
+
+    <Button
+        android:id="@+id/enter_btn"
+        style="@style/enter_button"
+        android:text="@string/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/privacy_policy_tv"
+        app:layout_constraintStart_toStartOf="@id/gall_btn"
+        app:layout_constraintEnd_toEndOf="@id/gall_btn"
+
+        android:layout_marginTop="20dp"
+
+
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

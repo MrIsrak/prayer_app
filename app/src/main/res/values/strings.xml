@@ -2,8 +2,11 @@
     <string name="app_name">Test</string>
 
     <string name="greeting">Shalom!</string>
+    <string name="greeting_name">Shalom, Name!</string>
     <string name="profile_photo">profile_photo</string>
     <string name="whats_name"><u>what is your name?</u></string>
+
+    <string name="question">What do u wanna do today?</string>
 
     <string name="name">Name</string>
     <string name="location">Location access</string>
@@ -13,6 +16,9 @@
 
     <string name="text_prayers">Text of Prayers</string>
     <string name="timetable">Timetable</string>
+    <string name="tehilim">Tehilim</string>
+    <string name="blessings">Blessings</string>
+
 <!--    <string name=""></string>-->
 
 </resources>

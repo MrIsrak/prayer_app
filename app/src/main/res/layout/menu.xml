@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/profile_photo"
         android:src="@drawable/profile_photo"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/greeting"
@@ -24,11 +25,13 @@
 
         style="@style/main_menu_txt"
 
+        android:textSize="30sp"
+
         app:layout_constraintEnd_toEndOf="@id/profile_photo"
         app:layout_constraintStart_toStartOf="@id/profile_photo"
         app:layout_constraintTop_toBottomOf="@id/profile_photo"
 
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         />
 
     <TextView
@@ -40,13 +43,13 @@
         android:text="@string/question"
 
         style="@style/main_menu_txt"
-        android:textSize="18sp"
+        android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="@id/greeting"
         app:layout_constraintStart_toStartOf="@id/greeting"
         app:layout_constraintTop_toBottomOf="@+id/greeting"
 
-        android:layout_marginTop="19dp"/>
+        android:layout_marginTop="12dp"/>
 
 
     <LinearLayout
@@ -54,45 +57,46 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         app:layout_constraintTop_toBottomOf="@id/question"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp">
+
+        android:layout_marginTop="20dp">
 
 
         <Button
             android:id="@+id/time_table_btn"
             style="@style/main_menu_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/timetable"
-            app:layout_constraintStart_toStartOf="@id/layout_main"
-            app:layout_constraintEnd_toEndOf="@id/layout_main"
-
-
-
-            />
+            android:drawableBottom="@drawable/clock"/>
 
         <Button
             android:id="@+id/text_prayers_btn"
             style="@style/main_menu_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_prayers" />
+            android:text="@string/text_prayers"
+            android:drawableBottom="@drawable/book"
+            />
 
         <Button
             android:id="@+id/tehelim_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tehilim"
-            style="@style/main_menu_btn" />
+            style="@style/main_menu_btn"
+            android:drawableBottom="@drawable/harp"/>
 
         <Button
             android:id="@+id/blessings_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/blessings"
-            style="@style/main_menu_btn"/>
+            style="@style/main_menu_btn"
+            android:drawableBottom="@drawable/crown"/>
 
     </LinearLayout>
 

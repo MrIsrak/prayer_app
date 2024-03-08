@@ -61,11 +61,13 @@
         app:layout_constraintTop_toBottomOf="@id/question"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="10dp">
 
         <LinearLayout
+            android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
@@ -96,7 +98,9 @@
             android:id="@+id/layout_bot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/layout_top">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tehelim_button"
                 android:layout_width="match_parent"

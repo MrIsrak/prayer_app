@@ -17,6 +17,16 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        Button timetable_btn = findViewById(R.id.time_table_btn);
+
+        timetable_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, Timetable.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
     

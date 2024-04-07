@@ -19,6 +19,14 @@
     <string name="tehilim">Tehilim</string>
     <string name="blessings">Blessings</string>
 
+    <string name="shaharit">Shaharit</string>
+    <string name="minha">Minha</string>
+    <string name="arvit">Arvit</string>
+
+    <string name="sunrise">Sunrise</string>
+    <string name="noon">Noon</string>
+    <string name="sunset">Sunset</string>
+
     <string name="home">Home</string>
 
     <!--    <string name=""></string>-->

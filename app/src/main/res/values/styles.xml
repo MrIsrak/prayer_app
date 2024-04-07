@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources>>
     `HADDING`
     <style name="hedding">
         <item name="android:textSize">32sp</item>
@@ -64,25 +64,40 @@
         <item name="android:layout_marginEnd">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
 
-        <item name="android:paddingTop">20dp</item>
-        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingBottom">30dp</item>
 
-        <item name="android:paddingStart">5dp</item>
-        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
 
         <item name="android:layout_weight">0.5</item>
 
     </style>
 
     <style name="main_menu_txt">
-
         <item name="android:textSize">30sp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:textColor">@color/second_color</item>
         <item name="android:textStyle">bold</item>
-
-
     </style>
 
+    <style name="sub_menu_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+
+        <item name="android:textSize">40sp</item>
+
+        <item name="android:layout_centerHorizontal">true</item>
+
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

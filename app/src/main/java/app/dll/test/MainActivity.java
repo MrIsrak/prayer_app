@@ -14,16 +14,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.enter_btn); // Find button after inflating layout
+        Button enter_app_button = findViewById(R.id.enter_btn); // Find button after inflating layout
 
-        button.setOnClickListener(new View.OnClickListener() {
+        enter_app_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MainMenu.class);
                 startActivity(intent);
-
             }
         });
+
+
     }
 
 

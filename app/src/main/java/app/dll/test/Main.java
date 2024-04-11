@@ -14,7 +14,7 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button enter_app_button = findViewById(R.id.enter_btn); // Find button after inflating layout
+        Button enter_app_button = (Button) findViewById(R.id.enter_btn); // Find button after inflating layout
 
         enter_app_button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,13 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenu extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main_menu);
-
-
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -39,17 +32,20 @@ public class MainMenu extends AppCompatActivity {
         }
 
         private void loadFragment(Fragment fragment) {
-// create a FragmentManager
-            FragmentManager fm = getFragmentManager();
-// create a FragmentTransaction to begin the transaction and replace the Fragment
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-// replace the FrameLayout with new Fragment
-            fragmentTransaction.replace(R.id.frameLayout, fragment);
-            fragmentTransaction.commit(); // save the changes
+            // Get the FragmentManager (assuming you've updated imports to androidx)
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            // Begin a FragmentTransaction
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            // Replace the FrameLayout with the new Fragment
+            fragmentTransaction.replace(R.id.layout_main, fragment);
+
+            // Commit the transaction
+            fragmentTransaction.commit();
         }
 
-
-    }
 }
+
 
 

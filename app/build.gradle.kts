@@ -41,6 +41,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.google.android.material:material:1.11.0")
+    implementation ("com.android.support:support-v4:version_number")
     implementation("androidx.activity:activity:1.8.0")
 
     testImplementation("junit:junit:4.13.2")

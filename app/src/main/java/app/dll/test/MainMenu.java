@@ -1,5 +1,7 @@
 package app.dll.test; // Consider a more descriptive package name
 
+import static androidx.fragment.app.FragmentManagerKt.commit;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,14 +23,14 @@ public class MainMenu extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main_menu);
 
-            Button timetable_btn = findViewById(R.id.time_table_btn);
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            Fragment main_buttons = new Fragment(); // Replace "YourFragment" with your actual class name
+            fragmentTransaction.add(R.id.menu_buttons, main_buttons);  // Replace with your container's ID
+            fragmentTransaction.commit();
 
-            timetable_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loadFragment(new Timetable_fragment()); // Assuming the fragment class is TimetableFragment
-                }
-            });
+
+
         }
 
         private void loadFragment(Fragment fragment) {

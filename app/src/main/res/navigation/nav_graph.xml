@@ -6,6 +6,8 @@
 
     <fragment
         android:id="@+id/fragment"
+        android:name="app.dll.test.Main_menu_button"
+
         />
 
 

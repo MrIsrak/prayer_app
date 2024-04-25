@@ -18,28 +18,43 @@ public class Main_menu_button extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main_menu_button, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_menu_button, container, false);
 
-        Button time_table = v.findViewById(R.id.time_table_btn);
+        Button time_table = view.findViewById(R.id.time_table_btn);
+        Button text_prayers = view.findViewById(R.id.text_prayers_btn);
+        Button tehelim = view.findViewById(R.id.tehelim_button);
+        Button blessings = view.findViewById(R.id.blessings_button);
 
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+
 
 
         time_table.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment timetableFragment = new Timetable_fragment();
-                transaction.replace(R.id.menu_buttons, timetableFragment);
-                transaction.commit();
+                replaceFragment(new Timetable_fragment());
             }
         });
 
-        return v;
+        text_prayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        return view;
 
 
     }
 
-
+    public void replaceFragment(Fragment fragment){
+        //replace the fragment with actual class name
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Fragment timetableFragment = new Timetable_fragment();
+        transaction.replace(R.id.menu_buttons, timetableFragment);
+        transaction.commit();
+    }
 
 }

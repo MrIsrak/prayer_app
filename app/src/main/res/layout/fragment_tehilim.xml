@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TehilimFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/harp_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/profile_photo"
+
+            android:src="@drawable/harp_pink"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            style="@style/icon_pink"/>
+
+
+        <LinearLayout
+            android:id="@+id/layout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            app:layout_constraintTop_toBottomOf="@id/harp_img"
+            style="@style/margin_layout">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dailyTehelim_btn"
+                style="@style/sub_menu_btn"
+                android:text="@string/daily"
+                app:layout_constraintTop_toBottomOf="@id/book_img"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chapter_btn"
+                style="@style/sub_menu_btn"
+                android:text="@string/chapter"
+                app:layout_constraintTop_toBottomOf="@id/book_img"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/arvit_btn"
+                style="@style/sub_menu_btn"
+                android:text="@string/situation"
+                app:layout_constraintTop_toBottomOf="@id/book_img"/>
+
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

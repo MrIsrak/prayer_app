@@ -14,28 +14,30 @@
         android:orientation="vertical"
         >
 
-        <ImageView
+            <ImageView
             android:id="@+id/clock_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/timetable"
             android:src="@drawable/clock_pink"
 
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-            android:layout_marginTop="80dp">
-        </ImageView>
+            style="@style/icon_pink"/>
+
+
 
         <LinearLayout
             android:id="@+id/layout_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingBottom="30dp"
+
             app:layout_constraintTop_toBottomOf="@+id/clock_icon"
+            style="@style/margin_layout"
+
             >
 
         <com.google.android.material.button.MaterialButton
@@ -44,8 +46,8 @@
             android:id="@+id/sunrise_btn"
             style="@style/sub_menu_btn"
             android:text="@string/sunrise"
-            app:layout_constraintTop_toBottomOf="@id/clock_icon">
-        </com.google.android.material.button.MaterialButton>
+            app:layout_constraintTop_toBottomOf="@id/clock_icon"/>
+
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
@@ -53,8 +55,8 @@
             android:id="@+id/noon_btn"
             style="@style/sub_menu_btn"
             android:text="@string/noon"
-            app:layout_constraintTop_toBottomOf="@id/sunrise_btn">
-        </com.google.android.material.button.MaterialButton>
+            app:layout_constraintTop_toBottomOf="@id/sunrise_btn"/>
+
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
@@ -62,8 +64,8 @@
             android:id="@+id/sunset_btn"
             style="@style/sub_menu_btn"
             android:text="@string/sunset"
-            app:layout_constraintTop_toBottomOf="@id/noon_btn">
-        </com.google.android.material.button.MaterialButton>
+            app:layout_constraintTop_toBottomOf="@id/noon_btn"/>
+
         </LinearLayout>
 
 

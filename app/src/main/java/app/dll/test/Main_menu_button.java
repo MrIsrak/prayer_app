@@ -38,10 +38,19 @@ public class Main_menu_button extends Fragment {
 
         text_prayers.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-            }
+            public void onClick(View v) { replaceFragment(new TextPrayers_fragment());}
         });
+
+        tehelim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {replaceFragment(new TehilimFragment());}
+        });
+
+        blessings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {replaceFragment(new BlessingsFragment());}
+        });
+
 
         return view;
 

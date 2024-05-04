@@ -7,19 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Main extends AppCompatActivity {
+public class Entrance_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_entrance);
 
         Button enter_app_button = (Button) findViewById(R.id.enter_btn); // Find button after inflating layout
 
         enter_app_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main.this, MainMenu.class);
+                Intent intent = new Intent(Entrance_activity.this, MainMenu_activity.class);
                 startActivity(intent);
             }
         });

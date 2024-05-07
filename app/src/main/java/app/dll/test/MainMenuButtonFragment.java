@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class Main_menu_button_fragment extends Fragment {
+public class MainMenuButtonFragment extends Fragment {
 
 
     @Override

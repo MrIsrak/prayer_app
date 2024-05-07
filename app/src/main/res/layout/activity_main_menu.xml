@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:id="@+id/menu_buttons"
-            android:name="app.dll.test.Main_menu_button_fragment"
+            android:name="app.dll.test.MainMenuButtonFragment"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph"
             app:layout_constraintTop_toTopOf="parent"

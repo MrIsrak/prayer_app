@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Timetable_fragment extends Fragment {
+public class TimetableFragment extends Fragment {
 
 
 

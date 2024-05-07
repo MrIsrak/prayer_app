@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Entrance_activity extends AppCompatActivity {
+public class EntranceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class Entrance_activity extends AppCompatActivity {
         enter_app_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Entrance_activity.this, MainMenu_activity.class);
+                Intent intent = new Intent(EntranceActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             }
         });

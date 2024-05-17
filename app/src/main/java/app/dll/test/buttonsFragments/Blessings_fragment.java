@@ -1,4 +1,4 @@
-package app.dll.test;
+package app.dll.test.buttonsFragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import app.dll.test.R;
 
 /**
  * A simple {@link Fragment} subclass.

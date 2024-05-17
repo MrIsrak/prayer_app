@@ -21,28 +21,29 @@
             app:destination="@id/tehilim_fragment" />
         <action
             android:id="@+id/action_main_menu_button_to_timetable_fragment"
-            app:popUpTo="@+id/main_menu_button_fragment"
-            app:destination="@id/timetable_fragment" />
+            app:destination="@id/timetable_fragment"
+            app:popUpTo="@+id/main_menu_button"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
         android:id="@+id/blessings_fragment"
-        android:name="app.dll.test.Blessings_fragment"
+        android:name="app.dll.test.buttonsFragments.Blessings_fragment"
         android:label="fragment_blessings"
         tools:layout="@layout/fragment_blessings" />
     <fragment
         android:id="@+id/textPrayers_fragment"
-        android:name="app.dll.test.TextPrayers_fragment"
+        android:name="app.dll.test.buttonsFragments.TextPrayers_fragment"
         android:label="fragment_text_prayers"
         tools:layout="@layout/fragment_text_prayers" />
     <fragment
         android:id="@+id/tehilim_fragment"
-        android:name="app.dll.test.Tehilim_fragment"
+        android:name="app.dll.test.buttonsFragments.Tehilim_fragment"
         android:label="fragment_tehilim"
         tools:layout="@layout/fragment_tehilim" />
     <fragment
         android:id="@+id/timetable_fragment"
-        android:name="app.dll.test.Timetable_fragment"
+        android:name="app.dll.test.buttonsFragments.Timetable_fragment"
         android:label="fragment_timetable"
         tools:layout="@layout/fragment_timetable"
         />

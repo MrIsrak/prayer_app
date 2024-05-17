@@ -7,7 +7,7 @@
     <item android:id="@+id/main_menu_button"
         android:title="@string/home"
         android:icon="@drawable/home" />
-    <item android:id="@+id/tehilim_btn_bott"
+    <item android:id="@+id/tehilim_fragment"
         android:title="@string/tehilim"
         android:icon="@drawable/harp" />
 </menu>

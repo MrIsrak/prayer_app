@@ -21,7 +21,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class Main_menu_button_fragment extends Fragment {
+public class MainMenuButtonFragment extends Fragment {
 
 
     @Override

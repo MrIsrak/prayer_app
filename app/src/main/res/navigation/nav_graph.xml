@@ -12,13 +12,19 @@
         tools:layout="@layout/fragment_main_menu_button">
         <action
             android:id="@+id/action_main_menu_button_to_blessings_fragment"
-            app:destination="@id/blessings_fragment" />
+            app:destination="@id/blessings_fragment"
+            app:popUpTo="@+id/main_menu_button"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_main_menu_button_to_textPrayers_fragment"
-            app:destination="@id/textPrayers_fragment" />
+            app:destination="@id/textPrayers_fragment"
+            app:popUpTo="@+id/main_menu_button"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_main_menu_button_to_tehilim_fragment"
-            app:destination="@id/tehilim_fragment" />
+            app:destination="@id/tehilim_fragment"
+            app:popUpTo="@+id/main_menu_button"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_main_menu_button_to_timetable_fragment"
             app:destination="@id/timetable_fragment"

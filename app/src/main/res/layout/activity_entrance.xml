@@ -44,17 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/hi_tv" />
 
 
-    <Button
-        android:id="@+id/name_btn"
-        android:layout_width="match_parent"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInput"
+        android:layout_width="@id/loc_btn"
         android:layout_height="wrap_content"
-        android:text="@string/name"
-        style="@style/menu_button"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hi_tv"
-         />
+        app:layout_constraintEnd_toEndOf="@id/loc_btn"
+        app:layout_constraintStart_toStartOf="@id/loc_btn"
+        app:layout_constraintTop_toBottomOf="@id/greeting_tv"
+        android:hint="Enter your name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/loc_btn"
@@ -65,7 +72,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_btn"
+        app:layout_constraintTop_toBottomOf="@id/nameInput"
         />
 
     <Button

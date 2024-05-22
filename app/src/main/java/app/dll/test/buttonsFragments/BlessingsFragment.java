@@ -12,10 +12,10 @@ import app.dll.test.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Tehilim_fragment#newInstance} factory method to
+ * Use the {@link BlessingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Tehilim_fragment extends Fragment {
+public class BlessingsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Tehilim_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Tehilim_fragment() {
+    public BlessingsFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class Tehilim_fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TehilimFragment.
+     * @return A new instance of fragment BlessingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Tehilim_fragment newInstance(String param1, String param2) {
-        Tehilim_fragment fragment = new Tehilim_fragment();
+    public static BlessingsFragment newInstance(String param1, String param2) {
+        BlessingsFragment fragment = new BlessingsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Tehilim_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tehilim, container, false);
+        return inflater.inflate(R.layout.fragment_blessings, container, false);
     }
 }

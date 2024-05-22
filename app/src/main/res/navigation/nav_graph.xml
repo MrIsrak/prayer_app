@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/main_menu_button"
-        android:name="app.dll.test.Main_menu_button_fragment"
+        android:name="app.dll.test.MainMenuButtonFragment"
         android:label="fragment_main_menu_button"
         tools:layout="@layout/fragment_main_menu_button">
         <action
@@ -34,22 +34,22 @@
 
     <fragment
         android:id="@+id/blessings_fragment"
-        android:name="app.dll.test.buttonsFragments.Blessings_fragment"
+        android:name="app.dll.test.buttonsFragments.BlessingsFragment"
         android:label="fragment_blessings"
         tools:layout="@layout/fragment_blessings" />
     <fragment
         android:id="@+id/textPrayers_fragment"
-        android:name="app.dll.test.buttonsFragments.TextPrayers_fragment"
+        android:name="app.dll.test.buttonsFragments.TextPrayersFragment"
         android:label="fragment_text_prayers"
         tools:layout="@layout/fragment_text_prayers" />
     <fragment
         android:id="@+id/tehilim_fragment"
-        android:name="app.dll.test.buttonsFragments.Tehilim_fragment"
+        android:name="app.dll.test.buttonsFragments.TehilimFragment"
         android:label="fragment_tehilim"
         tools:layout="@layout/fragment_tehilim" />
     <fragment
         android:id="@+id/timetable_fragment"
-        android:name="app.dll.test.buttonsFragments.Timetable_fragment"
+        android:name="app.dll.test.buttonsFragments.TimetableFragment"
         android:label="fragment_timetable"
         tools:layout="@layout/fragment_timetable"
         />

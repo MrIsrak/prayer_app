@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EntranceActivity">
@@ -25,7 +24,7 @@
         style="@style/hedding"
         android:text="@string/greeting"
         android:textColor="@color/black"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@id/profile_photo"
         app:layout_constraintStart_toStartOf="@id/profile_photo"
         app:layout_constraintTop_toBottomOf="@id/profile_photo" />
@@ -52,13 +51,13 @@
         app:layout_constraintEnd_toEndOf="@id/loc_btn"
         app:layout_constraintStart_toStartOf="@id/loc_btn"
         app:layout_constraintTop_toBottomOf="@id/greeting_tv"
+        app:boxBackgroundColor="@color/main_color"
         android:hint="Enter your name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            />
+            android:gravity="center" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,21 +98,23 @@
         app:layout_constraintTop_toBottomOf="@+id/gall_btn" />
 
     <Button
-
         android:id="@+id/enter_btn"
         style="@style/enter_button"
         android:text="@string/enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toBottomOf="@id/privacy_policy_tv"
         app:layout_constraintStart_toStartOf="@id/gall_btn"
         app:layout_constraintEnd_toEndOf="@id/gall_btn"
+        android:layout_marginTop="30dp"/>
 
-        android:layout_marginTop="50dp"
-
-        />
-
-
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

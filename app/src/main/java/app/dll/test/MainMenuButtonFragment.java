@@ -46,8 +46,9 @@ public class MainMenuButtonFragment extends Fragment {
         TextView greeting = view.findViewById(R.id.greeting);
 
         // Retrieve data
-        SharedPreferences usernamePrefs = requireActivity().getSharedPreferences("username", Context.MODE_PRIVATE);
-        String name = usernamePrefs.getString("username", "default_value"); // Ensure the key is "username"
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("username", "User");
+        // Ensure the key is "username"
 
         Log.d("MainMenuButtonFragment", "Retrieved name: " + name);
 
@@ -55,6 +56,28 @@ public class MainMenuButtonFragment extends Fragment {
             greeting.setText("Hello, " + name + "!");
         }
 
-        // Initialize buttons and navigation...
+
+        Button timetableButton = view.findViewById(R.id.time_table_btn);
+        Button textPrayersButton = view.findViewById(R.id.text_prayers_btn);
+        Button tehilimButton = view.findViewById(R.id.tehelim_button);
+        Button blessinButton = view.findViewById(R.id.blessings_button);
+
+        NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
+
+        timetableButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_timetable_fragment));
+        textPrayersButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_textPrayers_fragment));
+        tehilimButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_tehilim_fragment));
+        blessinButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_blessings_fragment));
+
+        BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation);
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top-level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.timetable_fragment, R.id.main_menu_button, R.id.tehilim_fragment)
+                .build();
+
+//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 }

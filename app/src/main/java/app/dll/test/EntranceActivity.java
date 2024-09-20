@@ -10,8 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import app.dll.test.firebase.firebaseSetUp;
+import app.dll.test.PreferencesFuncs;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest; // Remove unused import
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -21,6 +22,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class EntranceActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class EntranceActivity extends AppCompatActivity {
     private Button enterAppButton;
     private SignInButton signInButton;
     private GoogleSignInClient googleSignInClient;
+    private TextInputLayout enterName;
+    private EditText editEnterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,14 @@ public class EntranceActivity extends AppCompatActivity {
 
         enterAppButton = findViewById(R.id.enter_btn);
         signInButton = findViewById(R.id.sign_in_button);
+        enterName = findViewById(R.id.nameInput);
+        editEnterName = enterName.getEditText();
+
+        enterName.setOnClickListener(v -> {
+
+
+        });
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -45,6 +58,12 @@ public class EntranceActivity extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         enterAppButton.setOnClickListener(v -> {
+            String name = String.valueOf(editEnterName.getText());
+            SharedPreferences usernamePrefs = getSharedPreferences("username", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = usernamePrefs.edit();
+            editor.putString("username", name); // Ensure the key is "username"
+            editor.apply();
+
             Intent intent = new Intent(EntranceActivity.this, MainMenuActivity.class);
             startActivity(intent);
         });

@@ -1,6 +1,6 @@
 package app.dll.test; // Consider a more descriptive package name
 
-import static app.dll.test.EntranceActivity.name;
+//import static app.dll.test.EntranceActivity.name;
 import static app.dll.test.R.*;
 
 import androidx.appcompat.app.AppCompatActivity;

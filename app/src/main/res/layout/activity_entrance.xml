@@ -52,7 +52,7 @@
         app:layout_constraintStart_toStartOf="@id/loc_btn"
         app:layout_constraintTop_toBottomOf="@id/greeting_tv"
         app:boxBackgroundColor="@color/main_color"
-        android:hint="Enter your name">
+        android:hint="@string/enter_your_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

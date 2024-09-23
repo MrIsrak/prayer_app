@@ -64,9 +64,9 @@ dependencies {
 
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("com.google.android.gms:play-services-auth:21.2.0")
-//    implementation("com.google.android.libraries.identity.googleid:4.3.1")
 
-
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
 
 }

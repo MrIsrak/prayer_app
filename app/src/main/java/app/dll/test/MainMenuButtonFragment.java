@@ -2,6 +2,8 @@ package app.dll.test;
 
 //import static app.dll.test.EntranceActivity.name;
 
+import static app.dll.test.EntranceActivity.profilePhotoUrl;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,8 +25,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
@@ -43,20 +47,19 @@ public class MainMenuButtonFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView greeting = view.findViewById(R.id.greeting);
 
+        //Setting the actual name
+        TextView greeting = view.findViewById(R.id.greeting);
         // Retrieve data
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("username", "User");
-        // Ensure the key is "username"
-
-        Log.d("MainMenuButtonFragment", "Retrieved name: " + name);
-
         if (greeting != null) {
             greeting.setText("Hello, " + name + "!");
         }
+        ImageView profilePhoto = view.findViewById(R.id.profile_photo);
+        Glide.with(this).load(profilePhotoUrl).load(profilePhoto);
 
-
+        //Setting up the main menu buttons
         Button timetableButton = view.findViewById(R.id.time_table_btn);
         Button textPrayersButton = view.findViewById(R.id.text_prayers_btn);
         Button tehilimButton = view.findViewById(R.id.tehelim_button);

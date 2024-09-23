@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>>
+    <style name="Theme.AppCompat.Night">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     `HADDING`
     <style name="hedding">
         <item name="android:textSize">32sp</item>
@@ -10,11 +14,9 @@
     `SMALL HEDDING`
     <style name="small_hedding">
         <item name="android:fontFamily">@font/tttravels_extrabold</item>
-
         <item name="android:textSize">16sp</item>
-        `Size need to be half from size of main hadding`
-        android:textSize="16sp"
     </style>
+
 
     `BUTTON`
     <style name="menu_button">
@@ -38,11 +40,11 @@
     </style>
 
     <style name="enter_button">
-<!--        color-->
+    <!--color-->
         <item name="android:textSize">19sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="backgroundColor">@color/second_color</item>
-<!--        padding-->
+    <!--padding-->
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
 
@@ -102,12 +104,7 @@
     </style>
 
     <style name="icon_pink">
-<!--        <item name="layout_constraintStart_toStartOf">parent</item>-->
-<!--        <item name="layout_constraintEnd_toEndOf">parent</item>-->
-<!--        <item name="layout_constraintTop_toTopOf">parent</item>-->
-
         <item name="android:layout_marginTop">60dp</item>
-
     </style>
 
     <style name="margin_layout">

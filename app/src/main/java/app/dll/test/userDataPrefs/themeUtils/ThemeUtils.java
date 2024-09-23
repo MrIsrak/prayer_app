@@ -2,6 +2,8 @@ package app.dll.test.userDataPrefs.themeUtils;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static app.dll.test.EntranceActivity.themePrefs;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -22,7 +24,7 @@ public class ThemeUtils {
         }
     }
     //Set the device default theme
-    public static void setTheme(SharedPreferences themePrefs){
+    public static void setTheme(){
         boolean isDarkTheme = themePrefs.getBoolean("isDarkTheme", false);
 
         if (isDarkTheme) {

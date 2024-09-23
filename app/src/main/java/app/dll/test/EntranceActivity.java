@@ -48,11 +48,28 @@ public class EntranceActivity extends AppCompatActivity {
     //SharedPreferences setting up
     public static SharedPreferences locationPrefs;
     public static SharedPreferences userName;
+    public static SharedPreferences themePrefs;
+
+
+    //Initializing variable to sync enterences
+    private boolean googleEnterence = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
+
+
+
+
+        // Applying theme
+        themePrefs = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
+        ThemeUtils.setTheme();
+
+//        if(userName.getString("userPrefs", "user") != ""){
+//            navigateToMainMenu();
+//
+//        }
 
         //Google SIGN-IN initialization
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -62,10 +79,6 @@ public class EntranceActivity extends AppCompatActivity {
 
         //userName initialization
         userName = getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
-
-        // Applying theme
-        SharedPreferences themePrefs = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
-        ThemeUtils.setTheme(themePrefs);
 
         // Set up UI elements
         enterAppButton = findViewById(R.id.enter_btn);
@@ -94,6 +107,11 @@ public class EntranceActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         LOCATION_PERMISSION_REQUEST_CODE);
                 Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
+            } else if(googleEnterence){
+                // Save entered name to SharedPreferences
+                PreferencesFuncs.saveName(name);
+                // Navigate to MainMenuActivity
+                navigateToMainMenu();
             } else {
                 // Save entered name to SharedPreferences
                 PreferencesFuncs.saveName(name);
@@ -130,22 +148,18 @@ public class EntranceActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 if (account != null) {
                     String name = account.getGivenName();
-
                     // If the profile photo exists, store the URL
                     if (account.getPhotoUrl() != null) {
                         profilePhotoUrl = account.getPhotoUrl().toString();
                     }
-
                     // Save Google Sign-In username in SharedPreferences
                     PreferencesFuncs.saveName(name);
-
                     // Check if location permission is granted
                     if (!locationPrefs.getBoolean("locationPrefs", false)) {
                         // Request location permission if not granted
@@ -154,6 +168,7 @@ public class EntranceActivity extends AppCompatActivity {
                                 LOCATION_PERMISSION_REQUEST_CODE);
                         Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
                     } else {
+                        googleEnterence = true;
                         // If permission is already granted, navigate to the next activity
                         navigateToMainMenu();
                     }

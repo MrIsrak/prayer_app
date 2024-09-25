@@ -1,5 +1,6 @@
 package app.dll.test;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static app.dll.test.userDataPrefs.userLocationData.LocationPermissons.updateLocState;
 
 import android.Manifest;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +28,9 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+//import com.google.firebase.inappmessaging.model.Button;
+
+import java.util.prefs.Preferences;
 
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
@@ -49,6 +54,7 @@ public class EntranceActivity extends AppCompatActivity {
     public static SharedPreferences locationPrefs;
     public static SharedPreferences userName;
     public static SharedPreferences themePrefs;
+    public static SharedPreferences isLogin;
 
 
     //Initializing variable to sync enterences
@@ -57,30 +63,34 @@ public class EntranceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize SharedPreferences for userName
+        userName = getSharedPreferences("userPrefs", Context.MODE_PRIVATE);  // Initialize userName here
+
+        String savedUsername = userName.getString("username", null);
+
+        // Check if the user is logged in using Google or username
+        GoogleSignInAccount googleAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (googleAccount != null || savedUsername != null) {
+            // User is already logged in, skip login and go to MainMenuActivity
+            navigateToMainMenu();
+            return;
+        }
+
+        // If not logged in, proceed with the normal entrance setup
         setContentView(R.layout.activity_entrance);
-
-
-
 
         // Applying theme
         themePrefs = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
         ThemeUtils.setTheme();
 
-//        if(userName.getString("userPrefs", "user") != ""){
-//            navigateToMainMenu();
-//
-//        }
-
-        //Google SIGN-IN initialization
+        // Google SIGN-IN initialization
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        //userName initialization
-        userName = getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
-
-        // Set up UI elements
+        // Initialize other UI elements
         enterAppButton = findViewById(R.id.enter_btn);
         signInButton = findViewById(R.id.sign_in_button);
         enterNameLayout = findViewById(R.id.nameInput);
@@ -88,17 +98,15 @@ public class EntranceActivity extends AppCompatActivity {
         locationButton = findViewById(R.id.loc_btn);
         profilePic = findViewById(R.id.profile_photo);
 
-        //Storing location permission
-        locationPrefs = getSharedPreferences("locatinPrefs", Context.MODE_PRIVATE);
+        // Storing location permission state
+        locationPrefs = getSharedPreferences("locationPrefs", Context.MODE_PRIVATE);
         updateLocState(locationPrefs);
 
-        locationButton.setOnClickListener(v -> {
-            LocationPermissons.getLocationPermission(this);
-        });
-        // Custom login using the "Enter App" button
+        // Button listeners
+        locationButton.setOnClickListener(v -> LocationPermissons.getLocationPermission(this));
+
         enterAppButton.setOnClickListener(v -> {
             String name = enterNameEditText.getText().toString();
-            // Update loc state before checking it
             updateLocState(locationPrefs);
             if (name.isEmpty()) {
                 Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show();
@@ -107,21 +115,16 @@ public class EntranceActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         LOCATION_PERMISSION_REQUEST_CODE);
                 Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
-            } else if(googleEnterence){
-                // Save entered name to SharedPreferences
-                PreferencesFuncs.saveName(name);
-                // Navigate to MainMenuActivity
-                navigateToMainMenu();
             } else {
-                // Save entered name to SharedPreferences
                 PreferencesFuncs.saveName(name);
-                // Navigate to MainMenuActivity
-                navigateToMainMenu();
+                PreferencesFuncs.loginSate(); // Save login state
+                navigateToMainMenu();  // Navigate to MainMenuActivity
             }
         });
-        // Google Sign-In button
+
         signInButton.setOnClickListener(v -> signInWithGoogle());
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -135,7 +138,8 @@ public class EntranceActivity extends AppCompatActivity {
             } else {
                 // Location permission denied
                 PreferencesFuncs.locStae(locationPrefs, false);
-                Toast.makeText(this, "Location permission denied. You cannot proceed without granting location access.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Location permission denied. You cannot proceed without granting location access.", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -169,6 +173,8 @@ public class EntranceActivity extends AppCompatActivity {
                         Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
                     } else {
                         googleEnterence = true;
+                        // Save login state
+                        PreferencesFuncs.loginSate();
                         // If permission is already granted, navigate to the next activity
                         navigateToMainMenu();
                     }
@@ -178,11 +184,14 @@ public class EntranceActivity extends AppCompatActivity {
             }
         }
     }
-
     // Method to navigate to MainMenuActivity
     private void navigateToMainMenu() {
         Intent intent = new Intent(EntranceActivity.this, MainMenuActivity.class);
         startActivity(intent);
         finish();  // Close EntranceActivity so the user can't go back to the login screen
+    }
+    private void openLocationSettings(){
+        Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(intent);
     }
 }

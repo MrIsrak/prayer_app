@@ -1,9 +1,11 @@
 package app.dll.test.userDataPrefs.userLocationData;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static app.dll.test.EntranceActivity.LOCATION_PERMISSION_REQUEST_CODE;
 import static app.dll.test.EntranceActivity.locationPrefs;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
@@ -34,4 +36,8 @@ public class LocationPermissons {
         // Fetch the location state from SharedPreferences and update the loc variable
         locationPrefs.getBoolean("locationPrefs", false);
     }
+//    public static void openLocationSetting(){
+//
+//
+//    }
 }

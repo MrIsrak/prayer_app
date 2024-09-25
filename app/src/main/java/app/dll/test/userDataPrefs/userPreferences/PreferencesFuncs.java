@@ -1,8 +1,11 @@
 package app.dll.test.userDataPrefs.userPreferences;
 
+import static app.dll.test.EntranceActivity.isLogin;
 import static app.dll.test.EntranceActivity.userName;
 
 import android.content.SharedPreferences;
+
+import app.dll.test.EntranceActivity;
 
 public class PreferencesFuncs {
     public static void saveName(String name){
@@ -24,4 +27,10 @@ public class PreferencesFuncs {
         locEditor.putBoolean("locationPrefs", idGraind);
         locEditor.apply();
     }
+    public static void loginSate() {
+        SharedPreferences.Editor editor = EntranceActivity.isLogin.edit();
+        editor.putBoolean("IsLogin", true);  // Save login state
+        editor.apply();
+    }
+
 }

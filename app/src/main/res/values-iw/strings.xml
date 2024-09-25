@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sidur</string>
+    <string name="greeting">שלום</string>
+    <string name="whats_name">איך קורים</string>
+    <string name="question">מה נעשה היום</string>
+    <string name="name">שם</string>
+    <string name="location">מיקומ גיאוגרפי</string>
+    <string name="gallery">גלריה</string>
+    <string name="privacy_policy">הכנת סודית</string>
+    <string name="enter">להכנס לאפליקציה</string>
+    <string name="text_prayers">תפילות</string>
+    <string name="timetable">זמנים</string>
+    <string name="tehilim">תהילים</string>
+    <string name="blessings">ברכות</string>
+    <string name="shaharit">שחרית</string>
+    <string name="minha">מינחה</string>
+    <string name="arvit">ערבית(מעריב)</string>
+    <string name="sunrise">שחר</string>
+    <string name="noon">צהריים</string>
+    <string name="sunset">שקיעה</string>
+    <string name="daily">יומי</string>
+    <string name="situation">למצב מיוחד</string>
+    <string name="chapter">כל חלקים</string>
+    <string name="food">בירכת אוכל</string>
+    <string name="meal">ברכת המזון</string>
+    <string name="other">אחר</string>
+    <string name="home">בית</string>
+    <string name="prompt_email">אימייל</string>
+    <string name="prompt_password">סיסמה</string>
+    <string name="action_sign_in">להיכנס או להירשם</string>
+    <string name="action_sign_in_short">להיכנס</string>
+    <string name="welcome">ברוך לשלום</string>
+    <string name="invalid_username">לא שם משתמש חוקי</string>
+    <string name="invalid_password">הסיסמה חייבת להיות בת 5 תווים</string>
+    <string name="login_failed">הכניסה נכשלה</string>
+    <string name="enter_your_name">הזן את שמך</string>
+    <string name="enterName">בבקשה, הזן שם</string>
+    <string name="plsAccessLoc">אנא אפשר גישה למיקום כדי להיכנס לאפליקציה</string>
+    <string name="accessLocGring">ניתנה הרשאת מיקום</string>
+    <string name="accessLocDenied">הרשאת המיקום נדחתה. אינך יכול להמשיך מבלי להעניק גישה למיקום.</string>
+    <string name="greeting_name">"שלום "</string>
+</resources>

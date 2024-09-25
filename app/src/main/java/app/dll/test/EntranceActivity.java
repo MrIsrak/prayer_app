@@ -13,6 +13,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -32,6 +35,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.prefs.Preferences;
 
+import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userLocationData.LocationPermissons;
@@ -55,7 +59,6 @@ public class EntranceActivity extends AppCompatActivity {
     public static SharedPreferences userName;
     public static SharedPreferences themePrefs;
     public static SharedPreferences isLogin;
-
 
     //Initializing variable to sync enterences
     private boolean googleEnterence = false;
@@ -109,12 +112,12 @@ public class EntranceActivity extends AppCompatActivity {
             String name = enterNameEditText.getText().toString();
             updateLocState(locationPrefs);
             if (name.isEmpty()) {
-                Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.enterName, Toast.LENGTH_SHORT).show();
             } else if (!locationPrefs.getBoolean("locationPrefs", false)) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         LOCATION_PERMISSION_REQUEST_CODE);
-                Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
             } else {
                 PreferencesFuncs.saveName(name);
                 PreferencesFuncs.loginSate(); // Save login state
@@ -133,13 +136,12 @@ public class EntranceActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Location permission granted
                 PreferencesFuncs.locStae(locationPrefs, true);  // Update the location state
-                Toast.makeText(this, "Location permission granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.accessLocGring, Toast.LENGTH_SHORT).show();
                 navigateToMainMenu();  // Proceed to the main menu after permission is granted
             } else {
                 // Location permission denied
                 PreferencesFuncs.locStae(locationPrefs, false);
-                Toast.makeText(this, "Location permission denied. You cannot proceed without granting location access.", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -170,7 +172,7 @@ public class EntranceActivity extends AppCompatActivity {
                         ActivityCompat.requestPermissions(this,
                                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                 LOCATION_PERMISSION_REQUEST_CODE);
-                        Toast.makeText(this, "Please allow location access to enter the app", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
                     } else {
                         googleEnterence = true;
                         // Save login state

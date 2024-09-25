@@ -4,7 +4,7 @@
     <string name="greeting">Hello</string>
 
     <string name="greeting_name">Hello </string>
-    <string name="profile_photo">profile_photo</string>
+    <string name="profile_photo" translatable="false">profile_photo</string>
     <string name="whats_name"><u>what is your name?</u></string>
 
     <string name="question">Whatcha wanna do today?</string>
@@ -40,17 +40,26 @@
 
     <string name="home">Home</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be 5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="enter_your_name">Enter your name</string>
+    
+    <!--  Notifications  -->
+    <string name="enterName">Please, enter a name</string>
+    <string name="plsAccessLoc">Please allow location access to enter the app</string>
+    <string name="accessLocGring">Location permission granted</string>
+    <string name="accessLocDenied">Location permission denied. You cannot proceed without granting location access.</string>
 
+
+
+
+
+    <string name="title_activity_login" translatable="false">Login Activity</string>
 
 </resources>

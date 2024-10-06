@@ -2,22 +2,20 @@ package app.dll.test;
 
 import static androidx.core.content.ContextCompat.startActivity;
 import static app.dll.test.userDataPrefs.userLocationData.LocationPermissons.updateLocState;
+import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermisson.updateNotificationState;
 
 import android.Manifest;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.location.Location;
-import android.location.LocationListener;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,19 +29,17 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-//import com.google.firebase.inappmessaging.model.Button;
 
-import java.util.prefs.Preferences;
-
-import app.dll.test.userDataPrefs.userLocationData.GetLocation;
+import app.dll.test.userDataPrefs.userLocationData.LocationPermissons;
+import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermisson;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
-import app.dll.test.userDataPrefs.userLocationData.LocationPermissons;
 
 public class EntranceActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 9001;
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    public static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 2;  // Added constant for notification permission
     private GoogleSignInClient googleSignInClient;
 
     private Button enterAppButton;
@@ -54,14 +50,15 @@ public class EntranceActivity extends AppCompatActivity {
     private ImageView profilePic;
     public static String profilePhotoUrl;
 
-    //SharedPreferences setting up
+    // SharedPreferences setup
     public static SharedPreferences locationPrefs;
+    public static SharedPreferences notificationPrefs;
     public static SharedPreferences userName;
     public static SharedPreferences themePrefs;
     public static SharedPreferences isLogin;
 
-    //Initializing variable to sync enterences
-    private boolean googleEnterence = false;
+    // Initializing variable to sync entrances
+    private boolean googleEntrance = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,29 +100,56 @@ public class EntranceActivity extends AppCompatActivity {
 
         // Storing location permission state
         locationPrefs = getSharedPreferences("locationPrefs", Context.MODE_PRIVATE);
-        updateLocState(locationPrefs);
+        updateLocState();
+
+        // Soring notification permission state
+        notificationPrefs = getSharedPreferences("notificationPrefs", Context.MODE_PRIVATE);
+        updateNotificationState();
 
         // Button listeners
         locationButton.setOnClickListener(v -> LocationPermissons.getLocationPermission(this));
 
         enterAppButton.setOnClickListener(v -> {
             String name = enterNameEditText.getText().toString();
-            updateLocState(locationPrefs);
+            updateLocState();
+
             if (name.isEmpty()) {
                 Toast.makeText(this, R.string.enterName, Toast.LENGTH_SHORT).show();
-            } else if (!locationPrefs.getBoolean("locationPrefs", false)) {
+            } else if (!locationPrefs.getBoolean("locationPrefs", false) || !notificationPrefs.getBoolean("notificationPrefs", false)) {
+                // Request location permission
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         LOCATION_PERMISSION_REQUEST_CODE);
+                // Ask for notification permission if on Android 13 or higher
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    requestNotificationPermission();
+                }
+
                 Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
+            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Request location permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        LOCATION_PERMISSION_REQUEST_CODE);
             } else {
                 PreferencesFuncs.saveName(name);
-                PreferencesFuncs.loginSate(); // Save login state
+                PreferencesFuncs.loginSate();  // Save login state
                 navigateToMainMenu();  // Navigate to MainMenuActivity
             }
         });
 
         signInButton.setOnClickListener(v -> signInWithGoogle());
+    }
+
+    private void requestNotificationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    NOTIFICATION_PERMISSION_REQUEST_CODE);
+            updateNotificationState();
+        }
     }
 
     @Override
@@ -144,13 +168,26 @@ public class EntranceActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
             }
         }
+
+        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Notification permission granted
+                NotificationPermisson.crateNotificationChanel(this);
+                Toast.makeText(this, "Notification permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                // Notification permission denied
+                Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
+
     // Method to sign in with Google
     private void signInWithGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    //Handling the google sing in button
+
+    // Handling the Google sign-in button
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,27 +210,21 @@ public class EntranceActivity extends AppCompatActivity {
                                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                 LOCATION_PERMISSION_REQUEST_CODE);
                         Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
-                    } else {
-                        googleEnterence = true;
-                        // Save login state
-                        PreferencesFuncs.loginSate();
-                        // If permission is already granted, navigate to the next activity
-                        navigateToMainMenu();
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        // Request notification permission on Android 13 or higher
+                        requestNotificationPermission();
                     }
                 }
             } catch (ApiException e) {
-                e.printStackTrace();  // Handle the error
+                throw new RuntimeException(e);
             }
         }
     }
+
     // Method to navigate to MainMenuActivity
     private void navigateToMainMenu() {
         Intent intent = new Intent(EntranceActivity.this, MainMenuActivity.class);
         startActivity(intent);
         finish();  // Close EntranceActivity so the user can't go back to the login screen
-    }
-    private void openLocationSettings(){
-        Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivity(intent);
     }
 }

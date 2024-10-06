@@ -53,9 +53,10 @@
     <!--  Notifications  -->
     <string name="enterName">Please, enter a name</string>
     <string name="plsAccessLoc">Please allow location access to enter the app</string>
+    <string name="plsAccessNotifications" translatable="false"> Please allow notification access to enter the app</string>
     <string name="accessLocGring">Location permission granted</string>
     <string name="accessLocDenied">Location permission denied. You cannot proceed without granting location access.</string>
-
+    <string name="accessNotifcationGrand">Notification permission denied. You cannot proceed without granting notification access.</string>
 
 
 

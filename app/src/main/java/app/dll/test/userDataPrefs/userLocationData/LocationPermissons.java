@@ -17,8 +17,8 @@ import androidx.core.content.ContextCompat;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 
 public class LocationPermissons {
-    
-    static public void getLocationPermission(Activity activity){
+
+    static public void getLocationPermission(Activity activity) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Request permission if not granted
@@ -29,15 +29,11 @@ public class LocationPermissons {
             // Permission already granted, update the location preference
             PreferencesFuncs.locStae(locationPrefs, true);
             Toast.makeText(activity, "Location access already granted", Toast.LENGTH_SHORT).show();
-            updateLocState(locationPrefs);  // Update the state immediately
+            updateLocState();  // Update the state immediately
         }
     }
-    public static void updateLocState(SharedPreferences locationPrefs) {
-        // Fetch the location state from SharedPreferences and update the loc variable
+
+    public static void updateLocState() {
         locationPrefs.getBoolean("locationPrefs", false);
     }
-//    public static void openLocationSetting(){
-//
-//
-//    }
 }

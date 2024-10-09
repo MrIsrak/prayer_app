@@ -1,13 +1,14 @@
 package app.dll.test;
 
-import static androidx.core.content.ContextCompat.startActivity;
+import static app.dll.test.userDataPrefs.userLocationData.LocationPermissons.getLocationPermission;
 import static app.dll.test.userDataPrefs.userLocationData.LocationPermissons.updateLocState;
-import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermisson.updateNotificationState;
+import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons.getNotificationPermission;
+import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons.updateNotificationState;
+import static app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs.saveName;
 
 import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -30,8 +31,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
-import app.dll.test.userDataPrefs.userLocationData.LocationPermissons;
-import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermisson;
+import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 
@@ -107,33 +107,29 @@ public class EntranceActivity extends AppCompatActivity {
         updateNotificationState();
 
         // Button listeners
-        locationButton.setOnClickListener(v -> LocationPermissons.getLocationPermission(this));
+        locationButton.setOnClickListener(v -> getLocationPermission(this));
 
         enterAppButton.setOnClickListener(v -> {
             String name = enterNameEditText.getText().toString();
+            saveName(name);
             updateLocState();
 
             if (name.isEmpty()) {
                 Toast.makeText(this, R.string.enterName, Toast.LENGTH_SHORT).show();
             } else if (!locationPrefs.getBoolean("locationPrefs", false) || !notificationPrefs.getBoolean("notificationPrefs", false)) {
                 // Request location permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        LOCATION_PERMISSION_REQUEST_CODE);
+                getLocationPermission(this);
                 // Ask for notification permission if on Android 13 or higher
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    requestNotificationPermission();
+                    getNotificationPermission(this);
                 }
-
                 Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
             } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 // Request location permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        LOCATION_PERMISSION_REQUEST_CODE);
+                getLocationPermission(this);
             } else {
-                PreferencesFuncs.saveName(name);
+                saveName(name);
                 PreferencesFuncs.loginSate();  // Save login state
                 navigateToMainMenu();  // Navigate to MainMenuActivity
             }
@@ -142,15 +138,7 @@ public class EntranceActivity extends AppCompatActivity {
         signInButton.setOnClickListener(v -> signInWithGoogle());
     }
 
-    private void requestNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
-                    NOTIFICATION_PERMISSION_REQUEST_CODE);
-            updateNotificationState();
-        }
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -159,12 +147,12 @@ public class EntranceActivity extends AppCompatActivity {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Location permission granted
-                PreferencesFuncs.locStae(locationPrefs, true);  // Update the location state
+                PreferencesFuncs.locState(true);  // Update the location state
                 Toast.makeText(this, R.string.accessLocGring, Toast.LENGTH_SHORT).show();
                 navigateToMainMenu();  // Proceed to the main menu after permission is granted
             } else {
                 // Location permission denied
-                PreferencesFuncs.locStae(locationPrefs, false);
+                PreferencesFuncs.locState(false);
                 Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
             }
         }
@@ -172,9 +160,11 @@ public class EntranceActivity extends AppCompatActivity {
         if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Notification permission granted
-                NotificationPermisson.crateNotificationChanel(this);
+                PreferencesFuncs.notState(true);
+                NotificationPermissons.crateNotificationChanel(this);
                 Toast.makeText(this, "Notification permission granted", Toast.LENGTH_SHORT).show();
             } else {
+                PreferencesFuncs.notState(false);
                 // Notification permission denied
                 Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show();
             }
@@ -202,17 +192,16 @@ public class EntranceActivity extends AppCompatActivity {
                         profilePhotoUrl = account.getPhotoUrl().toString();
                     }
                     // Save Google Sign-In username in SharedPreferences
-                    PreferencesFuncs.saveName(name);
+                    saveName(name);
                     // Check if location permission is granted
                     if (!locationPrefs.getBoolean("locationPrefs", false)) {
                         // Request location permission if not granted
-                        ActivityCompat.requestPermissions(this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                LOCATION_PERMISSION_REQUEST_CODE);
+                        // Request location permission
+                        getLocationPermission(this);
                         Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
                     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         // Request notification permission on Android 13 or higher
-                        requestNotificationPermission();
+                        getNotificationPermission(this);
                     }
                 }
             } catch (ApiException e) {

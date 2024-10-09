@@ -1,6 +1,8 @@
 package app.dll.test.userDataPrefs.userPreferences;
 
 import static app.dll.test.EntranceActivity.isLogin;
+import static app.dll.test.EntranceActivity.locationPrefs;
+import static app.dll.test.EntranceActivity.notificationPrefs;
 import static app.dll.test.EntranceActivity.userName;
 
 import android.content.SharedPreferences;
@@ -22,10 +24,16 @@ public class PreferencesFuncs {
         editorLogin.apply();
     }
 
-    public static void locStae(SharedPreferences locationPrefs, boolean idGraind){
+    public static void locState( boolean isGrained){
         SharedPreferences.Editor locEditor = locationPrefs.edit();
-        locEditor.putBoolean("locationPrefs", idGraind);
+        locEditor.putBoolean("locationPrefs", isGrained);
         locEditor.apply();
+    }
+
+    public static void notState(boolean isGrained){
+        SharedPreferences.Editor notificationEditor = notificationPrefs.edit();
+        notificationEditor.putBoolean("notificationPrefs", isGrained);
+        notificationEditor.apply();
     }
     public static void loginSate() {
         SharedPreferences.Editor editor = EntranceActivity.isLogin.edit();

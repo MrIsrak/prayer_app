@@ -1,12 +1,9 @@
 package app.dll.test.userDataPrefs.userLocationData;
 
-import static androidx.core.content.ContextCompat.startActivity;
 import static app.dll.test.EntranceActivity.LOCATION_PERMISSION_REQUEST_CODE;
 import static app.dll.test.EntranceActivity.locationPrefs;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 import android.Manifest;
@@ -27,7 +24,7 @@ public class LocationPermissons {
                     LOCATION_PERMISSION_REQUEST_CODE);
         } else {
             // Permission already granted, update the location preference
-            PreferencesFuncs.locStae(locationPrefs, true);
+            PreferencesFuncs.locState(true);
             Toast.makeText(activity, "Location access already granted", Toast.LENGTH_SHORT).show();
             updateLocState();  // Update the state immediately
         }

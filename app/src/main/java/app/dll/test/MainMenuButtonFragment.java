@@ -2,15 +2,22 @@ package app.dll.test;
 
 //import static app.dll.test.EntranceActivity.name;
 
+import static androidx.core.content.ContextCompat.getSystemService;
 import static app.dll.test.EntranceActivity.profilePhotoUrl;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import android.content.SharedPreferences;
@@ -33,21 +40,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
 
+import app.dll.test.userDataPrefs.userNotificationsData.NotificationChannelCreating;
+import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons;
+
 
 public class MainMenuButtonFragment extends Fragment {
+    private static final String CHANNEL_ID = "your_channel_id";
+    private static final int NOTIFICATION_ID = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main_menu_button, container, false);
     }
-
+                                                        //TODO: FIX THEME BUGS!!!!!!
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         //Setting the actual name
         TextView greeting = view.findViewById(R.id.greeting);
         // Retrieve data
@@ -82,5 +92,18 @@ public class MainMenuButtonFragment extends Fragment {
 
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        //Creating Notification chanel for prayers notification
+        NotificationChannelCreating.createNotificationChannel(requireActivity(),
+                "reminder_channel",
+                "Reminders",
+                NotificationManager.IMPORTANCE_HIGH,
+                "Channel of reminding notifications for daily prayers");
+
+
+
+
     }
+
+
 }

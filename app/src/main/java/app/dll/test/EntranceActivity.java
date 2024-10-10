@@ -9,6 +9,7 @@ import static app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs.saveNa
 import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -117,28 +118,27 @@ public class EntranceActivity extends AppCompatActivity {
             if (name.isEmpty()) {
                 Toast.makeText(this, R.string.enterName, Toast.LENGTH_SHORT).show();
             } else if (!locationPrefs.getBoolean("locationPrefs", false) || !notificationPrefs.getBoolean("notificationPrefs", false)) {
-                // Request location permission
-                getLocationPermission(this);
-                // Ask for notification permission if on Android 13 or higher
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    getNotificationPermission(this);
-                }
-                Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
-            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // Request location permission
-                getLocationPermission(this);
-            } else {
-                saveName(name);
-                PreferencesFuncs.loginSate();  // Save login state
-                navigateToMainMenu();  // Navigate to MainMenuActivity
-            }
+                checkPermissionsAndProceed();}
         });
 
         signInButton.setOnClickListener(v -> signInWithGoogle());
     }
 
+    private void checkPermissionsAndProceed() {
+        boolean hasLocationPermission = locationPrefs.getBoolean("locationPrefs", false);
+        boolean hasNotificationPermission = notificationPrefs.getBoolean("notificationPrefs", false);
 
+        // Make both permissions necessary
+        if (!hasLocationPermission || !hasNotificationPermission) {
+            // Request both location and notification permissions
+            getLocationPermission(this);
+            getNotificationPermission(this);
+        } else {
+            // Both permissions are granted, proceed to main menu
+            PreferencesFuncs.loginSate();  // Save login state
+            navigateToMainMenu();  // Navigate to MainMenuActivity
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -161,7 +161,6 @@ public class EntranceActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Notification permission granted
                 PreferencesFuncs.notState(true);
-                NotificationPermissons.crateNotificationChanel(this);
                 Toast.makeText(this, "Notification permission granted", Toast.LENGTH_SHORT).show();
             } else {
                 PreferencesFuncs.notState(false);
@@ -194,15 +193,7 @@ public class EntranceActivity extends AppCompatActivity {
                     // Save Google Sign-In username in SharedPreferences
                     saveName(name);
                     // Check if location permission is granted
-                    if (!locationPrefs.getBoolean("locationPrefs", false)) {
-                        // Request location permission if not granted
-                        // Request location permission
-                        getLocationPermission(this);
-                        Toast.makeText(this, R.string.plsAccessLoc, Toast.LENGTH_SHORT).show();
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        // Request notification permission on Android 13 or higher
-                        getNotificationPermission(this);
-                    }
+                    checkPermissionsAndProceed();
                 }
             } catch (ApiException e) {
                 throw new RuntimeException(e);

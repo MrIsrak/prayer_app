@@ -22,6 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         getLocation.requestLocationUpdates();
 
+
     }
 }
 

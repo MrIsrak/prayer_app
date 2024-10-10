@@ -34,25 +34,10 @@ public class NotificationPermissons {
                     NOTIFICATION_PERMISSION_REQUEST_CODE);
         } else {
             // Permission already granted, update the notification preference
-            PreferencesFuncs.locState(true);
+            PreferencesFuncs.notState(true);
             Toast.makeText(activity, "Notification access already granted", Toast.LENGTH_SHORT).show();
             updateNotificationState();  // Update the state immediately
         }
     }
 
-    public static void crateNotificationChanel(Activity context){
-        // Only create the notification channel on Android O and above
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Channel Name";
-            String description = "Channel Description";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
-            channel.setDescription(description);
-
-            // Register the channel with the system
-            NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
-
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 }

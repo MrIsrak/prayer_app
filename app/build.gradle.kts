@@ -40,7 +40,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
     implementation("com.google.firebase:firebase-inappmessaging:21.0.0")
-    val navVersion = "2.8.1"
+    val navVersion = "2.8.2"
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")

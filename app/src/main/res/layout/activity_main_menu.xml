@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:configChanges="uiMode"
 
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -21,11 +22,11 @@
         android:layout_height="wrap_content"
         android:src="@drawable/settings_svgrepo_com"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:tint="@color/main_color"
         android:paddingTop="10dp"
         android:paddingStart="10dp"
+        app:tint="@color/main_color"
 
-    />
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"

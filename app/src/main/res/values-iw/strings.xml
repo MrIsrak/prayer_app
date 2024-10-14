@@ -37,7 +37,7 @@
     <string name="enter_your_name">הזן את שמך</string>
     <string name="enterName">בבקשה, הזן שם</string>
     <string name="plsAccessLoc">אנא אפשר גישה למיקום כדי להיכנס לאפליקציה</string>
-    <string name="accessLocGring">ניתנה הרשאת מיקום</string>
+    <string name="accessLocGranted">ניתנה הרשאת מיקום</string>
     <string name="accessLocDenied">הרשאת המיקום נדחתה. אינך יכול להמשיך מבלי להעניק גישה למיקום.</string>
     <string name="greeting_name">"שלום "</string>
     <string name="accessNotifcationGrand">הרשאת הודעה נדחתה. אינך יכול להמשיך מבלי להעניק גישה להתראות.</string>

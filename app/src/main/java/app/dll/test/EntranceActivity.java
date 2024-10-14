@@ -6,17 +6,13 @@ import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermi
 import static app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons.updateNotificationState;
 import static app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs.saveName;
 
-import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +28,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
-import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 
@@ -58,12 +53,13 @@ public class EntranceActivity extends AppCompatActivity {
     public static SharedPreferences themePrefs;
     public static SharedPreferences isLogin;
 
-    // Initializing variable to sync entrances
-    private boolean googleEntrance = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Applying theme
+        themePrefs = getSharedPreferences("themePrefs", MODE_PRIVATE);
+        ThemeUtils.setTheme(this);
 
         // Initialize SharedPreferences for userName
         userName = getSharedPreferences("userPrefs", Context.MODE_PRIVATE);  // Initialize userName here
@@ -80,10 +76,6 @@ public class EntranceActivity extends AppCompatActivity {
 
         // If not logged in, proceed with the normal entrance setup
         setContentView(R.layout.activity_entrance);
-
-        // Applying theme
-        themePrefs = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
-        ThemeUtils.setTheme();
 
         // Google SIGN-IN initialization
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -148,7 +140,7 @@ public class EntranceActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Location permission granted
                 PreferencesFuncs.locState(true);  // Update the location state
-                Toast.makeText(this, R.string.accessLocGring, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.accessLocGranted, Toast.LENGTH_SHORT).show();
                 navigateToMainMenu();  // Proceed to the main menu after permission is granted
             } else {
                 // Location permission denied

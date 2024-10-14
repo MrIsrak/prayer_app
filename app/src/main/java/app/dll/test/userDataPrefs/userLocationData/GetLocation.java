@@ -64,8 +64,6 @@ public class GetLocation implements LocationListener {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            Toast.makeText(context, "Latitude: " + latitude + " Longitude: " + longitude, Toast.LENGTH_SHORT).show();
-
             String locationName = getLocationName(context, latitude, longitude);
 
             // Step 1: Create a GeoLocation object
@@ -73,7 +71,6 @@ public class GetLocation implements LocationListener {
 
             // Step 2: Create a ComplexZmanimCalendar object for calculating Zmanim
             ComplexZmanimCalendar zmanimCalendar = new ComplexZmanimCalendar(location123);
-
 
             // Formatter for displaying times
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -90,11 +87,7 @@ public class GetLocation implements LocationListener {
             Log.d("Shkiah (Sunset): ", timeFormat.format(zmanimCalendar.getSunset()));
             Log.d("Tzeit HaKochavim (Nightfall): ", timeFormat.format(zmanimCalendar.getTzais()));
             Log.d("Location", String.valueOf(zmanimCalendar.getGeoLocation()));
-
-            // Display the location
-            Toast.makeText(context, "Latitude: " + latitude + " Longitude: " + longitude, Toast.LENGTH_SHORT).show();
         }
-        //TODO: CHECK ZMANIM
     }
 
     @Override

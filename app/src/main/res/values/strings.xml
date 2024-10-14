@@ -39,7 +39,6 @@
 
 
     <string name="home">Home</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -49,18 +48,22 @@
     <string name="invalid_password">Password must be 5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="enter_your_name">Enter your name</string>
-    
+
     <!--  Notifications  -->
     <string name="enterName">Please, enter a name</string>
     <string name="plsAccessLoc">Please allow location access to enter the app</string>
     <string name="plsAccessNotifications" translatable="false"> Please allow notification access to enter the app</string>
-    <string name="accessLocGring">Location permission granted</string>
+    <string name="accessLocGranted">Location permission granted</string>
     <string name="accessLocDenied">Location permission denied. You cannot proceed without granting location access.</string>
-    <string name="accessNotifcationGrand">Notification permission denied. You cannot proceed without granting notification access.</string>
-
-
+    <string name="accessNotificationGrand">Notification permission denied. You cannot proceed without granting notification access.</string>
 
 
     <string name="title_activity_login" translatable="false">Login Activity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
+    <!--  Settings  -->
+    <string name="theme">Theme</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="theme_settings_description">Choose your theme settings</string>
 </resources>

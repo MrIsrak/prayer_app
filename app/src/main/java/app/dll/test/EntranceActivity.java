@@ -59,7 +59,7 @@ public class EntranceActivity extends AppCompatActivity {
 
         // Applying theme
         themePrefs = getSharedPreferences("themePrefs", MODE_PRIVATE);
-        ThemeUtils.setTheme(this);
+
 
         // Initialize SharedPreferences for userName
         userName = getSharedPreferences("userPrefs", Context.MODE_PRIVATE);  // Initialize userName here

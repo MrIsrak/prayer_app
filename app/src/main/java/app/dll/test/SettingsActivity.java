@@ -17,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtils.setTheme(this);
         setContentView(R.layout.settings_activity);
 
         // Check if savedInstanceState is null, then replace fragment
@@ -60,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         requireActivity().setResult(RESULT_OK);
 
-                        requireActivity().recreate();
+
 
                         return true;  // Return true to update the state of the preference
                     }

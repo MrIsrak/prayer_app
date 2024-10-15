@@ -2,13 +2,16 @@ package app.dll.test.userDataPrefs.themeUtils;
 
 import static android.app.PendingIntent.getActivity;
 
+import static androidx.core.app.ActivityCompat.recreate;
 import static app.dll.test.EntranceActivity.themePrefs;
 
 import android.app.Activity;
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -19,11 +22,15 @@ public class ThemeUtils {
     // Method to check if the system theme is dark (Android 10+)
     public static boolean isSystemThemeDark(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            int nightModeFlags = context.getResources().getConfiguration().uiMode
-                    & Configuration.UI_MODE_NIGHT_MASK;
-            return nightModeFlags == Configuration.UI_MODE_NIGHT_YES; // Return true if system is dark
+            UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+            if (uiModeManager != null) {
+                int nightMode = uiModeManager.getNightMode();
+                if (nightMode == UiModeManager.MODE_NIGHT_YES) {
+                    return true; // System theme is dark
+                }
+            }
         }
-        return false; // Default to false for older versions
+        return false; // Default to light theme for older versions or if system is not in dark mode
     }
 
     // Method to apply the theme based on user selection
@@ -33,14 +40,15 @@ public class ThemeUtils {
         // Set the theme based on user selection
         switch (selectedTheme) {
             case "light":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // For dark mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // Dark off
                 context.setTheme(R.style.Theme_Sidur_Light);
                 break;
             case "dark":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // For dark mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // Dark on
                 context.setTheme(R.style.Theme_Sidur_Dark);
                 break;
             case "default":
+                Log.d("default", String.valueOf(isSystemThemeDark(context)));
                 // If the user chose "default", apply the system theme logic
                 if (isSystemThemeDark(context)) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // For dark mode
@@ -49,16 +57,11 @@ public class ThemeUtils {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // For dark mode
                     context.setTheme(R.style.Theme_Sidur_Light); // Apply light if system is light
                 }
+                ((Activity) context).recreate();
                 break;
-            default:
-                context.setTheme(R.style.Theme_Sidur_Light); // Fallback to light theme
-                break;
+
         }
 
-        // Recreate the activity to apply the new theme
-        if (context instanceof Activity) {
-            Activity activity = (Activity) context;
-            activity.recreate(); // Refresh the activity to apply the new theme
-        }
+
     }
 }

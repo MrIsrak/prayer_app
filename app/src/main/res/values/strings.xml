@@ -25,9 +25,16 @@
     <string name="minha">Minha</string>
     <string name="arvit">Arvit</string>
     <!--        TIMETABLE       -->
-    <string name="sunrise">Sunrise</string>
-    <string name="noon">Noon</string>
-    <string name="sunset">Sunset</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="shabat">Shabat</string>
+    <string name="next_week">Next Week</string>
+
+
     <!--    TEHILIM     -->
     <string name="daily">For today</string>
     <string name="situation">For the situation</string>

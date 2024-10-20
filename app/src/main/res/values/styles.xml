@@ -4,15 +4,15 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    `HADDING`
-    <style name="hedding">
+    `TITLE`
+    <style name="title">
         <item name="android:textSize">32sp</item>
         <item name="android:fontFamily">@font/tttravaler_black</item>
     </style>
 
 
     `SMALL HEDDING`
-    <style name="small_hedding">
+    <style name="small_title">
         <item name="android:fontFamily">@font/tttravels_extrabold</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -73,6 +73,7 @@
         <item name="android:paddingEnd">8dp</item>
 
         <item name="android:layout_weight">0.5</item>
+        <item name="cornerRadius">30dp</item>
 
     </style>
 
@@ -101,6 +102,31 @@
 
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="timetable_btn">
+
+        <item name="android:textSize">15.5sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+
+        <item name="android:layout_marginEnd">10dp</item>
+
+
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingBottom">30dp</item>
+
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+
+        <item name="android:layout_weight">0.5</item>
+
+        <item name="cornerRadius">30dp</item>
+
     </style>
 
     <style name="icon_pink">

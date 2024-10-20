@@ -8,79 +8,164 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent">
 
-            <ImageView
-            android:id="@+id/clock_icon"
+        <!-- Back button aligned to the left -->
+        <ImageButton
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/timetable"
-            android:src="@drawable/clock_pink"
-
-            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/back_arrow"
+            android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp" />
 
-            style="@style/icon_pink"/>
+        <!-- Home button aligned to the right -->
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp" />
 
+        <!-- Timetable Title -->
+        <TextView
+            android:id="@+id/timetable_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timetable"
+            style="@style/title"
+            app:layout_constraintTop_toBottomOf="@id/home_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp" 
+            />
 
-
+        <!-- Week Days Layout -->
         <LinearLayout
-            android:id="@+id/layout_btn"
+            android:id="@+id/week_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/timetable_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp" 
+            android:layout_marginStart="20dp" 
+            android:layout_marginEnd="20dp" >
 
-            app:layout_constraintTop_toBottomOf="@+id/clock_icon"
-            android:layout_marginTop="10dp"
+            <!-- Sunday and Monday -->
+            <LinearLayout
+                android:id="@+id/sun_mon_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sunday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sunday"
+                    style="@style/main_menu_btn" />
 
-            >
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/monday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/monday"
+                    style="@style/main_menu_btn" />
+            </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sunrise_btn"
-            style="@style/sub_menu_btn"
-            android:text="@string/sunrise"
-            app:layout_constraintTop_toBottomOf="@id/clock_icon"/>
+            <!-- Tuesday and Wednesday -->
+            <LinearLayout
+                android:id="@+id/tue_wed_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tuesday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tuesday"
+                    style="@style/main_menu_btn" />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/noon_btn"
-            style="@style/sub_menu_btn"
-            android:text="@string/noon"
-            app:layout_constraintTop_toBottomOf="@id/sunrise_btn"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/wednesday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/wednesday"
+                    style="@style/main_menu_btn" />
+            </LinearLayout>
 
+            <!-- Thursday and Friday -->
+            <LinearLayout
+                android:id="@+id/thu_fri_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sunset_btn"
-            style="@style/sub_menu_btn"
-            android:text="@string/sunset"
-            app:layout_constraintTop_toBottomOf="@id/noon_btn"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/thursday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/thursday"
+                    style="@style/main_menu_btn" />
 
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/zmanei_tfila_btn"
-            style="@style/sub_menu_btn"
-            android:text="Zmanim"
-            app:layout_constraintTop_toBottomOf="@id/sunset_btn"/>
-
-
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/friday_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/friday"
+                    
+                    
+                    style="@style/main_menu_btn" />
+            </LinearLayout>
         </LinearLayout>
 
+        <!-- Shabbat Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shabbat_btn"
+            style="@style/main_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/shabat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/week_layout"
+            app:layout_constraintTop_toBottomOf="@id/week_layout" />
 
-
+        <!-- Next Week Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_week_btn"
+            style="@style/main_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/next_week"
+            app:layout_constraintEnd_toEndOf="@+id/shabbat_btn"
+            app:layout_constraintStart_toStartOf="@+id/shabbat_btn"
+            app:layout_constraintTop_toBottomOf="@id/shabbat_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

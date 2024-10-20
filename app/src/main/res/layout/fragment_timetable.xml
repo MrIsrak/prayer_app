@@ -20,32 +20,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="25dp" />
 
         <!-- Home button aligned to the right -->
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/home"
-            android:background="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="15dp" />
 
         <!-- Timetable Title -->
         <TextView
             android:id="@+id/timetable_tv"
+            style="@style/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/timetable"
-            style="@style/title"
-            app:layout_constraintTop_toBottomOf="@id/home_button"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp" 
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_button"
+            android:layout_marginTop="30dp"/>
 
         <!-- Week Days Layout -->
         <LinearLayout
@@ -57,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center_horizontal"
-            android:layout_marginTop="20dp" 
+            android:layout_marginTop="30dp"
             android:layout_marginStart="20dp" 
             android:layout_marginEnd="20dp" >
 
@@ -159,7 +148,7 @@
             style="@style/main_menu_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:text="@string/next_week"

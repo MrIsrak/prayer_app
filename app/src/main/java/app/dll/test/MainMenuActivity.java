@@ -10,6 +10,7 @@ import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+
     private static final int REQUEST_CODE_SETTINGS = 1;
 
     @Override
@@ -22,11 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
         GetLocation getLocation = new GetLocation(this);
         getLocation.requestLocationUpdates();
 
-        ImageButton settingsButton = findViewById(R.id.settings_btn);
-        settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_SETTINGS); // Use startActivityForResult
-        });
+
     }
 
     @Override
@@ -36,7 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             // Theme has been changed, recreate the activity to apply the new theme
             ThemeUtils.setTheme(this);
-            recreate(); // Recreate to apply the new theme if needed
+
         }
     }
 }

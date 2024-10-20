@@ -21,7 +21,7 @@
         android:id="@+id/hi_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/hedding"
+        style="@style/title"
         android:text="@string/greeting"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"

@@ -32,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons;
 public class MainMenuButtonFragment extends Fragment {
     private static final String CHANNEL_ID = "your_channel_id";
     private static final int NOTIFICATION_ID = 1;
+    private static final int REQUEST_CODE_SETTINGS = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,14 +68,21 @@ public class MainMenuButtonFragment extends Fragment {
         if (greeting != null) {
             greeting.setText("Hello, " + name + "!");
         }
-        ImageView profilePhoto = view.findViewById(R.id.profile_photo);
-        Glide.with(this).load(profilePhotoUrl).load(profilePhoto);
+
+
+
+
+
+
+//        ImageView profilePhoto = view.findViewById(R.id.profile_photo);
+//        Glide.with(this).load(profilePhotoUrl).load(profilePhoto);
 
         //Setting up the main menu buttons
         Button timetableButton = view.findViewById(R.id.time_table_btn);
         Button textPrayersButton = view.findViewById(R.id.text_prayers_btn);
         Button tehilimButton = view.findViewById(R.id.tehelim_button);
         Button blessinButton = view.findViewById(R.id.blessings_button);
+        ImageButton settingsButton = view.findViewById(R.id.settings_btn);
 
         NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
 
@@ -81,6 +90,10 @@ public class MainMenuButtonFragment extends Fragment {
         textPrayersButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_textPrayers_fragment));
         tehilimButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_tehilim_fragment));
         blessinButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_blessings_fragment));
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), SettingsActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS); // Use startActivityForResult
+        });
 
         BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation);
 
@@ -99,10 +112,6 @@ public class MainMenuButtonFragment extends Fragment {
                 "Reminders",
                 NotificationManager.IMPORTANCE_HIGH,
                 "Channel of reminding notifications for daily prayers");
-
-
-
-
     }
 
 

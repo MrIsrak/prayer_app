@@ -26,7 +26,7 @@
                 android:id="@+id/greeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/"
+                android:text="@string/greeting_name"
 
                 style="@style/main_menu_txt"
 
@@ -55,6 +55,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/greeting"
 
                 android:layout_marginTop="12dp"/>
+
+            <ImageButton
+                android:id="@+id/settings_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/settings_svgrepo_com"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/main_color" />
 
 
             <LinearLayout

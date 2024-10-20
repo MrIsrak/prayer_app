@@ -51,8 +51,11 @@
         android:id="@+id/timetable_fragment"
         android:name="app.dll.test.buttonsFragments.TimetableFragment"
         android:label="fragment_timetable"
-        tools:layout="@layout/fragment_timetable"
-        />
-
-
+        tools:layout="@layout/fragment_timetable">
+        <action
+            android:id="@+id/action_timetable_fragment_to_main_menu_button"
+            app:destination="@id/main_menu_button"
+            app:popUpTo="@+id/main_menu_button"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

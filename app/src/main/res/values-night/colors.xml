@@ -4,5 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#9384F3</color>
     <color name="second_color">#B3B6FF</color>
-    <color name="icon_color">#FF000000</color>
+    <color name="icon_color">#FFFFFFFF</color>
 </resources>

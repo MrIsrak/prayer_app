@@ -1,6 +1,7 @@
 package app.dll.test.userDataPrefs.userLocationData;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -37,24 +38,19 @@ public class GetLocation implements LocationListener {
     public static double longitude;
 
     //Zmanim
-    ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
+    ComplexZmanimCalendar zmanimCalendar = new ComplexZmanimCalendar();
 
-    private Date sunrise;
-    private Date noon;
-    private Date sunset;
 
-    public GetLocation(Context context) {
+    public GetLocation(Context context, Activity activity) {
         this.context = context;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        LocationPermissons.getLocationPermission(activity);
     }
 
     public void requestLocationUpdates() {
-        // Check if the permission is granted before requesting location updates
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Handle permission request here
-            return;
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return; // Permission is not granted
         }
-        // Request location updates from the GPS provider
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1000, this);
     }
 
@@ -65,30 +61,11 @@ public class GetLocation implements LocationListener {
             longitude = location.getLongitude();
 
             String locationName = getLocationName(context, latitude, longitude);
-
-            // Step 1: Create a GeoLocation object
-            GeoLocation location123 = new GeoLocation("Location", latitude, longitude, TimeZone.getTimeZone(locationName));
-
-            // Step 2: Create a ComplexZmanimCalendar object for calculating Zmanim
-            ComplexZmanimCalendar zmanimCalendar = new ComplexZmanimCalendar(location123);
-
-            // Formatter for displaying times
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-
-            // Get Zmanim and print them
-            Log.d("Alot HaShachar (Dawn): ", timeFormat.format(zmanimCalendar.getAlosHashachar()));
-            Log.d("Netz HaChamah (Sunrise): ", timeFormat.format(zmanimCalendar.getSunrise()));
-            Log.d("Sof Zman Kriat Shema: ", timeFormat.format(zmanimCalendar.getSofZmanShmaGRA()));
-            Log.d("Sof Zman Tefillah: ", timeFormat.format(zmanimCalendar.getSofZmanTfilaGRA()));
-            Log.d("Chatzot (Midday): ", timeFormat.format(zmanimCalendar.getChatzos()));
-            Log.d("Mincha Gedolah: ", timeFormat.format(zmanimCalendar.getMinchaGedola()));
-            Log.d("Mincha Ketanah: ", timeFormat.format(zmanimCalendar.getMinchaKetana()));
-            Log.d("Plag HaMincha: ", timeFormat.format(zmanimCalendar.getPlagHamincha()));
-            Log.d("Shkiah (Sunset): ", timeFormat.format(zmanimCalendar.getSunset()));
-            Log.d("Tzeit HaKochavim (Nightfall): ", timeFormat.format(zmanimCalendar.getTzais()));
-            Log.d("Location", String.valueOf(zmanimCalendar.getGeoLocation()));
+            GeoLocation geoLocation = new GeoLocation("Location", latitude, longitude, TimeZone.getTimeZone(locationName));
+            zmanimCalendar = new ComplexZmanimCalendar(geoLocation);
         }
     }
+
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -106,7 +83,7 @@ public class GetLocation implements LocationListener {
         //TODO: Notify the user about his GPS in invaluable and zamnim us not working precisely
     }
     //Get the location name
-    public String getLocationName(Context context, double latitude, double longitude) {
+    public static String getLocationName(Context context, double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             // Get the address list (contains possible matches for the given latitude and longitude)

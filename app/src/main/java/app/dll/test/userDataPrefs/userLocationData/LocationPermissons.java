@@ -24,7 +24,7 @@ public class LocationPermissons {
                     LOCATION_PERMISSION_REQUEST_CODE);
         } else {
             // Permission already granted, update the location preference
-            PreferencesFuncs.locState(true);
+            PreferencesFuncs.locState(true, activity);
             Toast.makeText(activity, "Location access already granted", Toast.LENGTH_SHORT).show();
             updateLocState();  // Update the state immediately
         }

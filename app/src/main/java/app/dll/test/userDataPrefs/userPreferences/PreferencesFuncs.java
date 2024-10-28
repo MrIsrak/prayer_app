@@ -6,7 +6,9 @@ import static app.dll.test.EntranceActivity.notificationPrefs;
 import static app.dll.test.EntranceActivity.themePrefs;
 import static app.dll.test.EntranceActivity.userName;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import app.dll.test.EntranceActivity;
 
@@ -24,15 +26,15 @@ public class PreferencesFuncs {
 
     }
 
-    public static void loginState(SharedPreferences sharedPreferences){
-        // Save the login state
-        SharedPreferences.Editor editorLogin = sharedPreferences.edit();
-        editorLogin.putBoolean("isLoggedIn", true);
-        editorLogin.apply();
-    }
+    public static void locState(boolean isGrained, Context context) {
+        SharedPreferences.Editor locEditor = null;
+        if (locationPrefs != null) {
+            locEditor = locationPrefs.edit();
+        } else {
+            locationPrefs = context.getSharedPreferences("locationPrefs", Context.MODE_PRIVATE);
+            locEditor = locationPrefs.edit();
+        }
 
-    public static void locState( boolean isGrained){
-        SharedPreferences.Editor locEditor = locationPrefs.edit();
         locEditor.putBoolean("locationPrefs", isGrained);
         locEditor.apply();
     }
@@ -43,7 +45,7 @@ public class PreferencesFuncs {
         notificationEditor.apply();
     }
     public static void loginSate() {
-        SharedPreferences.Editor editor = EntranceActivity.isLogin.edit();
+        SharedPreferences.Editor editor = isLogin.edit();
         editor.putBoolean("IsLogin", true);  // Save login state
         editor.apply();
     }

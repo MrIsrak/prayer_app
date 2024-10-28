@@ -139,12 +139,12 @@ public class EntranceActivity extends AppCompatActivity {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Location permission granted
-                PreferencesFuncs.locState(true);  // Update the location state
+                PreferencesFuncs.locState(true, this);  // Update the location state
                 Toast.makeText(this, R.string.accessLocGranted, Toast.LENGTH_SHORT).show();
                 navigateToMainMenu();  // Proceed to the main menu after permission is granted
             } else {
                 // Location permission denied
-                PreferencesFuncs.locState(false);
+                PreferencesFuncs.locState(false, this);
                 Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
             }
         }

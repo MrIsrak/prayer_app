@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="15dp"
             android:layout_marginTop="25dp"
-            app:tint="@color/main_color" />
+            app:tint="@color/second_color" />
 
         <!-- Home button aligned to the right -->
 
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sunday"
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/monday_btn"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/monday"
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
             </LinearLayout>
 
             <!-- Tuesday and Wednesday -->
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tuesday"
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/wednesday_btn"
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/wednesday"
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
             </LinearLayout>
 
             <!-- Thursday and Friday -->
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/thursday"
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/friday_btn"
@@ -124,21 +124,21 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/friday"
-                    
-                    
-                    style="@style/main_menu_btn" />
+                    style="@style/timetable_btn" />
             </LinearLayout>
         </LinearLayout>
 
         <!-- Shabbat Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/shabbat_btn"
-            style="@style/main_menu_btn"
+            style="@style/timetable_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="@string/shabat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/week_layout"
@@ -147,12 +147,14 @@
         <!-- Next Week Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next_week_btn"
-            style="@style/main_menu_btn"
+            style="@style/timetable_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
             android:text="@string/next_week"
             app:layout_constraintEnd_toEndOf="@+id/shabbat_btn"
             app:layout_constraintStart_toStartOf="@+id/shabbat_btn"

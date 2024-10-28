@@ -1,5 +1,6 @@
 package app.dll.test;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageButton;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userLocationData.GetLocation;
+import app.dll.test.zmanim.GetJewishDate;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -20,8 +22,9 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         // Getting user location
-        GetLocation getLocation = new GetLocation(this);
+        GetLocation getLocation = new GetLocation(this, this);
         getLocation.requestLocationUpdates();
+
 
 
     }

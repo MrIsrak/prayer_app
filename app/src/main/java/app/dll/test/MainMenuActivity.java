@@ -17,8 +17,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeUtils.setTheme(this);
         super.onCreate(savedInstanceState);
+        ThemeUtils.setTheme(this);
         setContentView(R.layout.activity_main_menu);
 
         // Getting user location

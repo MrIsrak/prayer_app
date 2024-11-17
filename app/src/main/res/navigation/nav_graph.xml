@@ -52,10 +52,31 @@
         android:name="app.dll.test.buttonsFragments.TimetableFragment"
         android:label="fragment_timetable"
         tools:layout="@layout/fragment_timetable">
+        <argument
+            android:name="day"
+            app:argType="string"/>
         <action
             android:id="@+id/action_timetable_fragment_to_main_menu_button"
             app:destination="@id/main_menu_button"
             app:popUpTo="@+id/main_menu_button"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_to_dalyZamanimFragment"
+            app:destination="@id/dalyZamanimFragment"
+            app:popUpTo="@id/timetable_fragment"
+            app:popUpToInclusive="true"/>
+
+
     </fragment>
+    <fragment
+        android:id="@+id/dalyZamanimFragment"
+        android:name="app.dll.test.buttonsFragments.subFragments.DalyZamanimFragment"
+        android:label="fragment_daly_zamanim"
+        tools:layout="@layout/fragment_daly_zamanim" />
+
+        <action
+            android:id="@+id/action_dailyZmanim_to_timetable"
+            app:destination="@id/timetable_fragment"
+            app:popUpTo="@id/dalyZamanimFragment"
+            app:popUpToInclusive="true"/>
 </navigation>

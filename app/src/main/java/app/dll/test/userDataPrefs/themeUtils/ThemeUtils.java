@@ -7,6 +7,7 @@ import static app.dll.test.EntranceActivity.themePrefs;
 
 import android.app.Activity;
 import android.app.UiModeManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -41,27 +42,29 @@ public class ThemeUtils {
         switch (selectedTheme) {
             case "light":
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // Dark off
-                context.setTheme(R.style.Theme_Sidur_Light);
+//                context.setTheme(R.style.Theme_Sidur_Light);
                 break;
             case "dark":
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // Dark on
-                context.setTheme(R.style.Theme_Sidur_Dark);
+//                context.setTheme(R.style.Theme_Sidur_Dark);
                 break;
             case "default":
-                Log.d("default", String.valueOf(isSystemThemeDark(context)));
                 // If the user chose "default", apply the system theme logic
                 if (isSystemThemeDark(context)) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); // For dark mode
-                    context.setTheme(R.style.Theme_Sidur_Dark); // Apply dark if system is dark
+//                    context.setTheme(R.style.Theme_Sidur_Dark); // Apply dark if system is dark
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // For dark mode
-                    context.setTheme(R.style.Theme_Sidur_Light); // Apply light if system is light
+//                    context.setTheme(R.style.Theme_Sidur_Light); // Apply light if system is light
                 }
-                ((Activity) context).recreate();
                 break;
 
         }
-
-
+        // Recreate activity only if the context is an Activity
+        if (context instanceof Activity) {
+            ((Activity) context).recreate();
+        } else {
+            Log.w("ThemeUtils", "Context is not an instance of Activity; recreate() skipped.");
+        }
     }
 }

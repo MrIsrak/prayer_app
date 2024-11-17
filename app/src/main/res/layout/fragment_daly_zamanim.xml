@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".buttonsFragments.subFragments.DalyZamanimFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+            <!-- Back button aligned to the top-left with padding -->
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_arrow"
+                android:background="@null"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                app:tint="@color/second_color" />
+
+            <!-- Centered LinearLayout -->
+        <LinearLayout
+            android:id="@+id/date_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_button"
+            android:layout_marginTop="60dp"> <!-- Space to push it below the back button -->
+            <!-- Main title TextView -->
+            <TextView
+                android:id="@+id/week_day_tv"
+                style="@style/main_menu_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black" />
+            <!-- Subtitle TextView -->
+            <TextView
+                style="@style/small_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(456)"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <ImageButton
+                android:id="@+id/day_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/date_layout"
+                app:layout_constraintBottom_toBottomOf="@id/date_layout"
+                app:layout_constraintTop_toTopOf="@id/date_layout"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/day_switcher_back"
+                android:background="@null"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/day_fvrd_btn"
+            app:layout_constraintStart_toEndOf="@id/date_layout"
+            app:layout_constraintBottom_toBottomOf="@id/date_layout"
+            app:layout_constraintTop_toTopOf="@id/date_layout"
+            android:layout_marginStart="40dp"
+            android:src="@drawable/day_switcher_frvrd"
+            android:background="@null"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+

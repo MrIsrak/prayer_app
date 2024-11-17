@@ -1,6 +1,9 @@
 package app.dll.test;
 
+import static app.dll.test.EntranceActivity.themePrefs;
+
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -46,31 +49,31 @@ public class SettingsActivity extends AppCompatActivity {
             ListPreference themePreference = findPreference("theme");
 
             if (themePreference != null) {
-                // Set up a listener to handle preference changes
                 themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-                        // newValue is the selected value (e.g., "light", "dark", or "default")
                         String selectedTheme = newValue.toString();
 
                         // Save the selected theme to SharedPreferences
                         PreferencesFuncs.themeState(selectedTheme);
 
-                        // Apply the new theme
-                        ThemeUtils.setTheme(requireActivity());
+                        // Check if the theme has actually changed before applying it
+                        String currentTheme = themePrefs.getString("themePrefs", "light");
+                        Log.d(currentTheme, currentTheme);
+                        if (!currentTheme.equals(selectedTheme)) {
+                            // Apply the new theme
+                            ThemeUtils.setTheme(requireActivity());
 
-                        requireActivity().setResult(RESULT_OK);
-
-
+                            // Recreate the activity to apply the theme change
+                            requireActivity().recreate();
+                        }
 
                         return true;  // Return true to update the state of the preference
                     }
                 });
-
                 // Call onPreferenceChange manually to apply the current value
                 themePreference.getOnPreferenceChangeListener().onPreferenceChange(
                         themePreference, themePreference.getValue());
-
             }
         }
     }

@@ -36,7 +36,8 @@ public class MainMenuActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             // Theme has been changed, recreate the activity to apply the new theme
             ThemeUtils.setTheme(this);
-
+            recreate();
         }
     }
+    
 }

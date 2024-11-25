@@ -1,43 +1,47 @@
 package app.dll.test;
 
 
+
+import static app.dll.test.EntranceActivity.themePrefs;
+import static app.dll.test.SettingsActivity.selectedTheme;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageButton;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userLocationData.GetLocation;
+import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.zmanim.GetJewishDate;
 
 public class MainMenuActivity extends AppCompatActivity {
-
+    private static String currentTheme = themePrefs.getString("themePrefs", "light");
 
     private static final int REQUEST_CODE_SETTINGS = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ThemeUtils.setTheme(this);
+
+        super.onCreate(savedInstanceState);
+        Log.d("THEME", "recreated0");
         setContentView(R.layout.activity_main_menu);
 
         // Getting user location
         GetLocation getLocation = new GetLocation(this, this);
         getLocation.requestLocationUpdates();
-
-
-
     }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
-            // Theme has been changed, recreate the activity to apply the new theme
+    protected void onResume() {
+        super.onResume();
+        if (!currentTheme.equals(selectedTheme)) {
+            // Apply the new theme
             ThemeUtils.setTheme(this);
-            recreate();
+
+            // Recreate the activity to apply the theme change
+
         }
+        Log.d("THEME", "recreated1");
     }
-    
 }

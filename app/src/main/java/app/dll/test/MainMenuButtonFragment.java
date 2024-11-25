@@ -65,14 +65,7 @@ public class MainMenuButtonFragment extends Fragment {
         // Retrieve data
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("username", "User");
-        if (greeting != null) {
-            greeting.setText("Hello, " + name + "!");
-        }
-
-
-
-
-
+        if (greeting != null) {greeting.setText("Hello, " + name + "!");}
 
 //        ImageView profilePhoto = view.findViewById(R.id.profile_photo);
 //        Glide.with(this).load(profilePhotoUrl).load(profilePhoto);
@@ -84,7 +77,7 @@ public class MainMenuButtonFragment extends Fragment {
         Button blessinButton = view.findViewById(R.id.blessings_button);
         ImageButton settingsButton = view.findViewById(R.id.settings_btn);
 
-        NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
+            NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
 
         timetableButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_timetable_fragment));
         textPrayersButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_textPrayers_fragment));
@@ -94,7 +87,6 @@ public class MainMenuButtonFragment extends Fragment {
             Intent intent = new Intent(requireActivity(), SettingsActivity.class);
             startActivityForResult(intent, REQUEST_CODE_SETTINGS); // Use startActivityForResult
         });
-
         BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation);
 
         // Passing each menu ID as a set of Ids because each
@@ -113,6 +105,4 @@ public class MainMenuButtonFragment extends Fragment {
                 NotificationManager.IMPORTANCE_HIGH,
                 "Channel of reminding notifications for daily prayers");
     }
-
-
 }

@@ -23,7 +23,6 @@ public class PreferencesFuncs {
         SharedPreferences.Editor editor = themePrefs.edit();
         editor.putString("themePrefs", theme); // Ensure the key is "theme"
         editor.apply();
-
     }
 
     public static void locState(boolean isGrained, Context context) {

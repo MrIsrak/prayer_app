@@ -16,6 +16,7 @@ import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 
 public class SettingsActivity extends AppCompatActivity {
+    public static String selectedTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
                 themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-                        String selectedTheme = newValue.toString();
+                        selectedTheme = newValue.toString();
 
                         // Save the selected theme to SharedPreferences
                         PreferencesFuncs.themeState(selectedTheme);
@@ -71,9 +72,9 @@ public class SettingsActivity extends AppCompatActivity {
                         return true;  // Return true to update the state of the preference
                     }
                 });
-                // Call onPreferenceChange manually to apply the current value
-                themePreference.getOnPreferenceChangeListener().onPreferenceChange(
-                        themePreference, themePreference.getValue());
+//                // Call onPreferenceChange manually to apply the current value
+//                themePreference.getOnPreferenceChangeListener().onPreferenceChange(
+//                        themePreference, themePreference.getValue());
             }
         }
     }

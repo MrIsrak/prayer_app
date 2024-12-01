@@ -72,9 +72,9 @@ public class SettingsActivity extends AppCompatActivity {
                         return true;  // Return true to update the state of the preference
                     }
                 });
-//                // Call onPreferenceChange manually to apply the current value
-//                themePreference.getOnPreferenceChangeListener().onPreferenceChange(
-//                        themePreference, themePreference.getValue());
+                // Call onPreferenceChange manually to apply the current value
+                themePreference.getOnPreferenceChangeListener().onPreferenceChange(
+                        themePreference, themePreference.getValue());
             }
         }
     }

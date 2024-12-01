@@ -1,5 +1,7 @@
 package app.dll.test.buttonsFragments.subFragments;
 
+import static app.dll.test.dateTime.GetDate.today;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+import java.util.Objects;
+
 import app.dll.test.R;
+import app.dll.test.dateTime.GetDate;
 
 public class DalyZamanimFragment extends Fragment {
     public static String day = "";
@@ -47,7 +54,11 @@ public class DalyZamanimFragment extends Fragment {
         });
         TextView dayTextView = view.findViewById(R.id.week_day_tv);
         day = getArguments().getString("dayOfWeek");
+        Log.d("DAY", day);
+        GetDate.getToday();
+        if(day == GetDate.getTodayString()){day = "Today";}
+        Log.d("DAY", day);
         dayTextView.setText(day);
-//        Log.d("day", day);
+
     }
 }

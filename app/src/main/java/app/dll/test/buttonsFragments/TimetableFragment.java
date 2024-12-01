@@ -1,8 +1,11 @@
 package app.dll.test.buttonsFragments;
 
+import static app.dll.test.dateTime.GetDate.today;
 import static app.dll.test.zmanim.GetJewishDate.getJewishDayAndMonth;
 
 import android.graphics.PorterDuff;
+
+import app.dll.test.dateTime.GetDate;
 import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -71,8 +74,9 @@ public class TimetableFragment extends Fragment {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM", Locale.getDefault());
 
         // Get the calendar instance and adjust it to the current week's Monday
+        GetDate.getToday();
         Calendar calendar = Calendar.getInstance();
-        int today = calendar.get(Calendar.DAY_OF_WEEK);
+        today = calendar.get(Calendar.DAY_OF_WEEK);
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 
         Log.d("today", String.valueOf(today));

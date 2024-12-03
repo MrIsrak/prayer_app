@@ -52,13 +52,33 @@ public class DalyZamanimFragment extends Fragment {
             // Navigate back to main_menu_button
             navController.navigate(R.id.action_dailyZmanim_to_timetable);
         });
-        TextView dayTextView = view.findViewById(R.id.week_day_tv);
         day = getArguments().getString("dayOfWeek");
-        Log.d("DAY", day);
-        GetDate.getToday();
-        if(day == GetDate.getTodayString()){day = "Today";}
-        Log.d("DAY", day);
-        dayTextView.setText(day);
+        checkDay(view);
+        setDay(view, day);
 
+        ImageButton day_back_button = view.findViewById(R.id.day_back_btn);
+        ImageButton day_frvrd_button = view.findViewById(R.id.day_fvrd_btn);
+        day_back_button.setOnClickListener(v -> {
+             setDay(view, GetDate.daySwitch(getDay(view), false));
+
+        });
+        day_frvrd_button.setOnClickListener(v -> {
+            setDay(view, GetDate.daySwitch(getDay(view), true));
+        });
+    }
+    private void checkDay(View view){
+        TextView dayTextView = view.findViewById(R.id.week_day_tv);
+        GetDate.getToday();
+//        if(day == GetDate.getDayString(today)){day = "Today";}
+        dayTextView.setText(day);
+    }
+    private void setDay(View view, String text){
+        TextView dayTextView = view.findViewById(R.id.week_day_tv);
+        dayTextView.setText(text);
+//        checkDay(view);
+    }
+    private String getDay(View view){
+        TextView dayTextView = view.findViewById(R.id.week_day_tv);
+        return (String) dayTextView.getText();
     }
 }

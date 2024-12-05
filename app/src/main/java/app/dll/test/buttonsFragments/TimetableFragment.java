@@ -22,13 +22,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import app.dll.test.R;
 
 public class TimetableFragment extends Fragment {
-    public static String day = "";
+    public static Map<Integer, String> dates = new HashMap<>();
     public static Bundle args = new Bundle();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,9 +71,6 @@ public class TimetableFragment extends Fragment {
         fridayBtn.setOnClickListener(v -> navigateToDailyZamanim("Friday"));
         shabbatBtn.setOnClickListener(v -> navigateToDailyZamanim("Shabbat"));
 
-
-
-
         // Set up the date format
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM", Locale.getDefault());
 
@@ -79,7 +80,6 @@ public class TimetableFragment extends Fragment {
         today = calendar.get(Calendar.DAY_OF_WEEK);
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 
-        Log.d("today", String.valueOf(today));
         // Loop through the days of the week and set button text
         for (int i = 0; i < 7; i++) {
             int year = calendar.get(Calendar.YEAR);
@@ -88,7 +88,7 @@ public class TimetableFragment extends Fragment {
 
             String jewishDate = getJewishDayAndMonth(year, month, day);
             String buttonText = formatter.format(calendar.getTime()) + " " + jewishDate;
-
+            //Replace with getDay function
             switch (i) {
                 case 0: // Sunday
                     if (today == Calendar.SUNDAY) {
@@ -141,15 +141,19 @@ public class TimetableFragment extends Fragment {
                     break;
             }
 
+            //fill the HashMap with dates
+            dates.put(i, buttonText);
+            Log.d("Dates", dates.toString());
+
             // Move to the next day
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
     }
     private void navigateToDailyZamanim(String dayOfWeek) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        Bundle bundle = new Bundle();
-        bundle.putString("dayOfWeek", dayOfWeek);
-        navController.navigate(R.id.action_to_dalyZamanimFragment, bundle);
+        Bundle dayDate = new Bundle();
+        dayDate.putString("dayOfWeek", dayOfWeek);
+        navController.navigate(R.id.action_to_dalyZamanimFragment, dayDate);
     }
 
 }

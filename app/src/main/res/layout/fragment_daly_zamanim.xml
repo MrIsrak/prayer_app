@@ -37,14 +37,16 @@
                 style="@style/main_menu_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black" />
+
+                android:gravity="center" />
             <!-- Subtitle TextView -->
             <TextView
+                android:id="@+id/date_tv"
                 style="@style/small_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(456)"
-                android:textColor="@color/black" />
+                android:text=""
+                android:gravity="center"/>
         </LinearLayout>
         <ImageButton
                 android:id="@+id/day_back_btn"
@@ -53,7 +55,7 @@
                 app:layout_constraintEnd_toStartOf="@id/date_layout"
                 app:layout_constraintBottom_toBottomOf="@id/date_layout"
                 app:layout_constraintTop_toTopOf="@id/date_layout"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="60dp"
                 android:src="@drawable/day_switcher_back"
                 android:background="@null"/>
         <ImageButton
@@ -63,7 +65,7 @@
             app:layout_constraintStart_toEndOf="@id/date_layout"
             app:layout_constraintBottom_toBottomOf="@id/date_layout"
             app:layout_constraintTop_toTopOf="@id/date_layout"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="60dp"
             android:src="@drawable/day_switcher_frvrd"
             android:background="@null"
             />

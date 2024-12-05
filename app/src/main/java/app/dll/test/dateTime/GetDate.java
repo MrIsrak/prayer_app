@@ -14,35 +14,20 @@ public class GetDate {
     public static List<String> days = new ArrayList<>();
     public static void getToday(){
         Calendar calendar = Calendar.getInstance();
-        // Retrieve today's day of the week (Sunday = 1, Monday = 2, ..., Saturday = 7).
         today = calendar.get(Calendar.DAY_OF_WEEK);
     }
     public static String getDayString(int today){
-        String todayString = "";
         switch (today){
-            case 1:
-                todayString = "Sunday";
-                break;
-            case 2:
-                todayString = "Monday";
-                break;
-            case 3:
-                todayString = "Tuesday";
-                break;
-            case 4:
-                todayString = "Wednesday";
-                break;
-            case 5:
-                todayString = "Thursday";
-                break;
-            case 6:
-                todayString = "Friday";
-                break;
-            case 7:
-                todayString = "Saturday";
-                break;
+            case 1: return "Sunday";
+            case 2: return "Monday";
+            case 3: return "Tuesday";
+            case 4: return "Wednesday";
+            case 5: return "Thursday";
+            case 6: return "Friday";
+            case 7: return "Shabbat";
+            default:
+                throw new IllegalArgumentException("Invalid day: " + today);
         }
-        return todayString;
     }
     public static int getDatDayInt(String day) {
         switch (day) {
@@ -52,7 +37,10 @@ public class GetDate {
             case "Wednesday": return 4;
             case "Thursday":  return 5;
             case "Friday":    return 6;
-            case "Saturday":  return 7;
+            case "Shabbat":  return 7;
+            case "Today":
+                getToday();
+                return today;
             default:
                 throw new IllegalArgumentException("Invalid day: " + day);
         }
@@ -66,9 +54,6 @@ public class GetDate {
         String todayString = getDayString(today);
         List<String> updatedDays = new ArrayList<>(days); // Copy list to avoid modifying the original.
         updatedDays.set(days.indexOf(todayString), "Today");
-
-        // Log the updated list for debugging.
-        Log.d("TODAY_LIST", updatedDays.toString());
 
         // Determine the next or previous day based on the boolean flag `fvrd`.
         int index = updatedDays.indexOf(day);

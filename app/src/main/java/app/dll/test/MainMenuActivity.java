@@ -1,7 +1,4 @@
 package app.dll.test;
-
-
-
 import static app.dll.test.EntranceActivity.themePrefs;
 import static app.dll.test.SettingsActivity.selectedTheme;
 
@@ -15,7 +12,6 @@ import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.zmanim.GetJewishDate;
-
 public class MainMenuActivity extends AppCompatActivity {
     private static String currentTheme = themePrefs.getString("themePrefs", "light");
 
@@ -25,7 +21,6 @@ public class MainMenuActivity extends AppCompatActivity {
         ThemeUtils.setTheme(this);
 
         super.onCreate(savedInstanceState);
-        Log.d("THEME", "recreated0");
         setContentView(R.layout.activity_main_menu);
 
         // Getting user location
@@ -38,10 +33,6 @@ public class MainMenuActivity extends AppCompatActivity {
         if (!currentTheme.equals(selectedTheme)) {
             // Apply the new theme
             ThemeUtils.setTheme(this);
-
-            // Recreate the activity to apply the theme change
-
         }
-        Log.d("THEME", "recreated1");
     }
 }

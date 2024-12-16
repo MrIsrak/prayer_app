@@ -30,6 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import app.dll.test.R;
+import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 
 public class TimetableFragment extends Fragment {
     public static Map<Integer, String> dates = new HashMap<>();
@@ -44,12 +45,12 @@ public class TimetableFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        GetLocation.getLastLocation(requireActivity());
         // Get the NavController
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
         ImageButton back_button = view.findViewById(R.id.back_button);
         back_button.setOnClickListener(v -> {
-
             // Navigate back to main_menu_button
             navController.navigate(R.id.action_timetable_fragment_to_main_menu_button);
         });
@@ -143,7 +144,6 @@ public class TimetableFragment extends Fragment {
 
             //fill the HashMap with dates
             dates.put(i, buttonText);
-            Log.d("Dates", dates.toString());
 
             // Move to the next day
             calendar.add(Calendar.DAY_OF_MONTH, 1);

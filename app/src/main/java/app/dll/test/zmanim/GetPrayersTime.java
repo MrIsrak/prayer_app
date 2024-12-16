@@ -11,28 +11,71 @@ import com.kosherjava.zmanim.ComplexZmanimCalendar;
 import com.kosherjava.zmanim.ZmanimCalendar;
 import com.kosherjava.zmanim.util.GeoLocation;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class GetPrayersTime {
+    public static String alosHashachar;
+    public static String netzHaChamah;
+    public static String sofZmanKriatShema;
+    public static String sofZmanTefillah;
+    public static String chatzot;
+    public static String minchaGedolah;
+    public static String minchaKetanah;
+    public static String plagHaMincha;
+    public static String shkiah;
+    public static String tzeitHaKochavim;
+    public static String location;
+    //For today
     public static void getPrayersTime(Activity context){
 
         // Formatter for displaying times
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
         // Get Zmanim and print them
         ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
-        Log.d("Alot HaShachar (Dawn): ", timeFormat.format(zmanimCalendar.getAlosHashachar()));
-        Log.d("Netz HaChamah (Sunrise): ", timeFormat.format(zmanimCalendar.getSunrise()));
-        Log.d("Sof Zman Kriat Shema: ", timeFormat.format(zmanimCalendar.getSofZmanShmaGRA()));
-        Log.d("Sof Zman Tefillah: ", timeFormat.format(zmanimCalendar.getSofZmanTfilaGRA()));
-        Log.d("Chatzot (Midday): ", timeFormat.format(zmanimCalendar.getChatzos()));
-        Log.d("Mincha Gedolah: ", timeFormat.format(zmanimCalendar.getMinchaGedola()));
-        Log.d("Mincha Ketanah: ", timeFormat.format(zmanimCalendar.getMinchaKetana()));
-        Log.d("Plag HaMincha: ", timeFormat.format(zmanimCalendar.getPlagHamincha()));
-        Log.d("Shkiah (Sunset): ", timeFormat.format(zmanimCalendar.getSunset()));
-        Log.d("Tzeit HaKochavim (Nightfall): ", timeFormat.format(zmanimCalendar.getTzais()));
-        Log.d("Location", String.valueOf(zmanimCalendar.getGeoLocation()));
+        alosHashachar = timeFormat.format(zmanimCalendar.getAlosHashachar());
+        netzHaChamah = timeFormat.format(zmanimCalendar.getSunrise());
+        sofZmanKriatShema = timeFormat.format(zmanimCalendar.getSofZmanShmaGRA());
+        sofZmanTefillah = timeFormat.format(zmanimCalendar.getSofZmanTfilaGRA());
+        chatzot = timeFormat.format(zmanimCalendar.getChatzos());
+        minchaGedolah = timeFormat.format(zmanimCalendar.getMinchaGedola());
+        minchaKetanah = timeFormat.format(zmanimCalendar.getMinchaKetana());
+        plagHaMincha = timeFormat.format(zmanimCalendar.getPlagHamincha());
+        shkiah = timeFormat.format(zmanimCalendar.getSunset());
+        tzeitHaKochavim = timeFormat.format(zmanimCalendar.getTzais());
+        location = String.valueOf(zmanimCalendar.getGeoLocation());
+    }
+    //For specific day
+    public static void getPrayersTime(Activity context, String day) throws ParseException {
+        Calendar calendar = Calendar.getInstance();
+        String date = day.split(" ")[0];
+        date = date.replace('.', '-');
+        int year = calendar.get(Calendar.YEAR);
+        date = year + "-" + date;
+        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+        // Formatter for displaying times
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        // Get Zmanim and print them
+        ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
+        zmanimCalendar.getCalendar().setTime(date1);
+
+        alosHashachar = timeFormat.format(zmanimCalendar.getAlosHashachar());
+        netzHaChamah = timeFormat.format(zmanimCalendar.getSunrise());
+        sofZmanKriatShema = timeFormat.format(zmanimCalendar.getSofZmanShmaGRA());
+        sofZmanTefillah = timeFormat.format(zmanimCalendar.getSofZmanTfilaGRA());
+        chatzot = timeFormat.format(zmanimCalendar.getChatzos());
+        minchaGedolah = timeFormat.format(zmanimCalendar.getMinchaGedola());
+        minchaKetanah = timeFormat.format(zmanimCalendar.getMinchaKetana());
+        plagHaMincha = timeFormat.format(zmanimCalendar.getPlagHamincha());
+        shkiah = timeFormat.format(zmanimCalendar.getSunset());
+        tzeitHaKochavim = timeFormat.format(zmanimCalendar.getTzais());
+        location = String.valueOf(zmanimCalendar.getGeoLocation());
     }
 
 }

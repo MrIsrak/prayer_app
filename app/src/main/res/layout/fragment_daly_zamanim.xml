@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/back_button"
-            android:layout_marginTop="40dp"> <!-- Space to push it below the back button -->
+            android:layout_marginTop="10dp"> <!-- Space to push it below the back button -->
             <!-- Main title TextView -->
             <TextView
                 android:id="@+id/week_day_tv"
@@ -69,6 +69,109 @@
             android:src="@drawable/day_switcher_frvrd"
             android:background="@null"
             />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/date_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="50dp">
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_alos_hashachar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alot_hashachar"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_netz_hachamah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/netz_hachamah"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_sof_zman_kriat_shema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sof_zman_kriat_shema"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_sof_zman_tefillah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sof_zman_tefillah"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_chatzot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chatzot"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_mincha_gedolah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mincha_gedolah"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_mincha_ketanah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mincha_ketanah"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_plag_hamincha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plag_hamincha"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_shkiah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shkiah"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/tv_tzeit_hakochavim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tzeit_hakochavim"
+                style="@style/small_title"
+                android:paddingBottom="15dp"/>
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -5,6 +5,7 @@ import static app.dll.test.EntranceActivity.locationPrefs;
 import static app.dll.test.EntranceActivity.notificationPrefs;
 import static app.dll.test.EntranceActivity.themePrefs;
 import static app.dll.test.EntranceActivity.userName;
+import static app.dll.test.userDataPrefs.userLocationData.GetLocation.coordinatesPrefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -48,5 +49,4 @@ public class PreferencesFuncs {
         editor.putBoolean("IsLogin", true);  // Save login state
         editor.apply();
     }
-
 }

@@ -41,6 +41,10 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    private void function3() {
+
+    }
+
     // Inner class for handling settings in a PreferenceFragmentCompat
     public static class SettingsFragment extends PreferenceFragmentCompat {
 

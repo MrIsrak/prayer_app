@@ -17,6 +17,7 @@ import app.dll.test.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 
 public class SettingsActivity extends AppCompatActivity {
+
     public static String selectedTheme;
 
     @Override

@@ -20,10 +20,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static String selectedTheme;
 
-    private void function2() {
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-  
-    private void function3() {
-      
-    }
-    private void function1() {
-      
     }
 
     // Inner class for handling settings in a PreferenceFragmentCompat

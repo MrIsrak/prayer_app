@@ -33,6 +33,7 @@ public class ThemeUtils {
         return false; // Default to light theme for older versions or if system is not in dark mode
     }
 
+
     public static void setTheme(Context context) {
         String selectedTheme = themePrefs.getString("themePrefs", "light"); // Default to "light" if not set
         int newMode;

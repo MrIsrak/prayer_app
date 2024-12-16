@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -61,12 +62,16 @@ public class SettingsActivity extends AppCompatActivity {
                         // Check if the theme has actually changed before applying it
                         String currentTheme = themePrefs.getString("themePrefs", "light");
                         Log.d(currentTheme, currentTheme);
-                        if (!currentTheme.equals(selectedTheme)) {
-                            // Apply the new theme
-                            ThemeUtils.setTheme(requireActivity());
 
-                            // Recreate the activity to apply the theme change
-                            requireActivity().recreate();
+                        if (selectedTheme.equals("light"))
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        else if (selectedTheme.equals("dark"))
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        else {
+                            if (ThemeUtils.isSystemThemeDark(getContext()))
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            else
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         }
 
                         return true;  // Return true to update the state of the preference

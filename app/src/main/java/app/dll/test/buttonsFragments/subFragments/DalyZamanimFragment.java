@@ -112,6 +112,7 @@ public class DalyZamanimFragment extends Fragment {
         checkDay(view);
         setDay(view, day);
         setDate(view);
+
         try {
             GetPrayersTime.getPrayersTime(requireActivity(), getDate(view));
             setZmanim();
@@ -143,7 +144,7 @@ public class DalyZamanimFragment extends Fragment {
                 throw new RuntimeException(e);
             }
         });
-        Log.d("DATES", dates.toString());
+//        Log.d("DATES", dates.toString());
     }
 
     private void setZmanim() {

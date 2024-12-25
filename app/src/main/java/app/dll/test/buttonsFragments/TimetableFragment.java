@@ -1,5 +1,7 @@
 package app.dll.test.buttonsFragments;
 
+import static app.dll.test.dateTime.GetDate.getDayString;
+import static app.dll.test.dateTime.GetDate.getToday;
 import static app.dll.test.dateTime.GetDate.today;
 import static app.dll.test.zmanim.GetJewishDate.getJewishDayAndMonth;
 
@@ -76,7 +78,7 @@ public class TimetableFragment extends Fragment {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM", Locale.getDefault());
 
         // Get the calendar instance and adjust it to the current week's Monday
-        GetDate.getToday();
+        getToday();
         Calendar calendar = Calendar.getInstance();
         today = calendar.get(Calendar.DAY_OF_WEEK);
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
@@ -151,8 +153,14 @@ public class TimetableFragment extends Fragment {
     }
     private void navigateToDailyZamanim(String dayOfWeek) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+        getToday();
         Bundle dayDate = new Bundle();
-        dayDate.putString("dayOfWeek", dayOfWeek);
+        if (dayOfWeek.equals(getDayString(today))) {
+            dayDate.putString("dayOfWeek", "Today"); // Use "Today" for the current day.
+        } else {
+            dayDate.putString("dayOfWeek", dayOfWeek); // Use the provided day of the week.
+        }
+
         navController.navigate(R.id.action_to_dalyZamanimFragment, dayDate);
     }
 

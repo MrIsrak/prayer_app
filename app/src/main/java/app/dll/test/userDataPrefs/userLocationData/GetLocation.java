@@ -35,33 +35,26 @@ import java.util.TimeZone;
 import java.util.concurrent.Executor;
 
 public class GetLocation implements LocationListener {
-
     private LocationManager locationManager;
     private Context context;
     public static SharedPreferences coordinatesPrefs;
     public static FusedLocationProviderClient fusedLocationClient;
-
     //Location
     public static double latitude;
     public static double longitude;
-
     //Zmanim
     ComplexZmanimCalendar zmanimCalendar = new ComplexZmanimCalendar();
-
-
     public GetLocation(Context context, Activity activity) {
         this.context = context;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         LocationPermissons.getLocationPermission(activity);
     }
-
     public void requestLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return; // Permission is not granted
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1000, this);
     }
-
     @Override
     public void onLocationChanged(Location location) {
         if (location != null) {
@@ -73,18 +66,14 @@ public class GetLocation implements LocationListener {
             zmanimCalendar = new ComplexZmanimCalendar(geoLocation);
         }
     }
-
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // You can handle status changes here if necessary
     }
-
     @Override
     public void onProviderEnabled(String provider) {
         // Called when the provider (GPS or Network) is enabled
     }
-
     @Override
     public void onProviderDisabled(String provider) {
         // Called when the provider is disabled
@@ -92,8 +81,6 @@ public class GetLocation implements LocationListener {
     }
     //Get the location name
     public static String getLocationName(Context context) {
-        Log.d("lat", String.valueOf(latitude));
-        Log.d("long", String.valueOf(longitude));
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             // Get the address list (contains possible matches for the given latitude and longitude)
@@ -121,8 +108,6 @@ public class GetLocation implements LocationListener {
                     // Use the location here
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
-                    Log.d("lat", String.valueOf(latitude));
-                    Log.d("long", String.valueOf(longitude));
                 }
             }
         });

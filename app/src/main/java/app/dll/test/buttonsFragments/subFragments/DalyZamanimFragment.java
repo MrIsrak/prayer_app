@@ -100,17 +100,7 @@ public class DalyZamanimFragment extends Fragment {
         Log.d("1", "1");
         Log.d("latitude", String.valueOf(latitude));
         Log.d("longitude", String.valueOf(longitude));
-        tvLocation.setText(getString(R.string.location)+ " " + getLocationName(requireActivity()));
-        tvAlosHashachar.setText(getString(R.string.alot_hashachar) + " " + alosHashachar);
-        tvNetzHachamah.setText(getString(R.string.netz_hachamah) + " " + netzHaChamah);
-        tvSofZmanKriatShema.setText(getString(R.string.sof_zman_kriat_shema) + " " + sofZmanKriatShema);
-        tvSofZmanTefillah.setText(getString(R.string.sof_zman_tefillah) + " " + sofZmanTefillah);
-        tvChatzot.setText(getString(R.string.chatzot) + " " + chatzot);
-        tvMinchaGedolah.setText(getString(R.string.mincha_gedolah) + " " + minchaGedolah);
-        tvMinchaKetanah.setText(getString(R.string.mincha_ketanah) + " " + minchaKetanah);
-        tvPlagHamincha.setText(getString(R.string.plag_hamincha) + " " + plagHaMincha);
-        tvShkiah.setText(getString(R.string.shkiah) + " " + shkiah);
-        tvTzeitHakochavim.setText(getString(R.string.tzeit_hakochavim) + " " + tzeitHaKochavim);
+        setZmanim();
 
         //////////////////////////////////////
 
@@ -133,11 +123,13 @@ public class DalyZamanimFragment extends Fragment {
 
         ImageButton day_back_button = view.findViewById(R.id.day_back_btn);
         ImageButton day_frvrd_button = view.findViewById(R.id.day_fvrd_btn);
+
         day_back_button.setOnClickListener(v -> {
             setDay(view, GetDate.daySwitch(getDay(view), false));
             setDate(view);
             try {
                 GetPrayersTime.getPrayersTime(requireActivity(), getDate(view));
+                setZmanim();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
@@ -147,11 +139,28 @@ public class DalyZamanimFragment extends Fragment {
             setDate(view);
             try {
                 GetPrayersTime.getPrayersTime(requireActivity(), getDate(view));
+                setZmanim();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
         });
+        Log.d("DATES", dates.toString());
     }
+
+    private void setZmanim() {
+        tvLocation.setText(getString(R.string.location)+ " " + getLocationName(requireActivity()));
+        tvAlosHashachar.setText(getString(R.string.alot_hashachar) + " " + alosHashachar);
+        tvNetzHachamah.setText(getString(R.string.netz_hachamah) + " " + netzHaChamah);
+        tvSofZmanKriatShema.setText(getString(R.string.sof_zman_kriat_shema) + " " + sofZmanKriatShema);
+        tvSofZmanTefillah.setText(getString(R.string.sof_zman_tefillah) + " " + sofZmanTefillah);
+        tvChatzot.setText(getString(R.string.chatzot) + " " + chatzot);
+        tvMinchaGedolah.setText(getString(R.string.mincha_gedolah) + " " + minchaGedolah);
+        tvMinchaKetanah.setText(getString(R.string.mincha_ketanah) + " " + minchaKetanah);
+        tvPlagHamincha.setText(getString(R.string.plag_hamincha) + " " + plagHaMincha);
+        tvShkiah.setText(getString(R.string.shkiah) + " " + shkiah);
+        tvTzeitHakochavim.setText(getString(R.string.tzeit_hakochavim) + " " + tzeitHaKochavim);
+    }
+
     private void checkDay(View view){
         TextView dayTextView = view.findViewById(R.id.week_day_tv);
         GetDate.getToday();

@@ -82,7 +82,9 @@ public class DalyZamanimFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+        GetLocation.getLastLocation(requireActivity());
         getPrayersTime(requireActivity());
+
         //Zmanim fields
         tvLocation = view.findViewById(R.id.tv_location);
         tvAlosHashachar = view.findViewById(R.id.tv_alos_hashachar);
@@ -96,10 +98,6 @@ public class DalyZamanimFragment extends Fragment {
         tvShkiah = view.findViewById(R.id.tv_shkiah);
         tvTzeitHakochavim = view.findViewById(R.id.tv_tzeit_hakochavim);
 
-        GetLocation.getLastLocation(requireActivity());
-        Log.d("1", "1");
-        Log.d("latitude", String.valueOf(latitude));
-        Log.d("longitude", String.valueOf(longitude));
         setZmanim();
 
         //////////////////////////////////////
@@ -116,6 +114,7 @@ public class DalyZamanimFragment extends Fragment {
         setDate(view);
         try {
             GetPrayersTime.getPrayersTime(requireActivity(), getDate(view));
+            setZmanim();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

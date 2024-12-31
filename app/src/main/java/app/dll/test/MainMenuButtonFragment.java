@@ -4,6 +4,8 @@ package app.dll.test;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 import static app.dll.test.EntranceActivity.profilePhotoUrl;
+import static app.dll.test.zmanim.SpecialDetails.getTorahPortion;
+
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -55,7 +57,7 @@ public class MainMenuButtonFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main_menu_button, container, false);
     }
-                                                        //TODO: FIX THEME BUGS!!!!!!
+
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -89,6 +91,8 @@ public class MainMenuButtonFragment extends Fragment {
         });
         BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation);
 
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top-level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -97,6 +101,7 @@ public class MainMenuButtonFragment extends Fragment {
 
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        //TODO: Finish notification system
 
         //Creating Notification chanel for prayers notification
         NotificationChannelCreating.createNotificationChannel(requireActivity(),
@@ -104,5 +109,12 @@ public class MainMenuButtonFragment extends Fragment {
                 "Reminders",
                 NotificationManager.IMPORTANCE_HIGH,
                 "Channel of reminding notifications for daily prayers");
+
+        //Torah portion
+        TextView dvar_torah = view.findViewById(R.id.dvar_torah);
+        if(getTorahPortion() != null){dvar_torah.setText("Weakly Torah portion is: " + getTorahPortion());}
+        else{dvar_torah.setText(" " );}
+
+
     }
 }

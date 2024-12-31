@@ -40,12 +40,12 @@
                 />
 
             <TextView
-                android:id="@+id/question"
+                android:id="@+id/dvar_torah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/greeting"
                 android:layout_centerHorizontal="true"
-                android:text="@string/question"
+                android:text=""
 
                 style="@style/main_menu_txt"
                 android:textSize="20sp"
@@ -78,7 +78,7 @@
                 android:paddingHorizontal="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/question">
+                app:layout_constraintTop_toBottomOf="@id/dvar_torah">
 
                 <LinearLayout
                     android:id="@+id/layout_top"

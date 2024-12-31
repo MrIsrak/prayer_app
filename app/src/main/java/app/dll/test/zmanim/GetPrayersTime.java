@@ -25,7 +25,7 @@ import java.util.TimeZone;
 import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 
 public class GetPrayersTime {
-    //FIXME: Zmanim access
+    static ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
     public static String alosHashachar, netzHaChamah, sofZmanKriatShema, sofZmanTefillah,
     chatzot, minchaGedolah, minchaKetanah, plagHaMincha, shkiah, tzeitHaKochavim;
     public static String location;
@@ -36,7 +36,7 @@ public class GetPrayersTime {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
         // Get Zmanim and print them
-        ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
+
         alosHashachar = timeFormat.format(zmanimCalendar.getAlosHashachar());
         netzHaChamah = timeFormat.format(zmanimCalendar.getSunrise());
         sofZmanKriatShema = timeFormat.format(zmanimCalendar.getSofZmanShmaGRA());

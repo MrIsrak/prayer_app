@@ -35,6 +35,7 @@ public class ThemeUtils {
 
 
     public static void setTheme(Context context) {
+        themePrefs = context.getSharedPreferences("themePrefs", Context.MODE_PRIVATE);
         String selectedTheme = themePrefs.getString("themePrefs", "light"); // Default to "light" if not set
         int newMode;
 

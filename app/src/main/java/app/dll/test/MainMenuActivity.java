@@ -13,11 +13,12 @@ import app.dll.test.userDataPrefs.userLocationData.GetLocation;
 import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 import app.dll.test.zmanim.GetJewishDate;
 public class MainMenuActivity extends AppCompatActivity {
-    private static String currentTheme = themePrefs.getString("themePrefs", "light");
 
     private static final int REQUEST_CODE_SETTINGS = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //        String currentTheme = themePrefs.getString("themePrefs", "light");
+
         ThemeUtils.setTheme(this);
 
         super.onCreate(savedInstanceState);
@@ -29,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     @Override
     protected void onResume() {
+        String currentTheme = themePrefs.getString("themePrefs", "light");
         super.onResume();
         if (!currentTheme.equals(selectedTheme)) {
             // Apply the new theme

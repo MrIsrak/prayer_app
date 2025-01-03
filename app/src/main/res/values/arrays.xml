@@ -10,6 +10,16 @@
         <item>"dark"</item>
         <item>"light"</item>
     </string-array>
-
+<!--Language -->
+    <string-array name="lang_options">
+        <item>Russian</item>
+        <item>English</item>
+        <item>Hebrew</item>
+    </string-array>
+    <string-array name="lang_values">
+        <item>"ru"</item>
+        <item>"en"</item>
+        <item>"he"</item>
+    </string-array>
 
 </resources>

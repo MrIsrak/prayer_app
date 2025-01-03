@@ -12,7 +12,6 @@
     <!--        ENTER MENU      -->
     <string name="name">Name</string>
     <string name="location">Location access</string>
-    <string name="gallery">Gallery access</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="enter">Enter the app</string>
     <!--        MAIN BUTTONS MENU       -->
@@ -61,7 +60,7 @@
     <!--  Notifications  -->
     <string name="enterName">Please, enter a name</string>
     <string name="plsAccessLoc">Please allow location access to enter the app</string>
-    <string name="plsAccessNotifications" translatable="false"> Please allow notification access to enter the app</string>
+    <string name="plsAccessNotifications"> Please allow notification access to enter the app</string>
     <string name="accessLocGranted">Location permission granted</string>
     <string name="accessLocDenied">Location permission denied. You cannot proceed without granting location access.</string>
     <string name="accessNotificationGrand">Notification permission denied. You cannot proceed without granting notification access.</string>
@@ -75,10 +74,16 @@
     <string name="dark">Dark</string>
     <string name="light">Light</string>
     <string name="theme_settings_description">Choose your theme settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--    Lang-->
+    <string name="language">Language</string>
+    <string name="lang_settings_description">Choose your language settings</string>
+    <string name="en">English</string>
+    <string name="he">Hebrew</string>
+    <string name="ru">Russian</string>
 
-<!--    Zmanim  -->
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--    Zmanim  -->
         <string name="alot_hashachar">Alot HaShachar (Dawn):</string>
         <string name="netz_hachamah">Netz HaChamah (Sunrise):</string>
         <string name="sof_zman_kriat_shema">Sof Zman Kriat Shema:</string>
@@ -89,6 +94,9 @@
         <string name="plag_hamincha">Plag HaMincha:</string>
         <string name="shkiah">Shkiah (Sunset):</string>
         <string name="tzeit_hakochavim">Tzeit HaKochavim (Nightfall):</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="noon">Noon</string>
+    <string name="sunset">Sunset</string>
 
 
 </resources>

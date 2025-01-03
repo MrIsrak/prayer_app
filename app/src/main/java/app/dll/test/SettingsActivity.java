@@ -1,6 +1,7 @@
 package app.dll.test;
 
 import static app.dll.test.EntranceActivity.themePrefs;
+import static app.dll.test.changeLocale.LanguageChange.changeLanguage;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 public class SettingsActivity extends AppCompatActivity {
 
     public static String selectedTheme;
+    private static String newLang = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             // Find the theme ListPreference by its key
             ListPreference themePreference = findPreference("theme");
-
             if (themePreference != null) {
                 themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
@@ -82,6 +83,20 @@ public class SettingsActivity extends AppCompatActivity {
                 themePreference.getOnPreferenceChangeListener().onPreferenceChange(
                         themePreference, themePreference.getValue());
             }
+
+            ListPreference langPreference = findPreference("lang");
+            if (langPreference != null) {
+                langPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                        String newLang = newValue.toString();
+                        changeLanguage(requireActivity(), newLang);
+                        return true;
+                    }
+                });
+            }
+            langPreference.getOnPreferenceChangeListener().onPreferenceChange(
+                    langPreference, langPreference.getValue());
         }
     }
 }

@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="Theme">
+    <PreferenceCategory app:title="@string/theme">
         <ListPreference
             app:key="theme"
             android:title="@string/theme"
@@ -9,6 +9,17 @@
             app:defaultValue="@string/light"
             android:entries="@array/theme_options"
             android:entryValues="@array/theme_values" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/language">
+        <ListPreference
+            app:key="lang"
+            app:title="@string/language"
+            android:summary="@string/lang_settings_description"
+            app:defaultValue="@string/en"
+            android:entries="@array/lang_options"
+            android:entryValues="@array/lang_values">
+        </ListPreference>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

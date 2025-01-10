@@ -1,8 +1,11 @@
 package app.dll.test;
 
-import static app.dll.test.EntranceActivity.themePrefs;
 import static app.dll.test.changeLocale.LanguageChange.changeLanguage;
+import static app.dll.test.specialUtils.SpecialUtils.restartApp;
+import static app.dll.test.specialUtils.SpecialUtils.saveCurrentActivity;
+import static app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs.languageState;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -44,13 +47,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     // Inner class for handling settings in a PreferenceFragmentCompat
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    public class SettingsFragment extends PreferenceFragmentCompat {
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
-            // Find the theme ListPreference by its key
+            //Find the theme ListPreference by its key
             ListPreference themePreference = findPreference("theme");
             if (themePreference != null) {
                 themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -59,9 +62,10 @@ public class SettingsActivity extends AppCompatActivity {
                         selectedTheme = newValue.toString();
 
                         // Save the selected theme to SharedPreferences
-                        PreferencesFuncs.themeState(selectedTheme);
+                        PreferencesFuncs.themeState(selectedTheme, requireContext());
 
                         // Check if the theme has actually changed before applying it
+                        SharedPreferences themePrefs = getSharedPreferences("themePrefs", MODE_PRIVATE);
                         String currentTheme = themePrefs.getString("themePrefs", "light");
                         Log.d(currentTheme, currentTheme);
 
@@ -89,8 +93,14 @@ public class SettingsActivity extends AppCompatActivity {
                 langPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                        //Changing language
                         String newLang = newValue.toString();
                         changeLanguage(requireActivity(), newLang);
+
+                        languageState(newLang, requireActivity());
+                        saveCurrentActivity(this.getClass(), requireContext());
+                        restartApp(requireContext());
+
                         return true;
                     }
                 });

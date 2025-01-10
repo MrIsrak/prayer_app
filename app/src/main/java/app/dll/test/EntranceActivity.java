@@ -8,6 +8,9 @@ import static app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs.saveNa
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import android.Manifest;
+import android.content.pm.PackageManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -44,14 +47,14 @@ public class EntranceActivity extends AppCompatActivity {
     private EditText enterNameEditText;
     private Button locationButton;
     private ImageView profilePic;
-    public static String profilePhotoUrl;
+    private static String profilePhotoUrl;
 
     // SharedPreferences setup
-    public static SharedPreferences locationPrefs;
-    public static SharedPreferences notificationPrefs;
-    public static SharedPreferences userName;
-    public static SharedPreferences themePrefs;
-    public static SharedPreferences isLogin;
+    private static SharedPreferences locationPrefs;
+    private static SharedPreferences notificationPrefs;
+    private static SharedPreferences userName;
+    private static SharedPreferences themePrefs;
+    private static SharedPreferences isLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,19 +96,19 @@ public class EntranceActivity extends AppCompatActivity {
 
         // Storing location permission state
         locationPrefs = getSharedPreferences("locationPrefs", Context.MODE_PRIVATE);
-        updateLocState();
+        updateLocState(this);
 
         // Soring notification permission state
         notificationPrefs = getSharedPreferences("notificationPrefs", Context.MODE_PRIVATE);
-        updateNotificationState();
+        updateNotificationState(this);
 
         // Button listeners
         locationButton.setOnClickListener(v -> getLocationPermission(this));
 
         enterAppButton.setOnClickListener(v -> {
             String name = enterNameEditText.getText().toString();
-            saveName(name);
-            updateLocState();
+            saveName(name, this);
+            updateLocState(this);
 
             if (name.isEmpty()) {
                 Toast.makeText(this, R.string.enterName, Toast.LENGTH_SHORT).show();
@@ -127,7 +130,7 @@ public class EntranceActivity extends AppCompatActivity {
             getNotificationPermission(this);
         } else {
             // Both permissions are granted, proceed to main menu
-            PreferencesFuncs.loginSate();  // Save login state
+            PreferencesFuncs.loginSate(this);  // Save login state
             navigateToMainMenu();  // Navigate to MainMenuActivity
         }
     }
@@ -137,30 +140,35 @@ public class EntranceActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Location permission granted
+            boolean fineLocationGranted = false;
+            boolean coarseLocationGranted = false;
+
+            // Iterate over permissions and results
+            for (int i = 0; i < permissions.length; i++) {
+                boolean isPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED;
+                if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    fineLocationGranted = isPermissionGranted;
+                } else if (permissions[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    coarseLocationGranted = isPermissionGranted;
+                }
+            }
+            if (fineLocationGranted || coarseLocationGranted) {
+                // At least one of the location permissions is granted
                 PreferencesFuncs.locState(true, this);  // Update the location state
                 Toast.makeText(this, R.string.accessLocGranted, Toast.LENGTH_SHORT).show();
                 navigateToMainMenu();  // Proceed to the main menu after permission is granted
             } else {
-                // Location permission denied
+                // Both permissions are denied
                 PreferencesFuncs.locState(false, this);
                 Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
-            }
-        }
 
-        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Notification permission granted
-                PreferencesFuncs.notState(true);
-                Toast.makeText(this, "Notification permission granted", Toast.LENGTH_SHORT).show();
-            } else {
-                PreferencesFuncs.notState(false);
-                // Notification permission denied
-                Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show();
+                // Check if the user selected "Never ask again"
+                boolean shouldShowRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION);
             }
         }
     }
+
+
 
     // Method to sign in with Google
     private void signInWithGoogle() {
@@ -183,7 +191,7 @@ public class EntranceActivity extends AppCompatActivity {
                         profilePhotoUrl = account.getPhotoUrl().toString();
                     }
                     // Save Google Sign-In username in SharedPreferences
-                    saveName(name);
+                    saveName(name, this);
                     // Check if location permission is granted
                     checkPermissionsAndProceed();
                 }

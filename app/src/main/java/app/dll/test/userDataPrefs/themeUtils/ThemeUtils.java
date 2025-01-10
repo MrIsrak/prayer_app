@@ -1,9 +1,10 @@
 package app.dll.test.userDataPrefs.themeUtils;
 
 import static android.app.PendingIntent.getActivity;
+import static android.content.Context.MODE_PRIVATE;
 
 import static androidx.core.app.ActivityCompat.recreate;
-import static app.dll.test.EntranceActivity.themePrefs;
+
 
 import android.app.Activity;
 import android.app.UiModeManager;
@@ -35,7 +36,7 @@ public class ThemeUtils {
 
 
     public static void setTheme(Context context) {
-        themePrefs = context.getSharedPreferences("themePrefs", Context.MODE_PRIVATE);
+        SharedPreferences themePrefs = context.getSharedPreferences("themePrefs", MODE_PRIVATE);
         String selectedTheme = themePrefs.getString("themePrefs", "light"); // Default to "light" if not set
         int newMode;
 

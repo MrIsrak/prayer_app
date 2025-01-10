@@ -3,7 +3,6 @@ package app.dll.test;
 //import static app.dll.test.EntranceActivity.name;
 
 import static androidx.core.content.ContextCompat.getSystemService;
-import static app.dll.test.EntranceActivity.profilePhotoUrl;
 import static app.dll.test.zmanim.SpecialDetails.getTorahPortion;
 
 

@@ -28,6 +28,7 @@ public class GetPrayersTime {
     static ZmanimCalendar zmanimCalendar = new ZmanimCalendar();
     public static String alosHashachar, netzHaChamah, sofZmanKriatShema, sofZmanTefillah,
     chatzot, minchaGedolah, minchaKetanah, plagHaMincha, shkiah, tzeitHaKochavim;
+
     public static String location;
     //For today
     public static void getPrayersTime(Activity context){
@@ -51,6 +52,9 @@ public class GetPrayersTime {
     }
     //For specific day
     public static void getPrayersTime(Activity activity, String days) throws ParseException {
+        //Getting last location of user
+        getLastLocation(activity);
+        //Getting Calendar to format the time of prayers
         Calendar calendar = Calendar.getInstance();
         String dateNoSplit = days.split(" ")[0];
         // Split the string into day, month, and year components
@@ -63,10 +67,8 @@ public class GetPrayersTime {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
-
+        //Formatting date
         Date date = calendar.getTime();
-        getLastLocation(activity);
-
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
         GeoLocation geoLocation = new GeoLocation(getLocationName(activity), latitude, longitude, TimeZone.getDefault());

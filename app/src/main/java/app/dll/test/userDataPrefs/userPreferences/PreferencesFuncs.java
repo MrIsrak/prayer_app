@@ -10,7 +10,7 @@ public class PreferencesFuncs {
     public static void saveName(String name, Context context){
         SharedPreferences userName = context.getSharedPreferences("userName", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = userName.edit();
-        editor.putString("username", name); // Ensure the key is "username"
+        editor.putString("userName", name); // Ensure the key is "username"
         editor.apply();
     }
     public static void themeState(String theme, Context context){

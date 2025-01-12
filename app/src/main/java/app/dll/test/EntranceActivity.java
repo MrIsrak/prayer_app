@@ -83,8 +83,10 @@ public class EntranceActivity extends AppCompatActivity {
         // Google SIGN-IN initialization
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestProfile()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
         // Initialize other UI elements
         enterAppButton = findViewById(R.id.enter_btn);
@@ -185,13 +187,7 @@ public class EntranceActivity extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 if (account != null) {
-                    String name = account.getGivenName();
-                    // If the profile photo exists, store the URL
-                    if (account.getPhotoUrl() != null) {
-                        profilePhotoUrl = account.getPhotoUrl().toString();
-                    }
-                    // Save Google Sign-In username in SharedPreferences
-                    saveName(name, this);
+                    saveName(account.getGivenName(), this);
                     // Check if location permission is granted
                     checkPermissionsAndProceed();
                 }

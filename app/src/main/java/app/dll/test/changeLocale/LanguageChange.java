@@ -38,7 +38,7 @@ public class LanguageChange {
                 context.getResources().getDisplayMetrics()
         );
 
-        Log.d("RESTART", "RESTART");
+//        Log.d("RESTART", "RESTART");
     }
 
 }

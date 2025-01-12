@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_netz_hachamah" type="id" />
+    <item name="tv_location" type="id" />
+    <item name="tv_alos_hashachar" type="id" />
+    <item name="tv_sof_zman_kriat_shema" type="id" />
+    <item name="tv_sof_zman_tefillah" type="id" />
+    <item name="tv_chatzot" type="id" />
+    <item name="tv_mincha_gedolah" type="id" />
+    <item name="tv_mincha_ketanah" type="id" />
+    <item name="tv_plag_hamincha" type="id" />
+    <item name="tv_shkiah" type="id" />
+    <item name="tv_tzeit_hakochavim" type="id" />
+</resources>

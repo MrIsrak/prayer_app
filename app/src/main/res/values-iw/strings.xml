@@ -6,7 +6,6 @@
     <string name="question">מה נעשה היום</string>
     <string name="name">שם</string>
     <string name="location">מיקומ גיאוגרפי</string>
-    <string name="gallery">גלריה</string>
     <string name="privacy_policy">הכנת סודית</string>
     <string name="enter">להכנס לאפליקציה</string>
     <string name="text_prayers">תפילות</string>
@@ -41,4 +40,6 @@
     <string name="accessLocDenied">הרשאת המיקום נדחתה. אינך יכול להמשיך מבלי להעניק גישה למיקום.</string>
     <string name="greeting_name">"שלום "</string>
     <string name="accessNotifcationGrand">הרשאת הודעה נדחתה. אינך יכול להמשיך מבלי להעניק גישה להתראות.</string>
+    <string name="dark">חשוך</string>
+    <string name="light">אור</string>
 </resources>

@@ -37,13 +37,13 @@ import java.util.concurrent.Executor;
 public class GetLocation implements LocationListener {
     private LocationManager locationManager;
     private Context context;
-    public static SharedPreferences coordinatesPrefs;
     public static FusedLocationProviderClient fusedLocationClient;
     //Location
     public static double latitude;
     public static double longitude;
     //Zmanim
     ComplexZmanimCalendar zmanimCalendar = new ComplexZmanimCalendar();
+
     public GetLocation(Context context, Activity activity) {
         this.context = context;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -53,7 +53,7 @@ public class GetLocation implements LocationListener {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return; // Permission is not granted
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1000, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000000000, 1000, this);
     }
     @Override
     public void onLocationChanged(Location location) {
@@ -62,17 +62,19 @@ public class GetLocation implements LocationListener {
             longitude = location.getLongitude();
 
             String locationName = getLocationName(context);
-            GeoLocation geoLocation = new GeoLocation("Location", latitude, longitude, TimeZone.getTimeZone(locationName));
+            GeoLocation geoLocation = new GeoLocation(getLocationName(context), latitude, longitude, TimeZone.getTimeZone(locationName));
             zmanimCalendar = new ComplexZmanimCalendar(geoLocation);
         }
     }
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        // You can handle status changes here if necessary
+        //If location changed, update it
+        getLastLocation((Activity) context);
     }
     @Override
     public void onProviderEnabled(String provider) {
         // Called when the provider (GPS or Network) is enabled
+        //TODO:Send notification that zmanim by location is available
     }
     @Override
     public void onProviderDisabled(String provider) {

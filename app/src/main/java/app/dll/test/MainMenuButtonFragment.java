@@ -3,7 +3,6 @@ package app.dll.test;
 //import static app.dll.test.EntranceActivity.name;
 
 import static androidx.core.content.ContextCompat.getSystemService;
-import static app.dll.test.EntranceActivity.profilePhotoUrl;
 import static app.dll.test.zmanim.SpecialDetails.getTorahPortion;
 
 
@@ -65,8 +64,8 @@ public class MainMenuButtonFragment extends Fragment {
         //Setting the actual name
         TextView greeting = view.findViewById(R.id.greeting);
         // Retrieve data
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("username", "User");
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userName", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("userN", "User");
         if (greeting != null) {greeting.setText("Hello, " + name + "!");}
 
 //        ImageView profilePhoto = view.findViewById(R.id.profile_photo);

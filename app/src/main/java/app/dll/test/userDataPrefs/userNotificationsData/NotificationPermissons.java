@@ -1,11 +1,11 @@
 package app.dll.test.userDataPrefs.userNotificationsData;
 
 import static app.dll.test.EntranceActivity.NOTIFICATION_PERMISSION_REQUEST_CODE;
-import static app.dll.test.EntranceActivity.notificationPrefs;
 
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -20,7 +20,8 @@ import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 
 public class NotificationPermissons {
 
-    public static void updateNotificationState() {
+    public static void updateNotificationState(Context context) {
+        SharedPreferences notificationPrefs = context.getSharedPreferences("notificationPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = notificationPrefs.edit();
         editor.putBoolean("notificationPrefs", true);
         editor.apply();
@@ -34,9 +35,9 @@ public class NotificationPermissons {
                     NOTIFICATION_PERMISSION_REQUEST_CODE);
         } else {
             // Permission already granted, update the notification preference
-            PreferencesFuncs.notState(true);
+            PreferencesFuncs.notState(true, activity);
             Toast.makeText(activity, "Notification access already granted", Toast.LENGTH_SHORT).show();
-            updateNotificationState();  // Update the state immediately
+            updateNotificationState(activity);  // Update the state immediately
         }
     }
 

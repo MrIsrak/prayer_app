@@ -65,7 +65,7 @@ public class MainMenuButtonFragment extends Fragment {
         TextView greeting = view.findViewById(R.id.greeting);
         // Retrieve data
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userName", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("userN", "User");
+        String name = sharedPreferences.getString("userName", "User");
         if (greeting != null) {greeting.setText("Hello, " + name + "!");}
 
 //        ImageView profilePhoto = view.findViewById(R.id.profile_photo);

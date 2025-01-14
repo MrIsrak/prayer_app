@@ -26,6 +26,7 @@
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/second_color</item>
+        <item name="cornerRadius">30dp</item>
 
 <!--    paddings-->
         <item name="android:paddingTop">15dp</item>

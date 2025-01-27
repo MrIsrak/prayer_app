@@ -46,7 +46,6 @@ public class EntranceActivity extends AppCompatActivity {
     private TextInputLayout enterNameLayout;
     private EditText enterNameEditText;
     private Button locationButton;
-    private ImageView profilePic;
     private static String profilePhotoUrl;
 
     // SharedPreferences setup
@@ -94,7 +93,6 @@ public class EntranceActivity extends AppCompatActivity {
         enterNameLayout = findViewById(R.id.nameInput);
         enterNameEditText = enterNameLayout.getEditText();
         locationButton = findViewById(R.id.loc_btn);
-        profilePic = findViewById(R.id.profile_photo);
 
         // Storing location permission state
         locationPrefs = getSharedPreferences("locationPrefs", Context.MODE_PRIVATE);

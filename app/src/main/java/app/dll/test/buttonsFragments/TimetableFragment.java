@@ -2,6 +2,7 @@ package app.dll.test.buttonsFragments;
 
 import static app.dll.test.dateTime.GetDate.getDayString;
 import static app.dll.test.dateTime.GetDate.getToday;
+import static app.dll.test.dateTime.GetDate.getTodayString;
 import static app.dll.test.dateTime.GetDate.today;
 import static app.dll.test.zmanim.GetJewishDate.getJewishDayAndMonth;
 
@@ -63,16 +64,16 @@ public class TimetableFragment extends Fragment {
         Button wednesdayBtn = view.findViewById(R.id.wednesday_btn);
         Button thursdayBtn = view.findViewById(R.id.thursday_btn);
         Button fridayBtn = view.findViewById(R.id.friday_btn);
-        Button shabbatBtn = view.findViewById(R.id.shabbat_btn);
+        Button shabbatBtn = view.findViewById(R.id.shabat_btn);
 
         //Navigate to daily times
-        sundayBtn.setOnClickListener(v -> navigateToDailyZamanim("Sunday"));
-        mondayBtn.setOnClickListener(v -> navigateToDailyZamanim("Monday"));
-        tuesdayBtn.setOnClickListener(v -> navigateToDailyZamanim("Tuesday"));
-        wednesdayBtn.setOnClickListener(v -> navigateToDailyZamanim("Wednesday"));
-        thursdayBtn.setOnClickListener(v -> navigateToDailyZamanim("Thursday"));
-        fridayBtn.setOnClickListener(v -> navigateToDailyZamanim("Friday"));
-        shabbatBtn.setOnClickListener(v -> navigateToDailyZamanim("Shabbat"));
+        sundayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.sunday), view));
+        mondayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.monday), view));
+        tuesdayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.tuesday), view));
+        wednesdayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.wednesday), view));
+        thursdayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.thursday), view));
+        fridayBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.friday), view));
+        shabbatBtn.setOnClickListener(v -> navigateToDailyZamanim(view.getResources().getString(R.string.shabat), view));
 
         // Set up the date format
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM", Locale.getDefault());
@@ -91,55 +92,56 @@ public class TimetableFragment extends Fragment {
 
             String jewishDate = getJewishDayAndMonth(year, month, day);
             String buttonText = formatter.format(calendar.getTime()) + " " + jewishDate;
-            //Replace with getDay function
+            String todayString = "\n" + buttonText;
+
             switch (i) {
                 case 0: // Sunday
                     if (today == Calendar.SUNDAY) {
-                        sundayBtn.setText("Today\n" + buttonText);
+                        sundayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        sundayBtn.setText("Sunday\n" + buttonText);
+                        sundayBtn.setText(view.getResources().getString(R.string.sunday) + "\n" + buttonText);
                     }
                     break;
                 case 1: // Monday
                     if (today == Calendar.MONDAY) {
-                        mondayBtn.setText("Today\n" + buttonText);
+                        mondayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        mondayBtn.setText("Monday\n" + buttonText);
+                        mondayBtn.setText(view.getResources().getString(R.string.monday) + "\n" + buttonText);
                     }
                     break;
                 case 2: // Tuesday
                     if (today == Calendar.TUESDAY) {
-                        tuesdayBtn.setText("Today\n" + buttonText);
+                        tuesdayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        tuesdayBtn.setText("Tuesday\n" + buttonText);
+                        tuesdayBtn.setText(view.getResources().getString(R.string.tuesday) + "\n" + buttonText);
                     }
                     break;
                 case 3: // Wednesday
                     if (today == Calendar.WEDNESDAY) {
-                        wednesdayBtn.setText("Today\n" + buttonText);
+                        wednesdayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        wednesdayBtn.setText("Wednesday\n" + buttonText);
+                        wednesdayBtn.setText(view.getResources().getString(R.string.wednesday) + "\n" + buttonText);
                     }
                     break;
                 case 4: // Thursday
                     if (today == Calendar.THURSDAY) {
-                        thursdayBtn.setText("Today\n" + buttonText);
+                        thursdayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        thursdayBtn.setText("Thursday\n" + buttonText);
+                        thursdayBtn.setText(view.getResources().getString(R.string.thursday) + "\n" + buttonText);
                     }
                     break;
                 case 5: // Friday
                     if (today == Calendar.FRIDAY) {
-                        fridayBtn.setText("Today\n" + buttonText);
+                        fridayBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        fridayBtn.setText("Friday\n" + buttonText);
+                        fridayBtn.setText(view.getResources().getString(R.string.friday) + "\n" + buttonText);
                     }
                     break;
                 case 6: // Saturday (Shabbat)
                     if (today == Calendar.SATURDAY) {
-                        shabbatBtn.setText("Today\n" + buttonText);
+                        shabbatBtn.setText(getTodayString(view) + todayString);
                     } else {
-                        shabbatBtn.setText("Shabbat\n" + buttonText);
+                        shabbatBtn.setText(view.getResources().getString(R.string.shabat) + "\n" + buttonText);
                     }
                     break;
             }
@@ -151,12 +153,12 @@ public class TimetableFragment extends Fragment {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
     }
-    private void navigateToDailyZamanim(String dayOfWeek) {
+    private void navigateToDailyZamanim(String dayOfWeek, View view) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         getToday();
         Bundle dayDate = new Bundle();
-        if (dayOfWeek.equals(getDayString(today))) {
-            dayDate.putString("dayOfWeek", "Today"); // Use "Today" for the current day.
+        if (dayOfWeek.equals(getDayString(today, requireContext()))) {
+            dayDate.putString("dayOfWeek", getTodayString(view)); // Use "Today" for the current day.
         } else {
             dayDate.putString("dayOfWeek", dayOfWeek); // Use the provided day of the week.
         }

@@ -28,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ThemeUtils.setTheme(this);
         setContentView(R.layout.settings_activity);
 
@@ -47,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     // Inner class for handling settings in a PreferenceFragmentCompat
-    public class SettingsFragment extends PreferenceFragmentCompat {
+    public static class SettingsFragment extends PreferenceFragmentCompat {
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -65,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
                         PreferencesFuncs.themeState(selectedTheme, requireContext());
 
                         // Check if the theme has actually changed before applying it
-                        SharedPreferences themePrefs = getSharedPreferences("themePrefs", MODE_PRIVATE);
+                        SharedPreferences themePrefs = requireContext().getSharedPreferences("themePrefs", MODE_PRIVATE);
                         String currentTheme = themePrefs.getString("themePrefs", "light");
                         Log.d(currentTheme, currentTheme);
 

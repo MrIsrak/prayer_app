@@ -32,6 +32,7 @@
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
     <string name="shabat">Shabat</string>
+    <string name="today">Today</string>
     <string name="next_week">Next Week</string>
     <string name="prev_week">Previous week</string>
 

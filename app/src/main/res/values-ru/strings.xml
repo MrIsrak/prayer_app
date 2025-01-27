@@ -33,9 +33,11 @@
     <string name="thursday">Четверг</string>
     <string name="friday">Пятница</string>
     <string name="shabat">Шабат</string>
+    <string name="today">Сегодня</string>
     <string name="next_week">Следующая неделя</string>
     <string name="prev_week">Предыдущая неделя</string>
-    <string name="alot_hashachar">Рссвет</string>
+    <string name="ru">Русский</string>
+    <string name="alot_hashachar">Рассвет</string>
     <string name="netz_hachamah">Восход</string>
     <string name="sof_zman_kriat_shema">Конец времени чтения \"Шма\"</string>
     <string name="sof_zman_tefillah">Конец времени молитвы</string>
@@ -69,4 +71,6 @@
     <string name="noon">Полночь</string>
     <string name="sunset">Закат</string>
     <string name="lang_settings_description">Выберете свои языковые настройки</string>
+    <string name="en">Английский</string>
+    <string name="he">Иврит</string>
 </resources>

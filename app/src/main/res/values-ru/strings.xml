@@ -86,4 +86,5 @@
     <string name="shevat">Швата</string>
     <string name="adar">Адара 1</string>
     <string name="adar2">Адара 2</string>
+    <string name="TorahPortion">"Наша недельная глава: "</string>
 </resources>

@@ -7,15 +7,16 @@
     `TITLE`
     <style name="title">
         <item name="android:textSize">32sp</item>
-        <item name="android:fontFamily">@font/tttravaler_black</item>
+        <item name="android:fontFamily">@font/rubik_bold</item>
     </style>
 
 
     `SMALL TITLE`
     <style name="small_title">
+
         <item name="android:textAlignment">center</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:fontFamily">@font/tttravels_extrabold</item>
+        <item name="android:fontFamily">@font/rubik_extrabold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/main_color</item>
     </style>
@@ -23,6 +24,7 @@
 
     `BUTTON`
     <style name="menu_button">
+        <item name="android:fontFamily">"@font/rubik_regular"</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:backgroundTint">@color/second_color</item>
@@ -38,12 +40,14 @@
     </style>
 
     <style name="privacy_policy_tv">
+        <item name="android:fontFamily">"@font/rubik_regular"</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/second_color</item>
         <item name="android:textStyle">italic</item>
     </style>
 
     <style name="enter_button">
+        <item name="android:fontFamily">"@font/rubik_regular"</item>
     <!--color-->
         <item name="android:textSize">19sp</item>
         <item name="android:textColor">@color/white</item>
@@ -59,7 +63,7 @@
     </style>
 
     <style name="main_menu_btn">
-
+        <item name="android:fontFamily">"@font/rubik_regular"</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/white</item>

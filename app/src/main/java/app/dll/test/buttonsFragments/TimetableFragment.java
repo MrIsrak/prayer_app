@@ -90,54 +90,54 @@ public class TimetableFragment extends Fragment {
 
             String jewishDate = getJewishDayAndMonth(year, month, day, view);
             String buttonText = formatter.format(calendar.getTime()) + " " + jewishDate;
-            String todayString = "\n" + buttonText;
+            String todayString = getTodayString(view) + "\n" + buttonText;
 
             switch (i) {
                 case 0: // Sunday
                     if (today == Calendar.SUNDAY) {
-                        sundayBtn.setText(getTodayString(view) + todayString);
+                        sundayBtn.setText(todayString);
                     } else {
                         sundayBtn.setText(view.getResources().getString(R.string.sunday) + "\n" + buttonText);
                     }
                     break;
                 case 1: // Monday
                     if (today == Calendar.MONDAY) {
-                        mondayBtn.setText(getTodayString(view) + todayString);
+                        mondayBtn.setText(todayString);
                     } else {
                         mondayBtn.setText(view.getResources().getString(R.string.monday) + "\n" + buttonText);
                     }
                     break;
                 case 2: // Tuesday
                     if (today == Calendar.TUESDAY) {
-                        tuesdayBtn.setText(getTodayString(view) + todayString);
+                        tuesdayBtn.setText(todayString);
                     } else {
                         tuesdayBtn.setText(view.getResources().getString(R.string.tuesday) + "\n" + buttonText);
                     }
                     break;
                 case 3: // Wednesday
                     if (today == Calendar.WEDNESDAY) {
-                        wednesdayBtn.setText(getTodayString(view) + todayString);
+                        wednesdayBtn.setText(todayString);
                     } else {
                         wednesdayBtn.setText(view.getResources().getString(R.string.wednesday) + "\n" + buttonText);
                     }
                     break;
                 case 4: // Thursday
                     if (today == Calendar.THURSDAY) {
-                        thursdayBtn.setText(getTodayString(view) + todayString);
+                        thursdayBtn.setText(todayString);
                     } else {
                         thursdayBtn.setText(view.getResources().getString(R.string.thursday) + "\n" + buttonText);
                     }
                     break;
                 case 5: // Friday
                     if (today == Calendar.FRIDAY) {
-                        fridayBtn.setText(getTodayString(view) + todayString);
+                        fridayBtn.setText(todayString);
                     } else {
                         fridayBtn.setText(view.getResources().getString(R.string.friday) + "\n" + buttonText);
                     }
                     break;
                 case 6: // Saturday (Shabbat)
                     if (today == Calendar.SATURDAY) {
-                        shabbatBtn.setText(getTodayString(view) + todayString);
+                        shabbatBtn.setText(todayString);
                     } else {
                         shabbatBtn.setText(view.getResources().getString(R.string.shabat) + "\n" + buttonText);
                     }

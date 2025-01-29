@@ -73,4 +73,17 @@
     <string name="lang_settings_description">Выберете свои языковые настройки</string>
     <string name="en">Английский</string>
     <string name="he">Иврит</string>
+    <string name="nisan">Нисанa</string>
+    <string name="iyar">Иярa</string>
+    <string name="sivan">Сиванa</string>
+    <string name="tamuz">Тимузa</string>
+    <string name="av">Авa</string>
+    <string name="elul">Элуля</string>
+    <string name="tishrei">Тишрея</string>
+    <string name="heshvan">Хешвана</string>
+    <string name="kislev">Кислева</string>
+    <string name="tevet">Тевета</string>
+    <string name="shevat">Швата</string>
+    <string name="adar">Адара 1</string>
+    <string name="adar2">Адара 2</string>
 </resources>

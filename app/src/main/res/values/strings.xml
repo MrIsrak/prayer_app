@@ -98,6 +98,19 @@
     <string name="sunrise">Sunrise</string>
     <string name="noon">Noon</string>
     <string name="sunset">Sunset</string>
+    <string name="nisan">Nisan</string>
+    <string name="iyar">Iyar</string>
+    <string name="sivan">Sivan</string>
+    <string name="tamuz">Tamuz</string>
+    <string name="av">Av</string>
+    <string name="elul">Elul</string>
+    <string name="tishrei">Tishrei</string>
+    <string name="heshvan">Heshvan</string>
+    <string name="kislev">Kislev</string>
+    <string name="tevet">Tevet</string>
+    <string name="shevat">Shevat</string>
+    <string name="adar">Adar 1</string>
+    <string name="adar2">Adar 2</string>
 
 
 </resources>

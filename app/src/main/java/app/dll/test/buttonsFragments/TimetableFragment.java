@@ -25,10 +25,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -90,7 +88,7 @@ public class TimetableFragment extends Fragment {
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            String jewishDate = getJewishDayAndMonth(year, month, day);
+            String jewishDate = getJewishDayAndMonth(year, month, day, view);
             String buttonText = formatter.format(calendar.getTime()) + " " + jewishDate;
             String todayString = "\n" + buttonText;
 

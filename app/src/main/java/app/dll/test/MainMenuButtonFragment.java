@@ -3,6 +3,7 @@ package app.dll.test;
 //import static app.dll.test.EntranceActivity.name;
 
 import static androidx.core.content.ContextCompat.getSystemService;
+import static app.dll.test.changeLocale.LanguageChange.changeLanguage;
 import static app.dll.test.zmanim.SpecialDetails.getTorahPortion;
 
 
@@ -44,6 +45,7 @@ import java.util.Objects;
 
 import app.dll.test.userDataPrefs.userNotificationsData.NotificationChannelCreating;
 import app.dll.test.userDataPrefs.userNotificationsData.NotificationPermissons;
+import app.dll.test.userDataPrefs.userPreferences.PreferencesFuncs;
 
 
 public class MainMenuButtonFragment extends Fragment {
@@ -52,21 +54,32 @@ public class MainMenuButtonFragment extends Fragment {
     private static final int REQUEST_CODE_SETTINGS = 1;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //Set language
+        changeLanguage(requireActivity(), requireContext(), PreferencesFuncs.getLanguage(requireContext()));
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //Set language
+        changeLanguage(requireActivity(), requireContext(), PreferencesFuncs.getLanguage(requireContext()));
         return inflater.inflate(R.layout.fragment_main_menu_button, container, false);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        changeLanguage(requireActivity(), requireContext(), PreferencesFuncs.getLanguage(requireContext()));
         super.onViewCreated(view, savedInstanceState);
+
         //Setting the actual name
         TextView greeting = view.findViewById(R.id.greeting);
         // Retrieve data
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userName", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("userName", "User");
-        if (greeting != null) {greeting.setText("Hello, " + name + "!");}
+        if (greeting != null) {greeting.setText(view.getResources().getString(R.string.greeting) + " " + name + "!");}
 
 //        ImageView profilePhoto = view.findViewById(R.id.profile_photo);
 //        Glide.with(this).load(profilePhotoUrl).load(profilePhoto);
@@ -78,7 +91,7 @@ public class MainMenuButtonFragment extends Fragment {
         Button blessinButton = view.findViewById(R.id.blessings_button);
         ImageButton settingsButton = view.findViewById(R.id.settings_btn);
 
-            NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
+        NavController navController = Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment));
 
         timetableButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_timetable_fragment));
         textPrayersButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_textPrayers_fragment));
@@ -111,9 +124,18 @@ public class MainMenuButtonFragment extends Fragment {
 
         //Torah portion
         TextView dvar_torah = view.findViewById(R.id.dvar_torah);
-        if(getTorahPortion() != null){dvar_torah.setText("Weakly Torah portion is: " + getTorahPortion());}
-        else{dvar_torah.setText(" " );}
+        if(getTorahPortion() != null){dvar_torah.setText(view.getResources().getString(R.string.TorahPortion) + " " + getTorahPortion());}
+        else{dvar_torah.setText(" ");}
 
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        //Set language
+        changeLanguage(requireActivity(), requireContext(), PreferencesFuncs.getLanguage(requireContext()));
+        Log.d("LANGUAGE", "LANGUAGE");
+
+    }
+
 }

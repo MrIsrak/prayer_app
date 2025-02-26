@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation_menu"
-        tools:layout_editor_absoluteX="0dp" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 
 

@@ -74,9 +74,4 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.kosherjava:zmanim:2.5.0")
-
-
-
-
-
 }

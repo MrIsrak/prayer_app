@@ -96,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
                     public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
                         //Changing language
                         String newLang = newValue.toString();
-                        changeLanguage(requireActivity(), newLang);
+                        changeLanguage(requireActivity(), requireContext(), newLang);
 
                         languageState(newLang, requireActivity());
                         saveCurrentActivity(this.getClass(), requireContext());

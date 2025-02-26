@@ -74,10 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/date_layout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingBottom="50dp">
@@ -171,8 +171,7 @@
                 android:paddingBottom="15dp"/>
 
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>
 

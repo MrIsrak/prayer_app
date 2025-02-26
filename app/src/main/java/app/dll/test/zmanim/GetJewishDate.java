@@ -74,29 +74,29 @@ public class GetJewishDate {
         } else {
             switch (month) {
                 case 1:
-                    return "Nisan";
+                    return view.getResources().getString(R.string.nisan);
                 case 2:
-                    return "Iyar";
+                    return view.getResources().getString(R.string.iyar);
                 case 3:
-                    return "Sivan";
+                    return view.getResources().getString(R.string.sivan);
                 case 4:
-                    return "Tammuz";
+                    return view.getResources().getString(R.string.tamuz);
                 case 5:
-                    return "Av";
+                    return view.getResources().getString(R.string.av);
                 case 6:
-                    return "Elul";
+                    return view.getResources().getString(R.string.elul);
                 case 7:
-                    return "Tishrei";
+                    return view.getResources().getString(R.string.tishrei);
                 case 8:
-                    return "Cheshvan";
+                    return view.getResources().getString(R.string.heshvan);
                 case 9:
-                    return "Kislev";
+                    return view.getResources().getString(R.string.kislev);
                 case 10:
-                    return "Tevet";
+                    return view.getResources().getString(R.string.tevet);
                 case 11:
-                    return "Shevat";
+                    return view.getResources().getString(R.string.shevat);
                 case 12:
-                    return "Adar I";
+                    return view.getResources().getString(R.string.adar);
                 default:
                     return "Invalid month";
             }

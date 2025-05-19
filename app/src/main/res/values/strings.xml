@@ -85,16 +85,16 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <!--    Zmanim  -->
-        <string name="alot_hashachar">Alot HaShachar (Dawn):</string>
-        <string name="netz_hachamah">Netz HaChamah (Sunrise):</string>
-        <string name="sof_zman_kriat_shema">Sof Zman Kriat Shema:</string>
-        <string name="sof_zman_tefillah">Sof Zman Tefillah:</string>
-        <string name="chatzot">Chatzot (Midday):</string>
-        <string name="mincha_gedolah">Mincha Gedolah:</string>
-        <string name="mincha_ketanah">Mincha Ketanah:</string>
-        <string name="plag_hamincha">Plag HaMincha:</string>
-        <string name="shkiah">Shkiah (Sunset):</string>
-        <string name="tzeit_hakochavim">Tzeit HaKochavim (Nightfall):</string>
+    <string name="alot_hashachar">Alot HaShachar (Dawn):</string>
+    <string name="netz_hachamah">Netz HaChamah (Sunrise):</string>
+    <string name="sof_zman_kriat_shema">Sof Zman Kriat Shema:</string>
+    <string name="sof_zman_tefillah">Sof Zman Tefillah:</string>
+    <string name="chatzot">Chatzot (Midday):</string>
+    <string name="mincha_gedolah">Mincha Gedolah:</string>
+    <string name="mincha_ketanah">Mincha Ketanah:</string>
+    <string name="plag_hamincha">Plag HaMincha:</string>
+    <string name="shkiah">Shkiah (Sunset):</string>
+    <string name="tzeit_hakochavim">Tzeit HaKochavim (Nightfall):</string>
     <string name="sunrise">Sunrise</string>
     <string name="noon">Noon</string>
     <string name="sunset">Sunset</string>
@@ -112,6 +112,13 @@
     <string name="adar">Adar 1</string>
     <string name="adar2">Adar 2</string>
     <string name="TorahPortion">Weakly Torah portion is:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tehihlim_books">Books</string>
+
+    <string name="psalmSelect">Select psalm: </string>
+
+
 
 
 </resources>

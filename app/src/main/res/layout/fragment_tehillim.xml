@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/harp_img"
+        style="@style/icon_pink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/harp_pink" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/daily_Tehilim_btn"
+        style="@style/sub_menu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/daily" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/chapter_btn"
+        style="@style/sub_menu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/chapter" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/situation_btn"
+        style="@style/sub_menu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/situation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/books"
+        style="@style/sub_menu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tehihlim_books" />
+
+
+</LinearLayout>

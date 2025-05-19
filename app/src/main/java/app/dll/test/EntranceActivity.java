@@ -160,7 +160,7 @@ public class EntranceActivity extends AppCompatActivity {
             } else {
                 // Both permissions are denied
                 PreferencesFuncs.locState(false, this);
-                Toast.makeText(this, R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,  R.string.accessLocDenied, Toast.LENGTH_SHORT).show();
 
                 // Check if the user selected "Never ask again"
                 boolean shouldShowRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION);

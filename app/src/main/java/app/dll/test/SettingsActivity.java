@@ -99,8 +99,8 @@ public class SettingsActivity extends AppCompatActivity {
                         changeLanguage(requireActivity(), requireContext(), newLang);
 
                         languageState(newLang, requireActivity());
-                        saveCurrentActivity(this.getClass(), requireContext());
-                        restartApp(requireContext());
+//                        saveCurrentActivity(this.getClass(), requireContext());
+
 
                         return true;
                     }

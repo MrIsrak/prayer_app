@@ -5,13 +5,9 @@ import static app.dll.test.dateTime.GetDate.getDatDayInt;
 import static app.dll.test.dateTime.GetDate.getTodayString;
 import static app.dll.test.dateTime.GetDate.today;
 import static app.dll.test.userDataPrefs.userLocationData.GetLocation.getLocationName;
-import static app.dll.test.userDataPrefs.userLocationData.GetLocation.latitude;
-import static app.dll.test.userDataPrefs.userLocationData.GetLocation.longitude;
-import static app.dll.test.userDataPrefs.userLocationData.LocationPermissons.getLocationPermission;
 import static app.dll.test.zmanim.GetPrayersTime.alosHashachar;
 import static app.dll.test.zmanim.GetPrayersTime.chatzot;
 import static app.dll.test.zmanim.GetPrayersTime.getPrayersTime;
-import static app.dll.test.zmanim.GetPrayersTime.location;
 import static app.dll.test.zmanim.GetPrayersTime.minchaGedolah;
 import static app.dll.test.zmanim.GetPrayersTime.minchaKetanah;
 import static app.dll.test.zmanim.GetPrayersTime.netzHaChamah;
@@ -21,19 +17,14 @@ import static app.dll.test.zmanim.GetPrayersTime.sofZmanKriatShema;
 import static app.dll.test.zmanim.GetPrayersTime.sofZmanTefillah;
 import static app.dll.test.zmanim.GetPrayersTime.tzeitHaKochavim;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,21 +32,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.text.DateFormatSymbols;
 import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Objects;
-import java.util.concurrent.Executor;
 
 import app.dll.test.R;
 import app.dll.test.dateTime.GetDate;
 import app.dll.test.userDataPrefs.userLocationData.GetLocation;
-import app.dll.test.zmanim.GetJewishDate;
 import app.dll.test.zmanim.GetPrayersTime;
 
-public class DalyZamanimFragment extends Fragment {
+public class DailyZamanimFragment extends Fragment {
     private TextView tvLocation, tvAlosHashachar, tvNetzHachamah, tvSofZmanKriatShema;
     private TextView tvSofZmanTefillah, tvChatzot, tvMinchaGedolah, tvMinchaKetanah;
     private TextView tvPlagHamincha, tvShkiah, tvTzeitHakochavim;
@@ -63,7 +48,7 @@ public class DalyZamanimFragment extends Fragment {
     private FusedLocationProviderClient fusedLocationClient;
 
     public static String day = "";
-    public DalyZamanimFragment() {
+    public DailyZamanimFragment() {
         // Required empty public constructor
     }
 

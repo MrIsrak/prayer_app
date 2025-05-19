@@ -5,7 +5,7 @@ import static android.provider.Settings.System.getString;
 import android.util.Log;
 import android.view.View;
 
-import com.google.protobuf.StringValue;
+
 import com.kosherjava.zmanim.ZmanimCalendar;
 import com.kosherjava.zmanim.hebrewcalendar.HebrewDateFormatter;
 import com.kosherjava.zmanim.hebrewcalendar.JewishCalendar;

@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -36,27 +39,37 @@ public class DailyTehilimFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         PDFView pdfView = view.findViewById(R.id.pdfView);
-        if (pdfView != null) {
-            try {
-                pdfView.fromAsset("Tehillim.pdf")
-                        .defaultPage(0)
-                        .enableSwipe(true)
-                        .swipeHorizontal(false)
-                        .enableDoubletap(true)
-                        .pageFitPolicy(com.github.barteksc.pdfviewer.util.FitPolicy.WIDTH)
-                        .spacing(10)
-                        .load();
-                Toast.makeText(requireContext(), "PDF loaded successfully", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Log.e("TehilimFragment", "Exception during PDF load", e);
-                Toast.makeText(requireContext(), "PDF loading failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        pdfView.fromAsset("Tehillim.pdf")
+                .defaultPage(0)
+                .enableSwipe(true)
+                .swipeHorizontal(false)
+                .enableDoubletap(true)
+                .pageFitPolicy(com.github.barteksc.pdfviewer.util.FitPolicy.WIDTH)
+                .spacing(10)
+                .load();
+        Spinner selectionSpinner = view.findViewById(R.id.psalmSelectionSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.psalms_list,
+                android.R.layout.preference_category
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        selectionSpinner.setAdapter(adapter);
+
+        // Set a listener
+        selectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
             }
-        } else {
-            Log.e("TehilimFragment", "PDFView not found in layout");
-            Toast.makeText(requireContext(), "PDF view not found", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
 
-
+        });
     }
 }

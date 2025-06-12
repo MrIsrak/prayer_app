@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.Executor;
 
@@ -61,7 +62,7 @@ public class GetLocation implements LocationListener {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            if(getLocationName(context) == "Location not found"){return;}
+            if(Objects.equals(getLocationName(context), "Location not found")){return;}
 
             String locationName = getLocationName(context);
             GeoLocation geoLocation = new GeoLocation(getLocationName(context), latitude, longitude, TimeZone.getTimeZone(locationName));

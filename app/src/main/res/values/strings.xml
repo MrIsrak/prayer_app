@@ -270,9 +270,8 @@
             <item>Psalm 149</item>
             <item>Psalm 150</item>
         </string-array>
-
-
-
+    <string name="noTextFound">No text found</string>
+    <string name="networkError">Network error</string>
 
 
 </resources>

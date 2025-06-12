@@ -5,9 +5,13 @@ import static app.dll.test.dateTime.GetDate.today;
 import com.kosherjava.zmanim.hebrewcalendar.JewishCalendar;
 
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class SpecialDetails {
+
+    private static final Map<Integer, String> GEMATRIA_VALUES = new LinkedHashMap<>();
     static JewishCalendar jewishCalendar = new JewishCalendar();
     //TODO make a transliteration
     static String capitalizeFirstLetter(String input) {
@@ -192,7 +196,4 @@ public class SpecialDetails {
             return "No holiday";
         }
     }
-
-
-
 }

@@ -271,7 +271,9 @@
             <item>Psalm 150</item>
         </string-array>
     <string name="noTextFound">No text found</string>
-    <string name="networkError">Network error</string>
-
+    <string name="networkError">Network error:</string>
+    <string name="errorLoadingText">Error loading text</string>
+    <string name="textNotAvailable">Text not available.</string>
+    <string name="textNotAvailableForLang">Text not available for selected language.</string>
 
 </resources>

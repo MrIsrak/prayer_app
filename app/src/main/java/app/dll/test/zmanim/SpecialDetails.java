@@ -2,16 +2,81 @@ package app.dll.test.zmanim;
 
 import static app.dll.test.dateTime.GetDate.today;
 
+import android.util.Log;
+
 import com.kosherjava.zmanim.hebrewcalendar.JewishCalendar;
 
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class SpecialDetails {
 
     private static final Map<Integer, String> GEMATRIA_VALUES = new LinkedHashMap<>();
+
+    static {
+
+        GEMATRIA_VALUES.put(400, "ת");
+        GEMATRIA_VALUES.put(300, "ש");
+        GEMATRIA_VALUES.put(200, "ר");
+        GEMATRIA_VALUES.put(100, "ק");
+
+        GEMATRIA_VALUES.put(90, "צ");
+        GEMATRIA_VALUES.put(80, "פ");
+        GEMATRIA_VALUES.put(70, "ע");
+        GEMATRIA_VALUES.put(60, "ס");
+        GEMATRIA_VALUES.put(50, "נ");
+        GEMATRIA_VALUES.put(40, "מ");
+        GEMATRIA_VALUES.put(30, "ל");
+        GEMATRIA_VALUES.put(20, "כ");
+        GEMATRIA_VALUES.put(10, "י");
+
+        GEMATRIA_VALUES.put(9, "ט");
+        GEMATRIA_VALUES.put(8, "ח");
+        GEMATRIA_VALUES.put(7, "ז");
+        GEMATRIA_VALUES.put(6, "ו");
+        GEMATRIA_VALUES.put(5, "ה");
+        GEMATRIA_VALUES.put(4, "ד");
+        GEMATRIA_VALUES.put(3, "ג");
+        GEMATRIA_VALUES.put(2, "ב");
+        GEMATRIA_VALUES.put(1, "א");
+    }
+
+    private static final Map<String, Integer> GEMATRIA_VALUES_REVERSED = new LinkedHashMap<>();
+
+    static {
+        GEMATRIA_VALUES_REVERSED.put("א", 1);
+        GEMATRIA_VALUES_REVERSED.put("ב", 2);
+        GEMATRIA_VALUES_REVERSED.put("ג", 3);
+        GEMATRIA_VALUES_REVERSED.put("ד", 4);
+        GEMATRIA_VALUES_REVERSED.put("ה", 5);
+        GEMATRIA_VALUES_REVERSED.put("ו", 6);
+        GEMATRIA_VALUES_REVERSED.put("ז", 7);
+        GEMATRIA_VALUES_REVERSED.put("ח", 8);
+        GEMATRIA_VALUES_REVERSED.put("ט", 9);
+        GEMATRIA_VALUES_REVERSED.put("י", 10);
+        GEMATRIA_VALUES_REVERSED.put("כ", 20);
+        GEMATRIA_VALUES_REVERSED.put("ל", 30);
+        GEMATRIA_VALUES_REVERSED.put("מ", 40);
+        GEMATRIA_VALUES_REVERSED.put("נ", 50);
+        GEMATRIA_VALUES_REVERSED.put("ס", 60);
+        GEMATRIA_VALUES_REVERSED.put("ע", 70);
+        GEMATRIA_VALUES_REVERSED.put("פ", 80);
+        GEMATRIA_VALUES_REVERSED.put("צ", 90);
+        GEMATRIA_VALUES_REVERSED.put("ק", 100);
+        GEMATRIA_VALUES_REVERSED.put("ר", 200);
+        GEMATRIA_VALUES_REVERSED.put("ש", 300);
+        GEMATRIA_VALUES_REVERSED.put("ת", 400);
+        GEMATRIA_VALUES_REVERSED.put("ך", 20);
+        GEMATRIA_VALUES_REVERSED.put("ם", 40);
+        GEMATRIA_VALUES_REVERSED.put("ן", 50);
+        GEMATRIA_VALUES_REVERSED.put("ף", 80);
+        GEMATRIA_VALUES_REVERSED.put("ץ", 90);
+    }
+    
+    
     static JewishCalendar jewishCalendar = new JewishCalendar();
     //TODO make a transliteration
     static String capitalizeFirstLetter(String input) {
@@ -163,7 +228,7 @@ public class SpecialDetails {
                     } else if ("ru".equals(language)) {
                         name = "Тиша Бе-Ав";
                     } else {
-                        name = "Tisha B'Av";
+                        name = "Tisha BeAv";
                     }
                     break;
                 case JewishCalendar.TU_BESHVAT:
@@ -196,4 +261,14 @@ public class SpecialDetails {
             return "No holiday";
         }
     }
+
+
+    public static int hebrewNumbersToGematria(String number){
+        Log.d("TAG", "hebrewNumbersToGematria: " + number);
+        String[] splittedNumber = number.split("");
+        int result = 0;
+        for(String letter : splittedNumber){result += Integer.parseInt(String.valueOf(GEMATRIA_VALUES_REVERSED.get(letter)));}
+        return result;
+    }
+    //TODO Make reverse func
 }

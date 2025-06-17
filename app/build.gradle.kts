@@ -33,7 +33,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "35.0.0"
     packaging {
         resources {
             pickFirsts += "/META-INF/DEPENDENCIES"

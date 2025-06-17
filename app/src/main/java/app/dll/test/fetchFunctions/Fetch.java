@@ -3,6 +3,8 @@ package app.dll.test.fetchFunctions;
 import static androidx.core.content.ContentProviderCompat.requireContext;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -120,7 +122,11 @@ public class Fetch {
                     if (tehilimTextView != null) {
                         Log.d(TAG, "onResponse: Updating TextView. Text snippet: " +
                                 (displayText.length() > 100 ? displayText.substring(0, 100) + "..." : displayText.toString()));
-                        tehilimTextView.setText(HtmlCompat.fromHtml(displayText.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+
+                        Log.i(TAG, "onResponse: Displaying text: " + displayText.toString());
+                        Spanned spanned = Html.fromHtml(cleanFootnotes(displayText.toString()), Html.FROM_HTML_MODE_LEGACY);
+                        Log.i(TAG, "onResponse: Displaying text: " + cleanFootnotes(displayText.toString()));
+                        tehilimTextView.setText(spanned);
                     } else {
                         Log.e(TAG, "onResponse: tehilimTextView is null. Text cannot be displayed.");
                     }
@@ -163,4 +169,15 @@ public class Fetch {
             }
         });
     }
+    private String cleanFootnotes(String raw) {
+        return raw
+                .replaceAll("<sup[^>]*footnote-marker[^>]*>.*?</sup>", "")
+                .replaceAll("<sup[^>]*endFootnote[^>]*>.*?</sup>", "")
+                .replaceAll("<sup>.*?</sup>", "")
+                .replaceAll("<i[^>]*footnote[^>]*>.*?</i>", "")
+                .replaceAll("\\s*<br>\\s*", "<br>")
+                .replaceAll(" +", " ")
+                .trim();
+    }
+
 }

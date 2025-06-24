@@ -1,6 +1,6 @@
 package app.dll.test.data;
 
-import app.dll.test.data.model.LoggedInUser;
+import app.dll.test.domain.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

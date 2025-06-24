@@ -1,6 +1,6 @@
 package app.dll.test.data;
 
-import app.dll.test.data.model.LoggedInUser;
+import app.dll.test.domain.model.LoggedInUser;
 
 import java.io.IOException;
 

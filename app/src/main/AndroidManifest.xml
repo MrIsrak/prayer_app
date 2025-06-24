@@ -25,18 +25,18 @@
         android:networkSecurityConfig="@xml/network_security_config"
         >
         <activity
-            android:name=".SettingsActivity"
+            android:name=".presentation.activity.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".presentation.activity.MainMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".EntranceActivity"
+            android:name=".presentation.activity.EntranceActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

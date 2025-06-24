@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/main_menu_button"
-        android:name="app.dll.test.MainMenuButtonFragment"
+        android:name="app.dll.test.presentation.activity.MainMenuButtonFragment"
         android:label="fragment_main_menu_button"
         tools:layout="@layout/fragment_main_menu_button">
         <action
@@ -34,17 +34,17 @@
 
     <fragment
         android:id="@+id/blessings_fragment"
-        android:name="app.dll.test.buttonsFragments.BlessingsFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.BlessingsFragment"
         android:label="fragment_blessings"
         tools:layout="@layout/fragment_blessings" />
     <fragment
         android:id="@+id/textPrayers_fragment"
-        android:name="app.dll.test.buttonsFragments.TextPrayersFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.TextPrayersFragment"
         android:label="fragment_text_prayers"
         tools:layout="@layout/fragment_text_prayers" />
     <fragment
         android:id="@+id/tehilim_fragment"
-        android:name="app.dll.test.buttonsFragments.TehilimFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.TehilimFragment"
         android:label="fragment_tehilim"
         tools:layout="@layout/fragment_tehillim">
         <action
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/timetable_fragment"
-        android:name="app.dll.test.buttonsFragments.TimetableFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.TimetableFragment"
         android:label="fragment_timetable"
         tools:layout="@layout/fragment_timetable">
         <argument
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/dalyZamanimFragment"
-        android:name="app.dll.test.buttonsFragments.subFragments.DailyZamanimFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.subFragments.DailyZamanimFragment"
         android:label="fragment_daly_zamanim"
         tools:layout="@layout/fragment_daly_zamanim">
 
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/dailyTehilimFragment"
-        android:name="app.dll.test.buttonsFragments.subFragments.Tehilim.DailyTehilimFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.subFragments.tehillim.DailyTehilimFragment"
         android:label="fragment_daily_tehilim"
         tools:layout="@layout/fragment_daily_tehilim" />
 </navigation>

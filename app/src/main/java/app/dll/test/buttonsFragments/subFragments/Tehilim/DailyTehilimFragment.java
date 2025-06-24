@@ -69,7 +69,7 @@ public class DailyTehilimFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectionSpinner.setAdapter(adapter);
 
-        ApiService apiService = RetrofitClient.getApiService();
+        ApiService apiService = RetrofitClient.getApiService(requireContext());
 
         selectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -83,11 +83,11 @@ public class DailyTehilimFragment extends Fragment {
                     numChapter = Integer.parseInt(psalm.substring(psalm.indexOf(" ") + 1));
                     Log.d(TAG, "onItemSelected: " + langState.getString("langPrefs", "en"));
                     fetch.setChapterNumber(numChapter);
-                    fetch.fetchSefariaText(requireView(), requireContext(), tehilimTextView);
+                    fetch.fetchSefriaText(requireView(), requireContext(), tehilimTextView);
                 } else if (langState.getString("langPrefs", "en").equals("he")) {
                     numChapter = hebrewNumbersToGematria(psalm.substring(psalm.indexOf(" ") + 1));
                     fetch.setChapterNumber(numChapter);
-                    fetch.fetchSefariaText(requireView(), requireContext(), tehilimTextView);
+                    fetch.fetchSefriaText(requireView(), requireContext(), tehilimTextView);
                 } else {
                     Log.d(TAG, "else onItemSelected: " + langState.getString("langPrefs", "en"));
                 }

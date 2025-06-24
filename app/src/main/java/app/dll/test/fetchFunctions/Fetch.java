@@ -1,7 +1,5 @@
 package app.dll.test.fetchFunctions;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.content.Context;
 import android.text.Html;
 import android.text.Spanned;
@@ -10,58 +8,26 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import app.dll.test.R;
 import app.dll.test.apiService.ApiService;
+import app.dll.test.data.entities.TehillimEntity;
 import app.dll.test.pojo.SefariaTextResponse;
+import app.dll.test.ui.componets.TehillimViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
-
 public class Fetch {
+
     public final String TAG = "TEXT";
+
     public String bookName;
     public int chapterNumber;
     public String language;
     public ApiService apiService;
-    public void setApiService(ApiService apiService) {
-        this.apiService = apiService;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public void setChapterNumber(int chapterNumber) {
-        this.chapterNumber = chapterNumber;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-    public String getTAG() {
-        return TAG;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public int getChapterNumber() {
-        return chapterNumber;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public ApiService getApiService() {
-        return apiService;
-    }
 
     public Fetch(String bookName, int chapterNumber, String language, ApiService apiService) {
         this.bookName = bookName;
@@ -70,105 +36,70 @@ public class Fetch {
         this.apiService = apiService;
     }
 
-    public void fetchSefariaText(View view, Context context, TextView tehilimTextView) {
+    public void fetchSefriaText(View view, Context context, TextView tehilimTextView) {
 
         Log.d(TAG, "fetchSefariaText: Requesting text for book '" + bookName +
                 "', chapter " + chapterNumber + ", language '" + language + "'");
 
-        Call<SefariaTextResponse> getSefariaTextCall = apiService.getSefariaText(bookName, chapterNumber, language);
+        Call<SefariaTextResponse> getSefariaTextCall = apiService.getTehillimText(bookName, chapterNumber, language);
+
         getSefariaTextCall.enqueue(new Callback<SefariaTextResponse>() {
             @Override
             public void onResponse(Call<SefariaTextResponse> call, Response<SefariaTextResponse> response) {
-                Log.d(TAG, "onResponse: Request URL: " + call.request().url());
-                Log.d(TAG, "onResponse: Response Code: " + response.code() + " " + response.message());
+                Log.d(TAG, "onResponse: Response Code: " + response.code());
 
                 if (response.isSuccessful() && response.body() != null) {
                     SefariaTextResponse sefariaResponse = response.body();
-                    Log.d(TAG, "onResponse: API responded successfully. Book: " + sefariaResponse.getBook() +
-                            ", Ref: " + sefariaResponse.getRef());
 
                     StringBuilder displayText = new StringBuilder();
                     if ("he".equals(language)) {
-                        if (sefariaResponse.getHe() != null && !sefariaResponse.getHe().isEmpty()) {
-                            Log.d(TAG, "onResponse: Processing Hebrew text. Number of verses: " + sefariaResponse.getHe().size());
-                            for (String verse : sefariaResponse.getHe()) {
-                                displayText.append(verse).append("\n\n");
-                            }
-                        } else {
-                            Log.w(TAG, "onResponse: Hebrew text (sefariaResponse.getHe()) is empty or null.");
-                            displayText.append(view.getResources().getString(R.string.textNotAvailable));
+                        for (String verse : sefariaResponse.getHe()) {
+                            displayText.append(verse).append("\n\n");
                         }
                     } else if ("en".equals(language)) {
-                        if (sefariaResponse.getText() != null && !sefariaResponse.getText().isEmpty()) {
-                            Log.d(TAG, "onResponse: Processing English text. Number of verses: " + sefariaResponse.getText().size());
-                            for (String verse : sefariaResponse.getText()) {
-                                displayText.append(verse).append("\n\n");
-                            }
-                        } else {
-                            Log.w(TAG, "onResponse: English text (sefariaResponse.getText()) is empty or null.");
-                            displayText.append(view.getResources().getString(R.string.textNotAvailable));
+                        for (String verse : sefariaResponse.getText()) {
+                            displayText.append(verse).append("\n\n");
                         }
                     } else {
-                        Log.i(TAG, "onResponse: Unsupported language: " + language);
                         displayText.append(view.getResources().getString(R.string.textNotAvailableForLang));
                     }
 
-                    if (displayText.length() > 0) {
-                        int lengthToRemove = Math.min(2, displayText.length());
-                        displayText.setLength(displayText.length() - lengthToRemove);
+                    if (displayText.length() > 2) {
+                        displayText.setLength(displayText.length() - 2);
                     }
-                    Log.d(TAG, "onResponse: Final displayText length: " + displayText.length());
 
                     if (tehilimTextView != null) {
-                        Log.d(TAG, "onResponse: Updating TextView. Text snippet: " +
-                                (displayText.length() > 100 ? displayText.substring(0, 100) + "..." : displayText.toString()));
-
-                        Log.i(TAG, "onResponse: Displaying text: " + displayText.toString());
                         Spanned spanned = Html.fromHtml(cleanFootnotes(displayText.toString()), Html.FROM_HTML_MODE_LEGACY);
-                        Log.i(TAG, "onResponse: Displaying text: " + cleanFootnotes(displayText.toString()));
                         tehilimTextView.setText(spanned);
-                    } else {
-                        Log.e(TAG, "onResponse: tehilimTextView is null. Text cannot be displayed.");
                     }
 
-                    if (sefariaResponse.getVersions() != null && !sefariaResponse.getVersions().isEmpty()) {
-                        Log.d(TAG, "onResponse: Number of versions: " + sefariaResponse.getVersions().size());
-                    } else {
-                        Log.d(TAG, "onResponse: Versions list is empty or null.");
-                    }
+                    TehillimEntity entity = new TehillimEntity();
+                    entity.bookName() = bookName;
+                    entity.psalmText = cleanFootnotes(displayText.toString());
 
-                    if (sefariaResponse.getHeTitle() != null) {
-                        Log.d(TAG, "onResponse: Hebrew title: " + sefariaResponse.getHeTitle());
-                    } else {
-                        Log.d(TAG, "onResponse: Hebrew title (HeTitle) is null.");
+                    if (view.getContext() instanceof FragmentActivity) {
+                        TehillimViewModel viewModel = new ViewModelProvider((FragmentActivity) view.getContext())
+                                .get(TehillimViewModel.class);
+                        viewModel.insert(entity);
                     }
 
                 } else {
-                    Log.e(TAG, "onResponse: API returned an unsuccessful response. Code: " + response.code() + ", Message: " + response.message());
-                    String errorBody = "";
-                    try {
-                        if (response.errorBody() != null) {
-                            errorBody = response.errorBody().string();
-                            Log.e(TAG, "onResponse: Error body: " + errorBody);
-                        } else {
-                            Log.w(TAG, "onResponse: response.errorBody() is null.");
-                        }
-                    } catch (Exception e) {
-                        Log.e(TAG, "onResponse: Error reading errorBody: " + e.getMessage(), e);
-                    }
-                    if (tehilimTextView != null) {
-                        tehilimTextView.setText(view.getResources().getString(R.string.errorLoadingText) + ": " + response.code());
-                    }
-                    Toast.makeText(context, view.getResources().getString(R.string.errorLoadingText) + ": " + response.code(), Toast.LENGTH_LONG).show();
+                    String error = context.getString(R.string.errorLoadingText) + ": " + response.code();
+                    if (tehilimTextView != null) tehilimTextView.setText(error);
+                    Toast.makeText(context, error, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<SefariaTextResponse> call, Throwable t) {
-
+                String error = context.getString(R.string.errorLoadingText) + ": " + t.getMessage();
+                Log.e(TAG, "onFailure: ", t);
+                if (tehilimTextView != null) tehilimTextView.setText(error);
+                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
             }
         });
     }
+
     private String cleanFootnotes(String raw) {
         return raw
                 .replaceAll("<sup[^>]*footnote-marker[^>]*>.*?</sup>", "")
@@ -179,5 +110,4 @@ public class Fetch {
                 .replaceAll(" +", " ")
                 .trim();
     }
-
 }

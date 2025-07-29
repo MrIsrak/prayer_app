@@ -275,5 +275,8 @@
     <string name="errorLoadingText">Error loading text</string>
     <string name="textNotAvailable">Text not available.</string>
     <string name="textNotAvailableForLang">Text not available for selected language.</string>
+    <string name="loading">Loading...</string>
+    <string name="psalm_loaded">Psalm loaded!</string>
+    <string name="psalm_error">Error loading psalm</string>
 
 </resources>

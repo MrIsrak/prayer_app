@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import javax.inject.Inject;
+
 import app.dll.test.data.dao.TehillimDao;
 import app.dll.test.data.database.TehillimDatabase;
 import app.dll.test.data.entities.TehillimEntity;
@@ -15,7 +17,7 @@ import app.dll.test.data.entities.TehillimEntity;
 public class LocalTehillimRepository {
     private final TehillimDao tehillimDao;
     private final Executor executor = Executors.newSingleThreadExecutor();
-
+    @Inject
     public LocalTehillimRepository(Application application) {
         TehillimDatabase db = TehillimDatabase.getInstance(application);
         tehillimDao = db.tehillimDao();
@@ -24,11 +26,12 @@ public class LocalTehillimRepository {
     public void insertALL(TehillimEntity entity){
         executor.execute(() -> tehillimDao.insert(entity));}
     public void deleteALL(){executor.execute(() -> tehillimDao.deleteALL());}
-    public LiveData<TehillimEntity> getTehillimById(int id) {
-        return tehillimDao.getTehillimById(id);
+    public LiveData<TehillimEntity> getTehillimByChapter(int chapter) {
+        return tehillimDao.getTehillimByChapter(chapter);
     }
     public LiveData<List<TehillimEntity>> getTehillimBetweenVerses(int startingVerse, int endingVerse){
         return tehillimDao.getTehillimBetweenVerses(startingVerse, endingVerse);}
+    public boolean existingByChapter(int number){return tehillimDao.existingByChapter(number);}
 }
 
 

@@ -126,7 +126,16 @@ public class SpecialUtils {
         }
     }
 
-
+    public static String cleanFootnotes(String string){
+        return string
+            .replaceAll("<sup[^>]*footnote-marker[^>]*>.*?</sup>", "")
+            .replaceAll("<sup[^>]*endFootnote[^>]*>.*?</sup>", "")
+            .replaceAll("<sup>.*?</sup>", "")
+            .replaceAll("<i[^>]*footnote[^>]*>.*?</i>", "")
+            .replaceAll("\\s*<br>\\s*", "<br>")
+            .replaceAll(" +", " ")
+            .trim();
+    }
 
 
 }

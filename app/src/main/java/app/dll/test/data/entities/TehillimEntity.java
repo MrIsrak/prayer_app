@@ -4,11 +4,13 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Represents a Tehillim (Psalms) text entity to be stored in a Room database.
+ * This entity also includes annotations for Gson serialization/deserialization,
+ * useful when fetching data from a remote API.
+ */
 @Entity(tableName = "tehillim_texts")
-public class TehillimEntity {
-    @PrimaryKey
-    public int id;
+public class TehillimEntity{
     @SerializedName("book")
     public String book;
     @SerializedName("language")
@@ -18,8 +20,7 @@ public class TehillimEntity {
     @SerializedName("content")
     public String content;
 
-    public TehillimEntity(int id, String book, String language, int chapter, String content) {
-        this.id = id;
+    public TehillimEntity(String book, String language, int chapter, String content) {
         this.book = book;
         this.language = language;
         this.chapter = chapter;
@@ -27,7 +28,6 @@ public class TehillimEntity {
     }
 
 
-    public int getId() {return id;}
     public String getBook() {return book;}
     public String getLanguage() {return language;}
     public int getChapter() {return chapter;}
@@ -38,12 +38,10 @@ public class TehillimEntity {
     public void setChapter(int chapter) {this.chapter = chapter;}
     public void setLanguage(String language) {this.language = language;}
     public void setBook(String book) {this.book = book;}
-    public void setId(int id) {this.id = id;}
 
     @Override
     public String toString() {
         return "TehillimEntity{" +
-                "id=" + id +
                 ", book='" + book + '\'' +
                 ", language='" + language + '\'' +
                 ", chapter=" + chapter +

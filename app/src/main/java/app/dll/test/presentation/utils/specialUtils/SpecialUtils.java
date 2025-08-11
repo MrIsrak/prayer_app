@@ -9,13 +9,6 @@ import android.content.SharedPreferences;
 import android.view.View;
 
 
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-
-import java.io.IOException;
-import java.io.InputStream;
-
 public class SpecialUtils {
     public static void saveCurrentActivity(Class<?> activityClass, Context context) {
         SharedPreferences prefs = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
@@ -90,41 +83,7 @@ public class SpecialUtils {
         return result.toString();
     }
 
-    public static int findPageWithText(String pdfPath, String searchText, View view) throws IOException {
-        InputStream inputStream = view.getResources().getAssets().open(pdfPath);
-        PDDocument document = PDDocument.load(inputStream);
-        try {
-            PDFTextStripper stripper = new PDFTextStripper();
-            searchText = "פרק " + searchText; // Prepend "פרק " (Hebrew for "Chapter") to searchText
 
-            // Loop through each page
-            for (int i = 0; i < document.getNumberOfPages(); i++) {
-                stripper.setStartPage(i + 1); // Pages are 1-based in PDFTextStripper
-                stripper.setEndPage(i + 1);
-                String pageText = stripper.getText(document);
-
-                // Check if the searchText exists in this page's text
-                if (pageText.contains(searchText)) {
-                    document.close(); // Close the document before returning
-                    inputStream.close(); // Close the input stream
-                    return i; // Return the 0-based page index
-                }
-            }
-
-            // If text is not found, return -1
-            document.close();
-            inputStream.close();
-            return -1;
-        } finally {
-            // Ensure resources are closed even if an exception occurs
-            if (document != null) {
-                document.close();
-            }
-            if (inputStream != null) {
-                inputStream.close();
-            }
-        }
-    }
 
     public static String cleanFootnotes(String string){
         return string

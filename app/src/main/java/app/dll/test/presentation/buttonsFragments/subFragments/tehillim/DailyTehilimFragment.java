@@ -31,10 +31,10 @@ import app.dll.test.data.entities.TehillimEntity;
 import app.dll.test.data.repository.RemoteTehillimRepository;
 import app.dll.test.presentation.componets.TehillimViewModel;
 import app.dll.test.presentation.utils.Resource;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class DailyTehilimFragment extends Fragment {
-
-    private String TAG = "TEXT";
     TextView psalmTextView;
     TextView tehilimTextView;
 

@@ -10,15 +10,22 @@ import com.google.gson.annotations.SerializedName;
  * useful when fetching data from a remote API.
  */
 @Entity(tableName = "tehillim_texts")
-public class TehillimEntity{
+public class TehillimEntity {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @SerializedName("book")
-    public String book;
+    private String book;
+
     @SerializedName("language")
-    public String language;
-    @SerializedName("chapeter")
-    public int chapter;
+    private String language;
+
+    @SerializedName("chapter")
+    private int chapter;
+
     @SerializedName("content")
-    public String content;
+    private String content;
 
     public TehillimEntity(String book, String language, int chapter, String content) {
         this.book = book;
@@ -27,21 +34,25 @@ public class TehillimEntity{
         this.content = content;
     }
 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getBook() {return book;}
-    public String getLanguage() {return language;}
-    public int getChapter() {return chapter;}
-    public String getContent() {return content;}
+    public String getBook() { return book; }
+    public void setBook(String book) { this.book = book; }
 
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
 
-    public void setContent(String content) {this.content = content;}
-    public void setChapter(int chapter) {this.chapter = chapter;}
-    public void setLanguage(String language) {this.language = language;}
-    public void setBook(String book) {this.book = book;}
+    public int getChapter() { return chapter; }
+    public void setChapter(int chapter) { this.chapter = chapter; }
+
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
     @Override
     public String toString() {
         return "TehillimEntity{" +
+                "id=" + id +
                 ", book='" + book + '\'' +
                 ", language='" + language + '\'' +
                 ", chapter=" + chapter +

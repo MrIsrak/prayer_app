@@ -2,7 +2,7 @@ package app.dll.test.data.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.pdfbox.util.Version;
+
 
 import java.util.List;
 
@@ -17,9 +17,6 @@ public class SefriaTextResponse {
     private List<String> text;
     @SerializedName("he")
     private List<String> he;
-    @SerializedName("versions")
-    private List<Version> versions;
-
 
     @SerializedName("heTitle")
     private String heTitle;
@@ -45,10 +42,6 @@ public class SefriaTextResponse {
 
     public List<String> getHe() {
         return he;
-    }
-
-    public List<Version> getVersions() {
-        return versions;
     }
 
     public String getHeTitle() {

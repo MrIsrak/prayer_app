@@ -12,7 +12,9 @@ import app.dll.test.presentation.utils.changeLocale.LanguageChange;
 import app.dll.test.presentation.userDataPrefs.themeUtils.ThemeUtils;
 import app.dll.test.presentation.userDataPrefs.userLocationData.GetLocation;
 import app.dll.test.presentation.userDataPrefs.userPreferences.PreferencesFuncs;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

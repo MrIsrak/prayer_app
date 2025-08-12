@@ -95,7 +95,8 @@ public class DailyTehilimFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SharedPreferences langState = requireContext().getSharedPreferences("langPrefs", Context.MODE_PRIVATE);
-                int psalm = (int) parent.getItemAtPosition(position);
+                String psalmStr = (String) parent.getItemAtPosition(position);
+                int psalm = Integer.parseInt(psalmStr.replaceAll("\\D+", ""));
 //                int numChapter = 0;
 //                RemoteTehillimRepository remoteTehillimRepository = new RemoteTehillimRepository(psalm, numChapter, langState.getString("langPrefs", "en"), apiService);
 //

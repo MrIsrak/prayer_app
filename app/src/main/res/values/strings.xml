@@ -280,5 +280,8 @@
     <string name="psalm_error">Error loading psalm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="local_cache">Offline access</string>
+    <string name="clear_database">Clear local seved data</string>
+    <string name="clear_database_summary">Clearing local database with texts. You may reach them with api request\n\n</string>
 
 </resources>

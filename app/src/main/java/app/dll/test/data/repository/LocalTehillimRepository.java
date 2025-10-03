@@ -25,7 +25,7 @@ public class LocalTehillimRepository {
 
     public void insertALL(TehillimEntity entity){
         executor.execute(() -> tehillimDao.insert(entity));}
-    public void deleteALL(){executor.execute(() -> tehillimDao.deleteALL());}
+    public void deleteALL(){executor.execute(tehillimDao::deleteALL);}
     public LiveData<TehillimEntity> getTehillimByChapter(int chapter) {
         return tehillimDao.getTehillimByChapter(chapter);
     }

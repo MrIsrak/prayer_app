@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import app.dll.test.data.entities.TehillimEntity;
 import app.dll.test.data.repository.LocalTehillimRepository;
+import app.dll.test.data.useCase.ClearDbUseCase;
 import app.dll.test.data.useCase.LoadTehillimPsalmUseCase;
 import app.dll.test.presentation.utils.Resource;
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -24,6 +25,8 @@ public class TehillimViewModel extends AndroidViewModel {
     // Dependencies injected via Hilt
     private final LocalTehillimRepository localRepository;
     private final LoadTehillimPsalmUseCase loadTehillimUseCase;
+    private final ClearDbUseCase clearDbUseCase;
+
 
     // LiveData to hold the status and data for a single psalm fetch.
     // This is observed by the UI.
@@ -35,10 +38,13 @@ public class TehillimViewModel extends AndroidViewModel {
     @Inject
     public TehillimViewModel(@NonNull Application application,
                              LocalTehillimRepository localRepo,
-                             LoadTehillimPsalmUseCase loadTehillimUseCase) {
+                             LoadTehillimPsalmUseCase loadTehillimUseCase,
+                             ClearDbUseCase clearDbUseCase) {
+
         super(application);
         this.localRepository = localRepo;
         this.loadTehillimUseCase = loadTehillimUseCase;
+        this.clearDbUseCase = clearDbUseCase;
     }
 
     /**
@@ -87,4 +93,9 @@ public class TehillimViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void clearDb(){
+        clearDbUseCase.clearDb();
+    }
+
 }

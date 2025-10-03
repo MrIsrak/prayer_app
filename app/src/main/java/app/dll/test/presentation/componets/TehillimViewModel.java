@@ -1,5 +1,8 @@
 package app.dll.test.presentation.componets;
 
+import static app.dll.test.presentation.utils.changeLocale.TextFromat.cleanFootnotes;
+
+
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;

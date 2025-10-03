@@ -10,21 +10,25 @@
         android:name="app.dll.test.presentation.activity.MainMenuButtonFragment"
         android:label="fragment_main_menu_button"
         tools:layout="@layout/fragment_main_menu_button">
+
         <action
             android:id="@+id/action_main_menu_button_to_blessings_fragment"
             app:destination="@id/blessings_fragment"
             app:popUpTo="@+id/main_menu_button"
             app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/action_main_menu_button_to_textPrayers_fragment"
             app:destination="@id/textPrayers_fragment"
             app:popUpTo="@+id/main_menu_button"
             app:popUpToInclusive="true"/>
+
         <action
-            android:id="@+id/action_main_menu_button_to_tehilim_fragment"
-            app:destination="@id/tehilim_fragment"
+            android:id="@+id/action_main_menu_button_to_tehillim_fragment"
+            app:destination="@id/tehillim_fragment"
             app:popUpTo="@+id/main_menu_button"
             app:popUpToInclusive="true"/>
+
         <action
             android:id="@+id/action_main_menu_button_to_timetable_fragment"
             app:destination="@id/timetable_fragment"
@@ -43,20 +47,18 @@
         android:label="fragment_text_prayers"
         tools:layout="@layout/fragment_text_prayers" />
     <fragment
-        android:id="@+id/tehilim_fragment"
-        android:name="app.dll.test.presentation.buttonsFragments.TehilimFragment"
-        android:label="fragment_tehilim"
+        android:id="@+id/tehillim_fragment"
+        android:name="app.dll.test.presentation.buttonsFragments.TehillimFragment"
+        android:label="fragment_tehillim"
         tools:layout="@layout/fragment_tehillim">
         <action
-            android:id="@+id/action_tehilim_fragment_to_daily_tehilim_fragment"
-            app:destination="@id/dailyTehilimFragment"
-            app:popUpTo="@+id/tehilim_fragment"
+            android:id="@+id/action_tehillim_fragment_to_daily_tehillim_fragment"
+            app:destination="@id/dailyTehillimFragment"
+            app:popUpTo="@+id/tehillim_fragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_tehilim_fragment_to_allTehillimFragment"
-            app:destination="@id/allTehillimFragment"
-            app:popUpTo="@+id/tehilim_fragment"
-            app:popUpToInclusive="true"/>
+            android:id="@+id/action_tehillim_fragment_to_allTehillimFragment"
+            app:destination="@id/allTehillimFragment" />
     </fragment>
     <fragment
         android:id="@+id/timetable_fragment"
@@ -92,10 +94,10 @@
             app:popUpToInclusive="true"/>
     </fragment>
     <fragment
-        android:id="@+id/dailyTehilimFragment"
-        android:name="app.dll.test.presentation.buttonsFragments.subFragments.tehillim.DailyTehilimFragment"
-        android:label="fragment_daily_tehilim"
-        tools:layout="@layout/fragment_daily_tehilim" />
+        android:id="@+id/dailyTehillimFragment"
+        android:name="app.dll.test.presentation.buttonsFragments.subFragments.tehillim.DailyTehillimFragment"
+        android:label="fragment_daily_tehillim"
+        tools:layout="@layout/fragment_daily_tehillim" />
     <fragment
         android:id="@+id/allTehillimFragment"
         android:name="app.dll.test.presentation.buttonsFragments.subFragments.tehillim.AllTehillimFragment"

@@ -1,5 +1,6 @@
 package app.dll.test.presentation.buttonsFragments.subFragments.tehillim;
 
+import static app.dll.test.presentation.utils.changeLocale.TextFromat.cleanFootnotes;
 import static app.dll.test.presentation.utils.dateUtils.SpecialDetails.hebrewNumbersToGematria;
 
 import android.content.Context;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,10 @@ import android.widget.Toast;
 
 import app.dll.test.R;
 import app.dll.test.presentation.componets.TehillimViewModel;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class AllTehillimFragment extends Fragment {
-
-
     TextView psalmTextView;
     TextView tehilimTextView;
 
@@ -54,6 +56,8 @@ public class AllTehillimFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectionSpinner.setAdapter(adapter);
 
+
+
         // This single observer listens for all state changes from the ViewModel.
         tehillimViewModel.getPsalmLoadStatus().observe(getViewLifecycleOwner(), resource -> {
             if (resource != null) {
@@ -65,7 +69,7 @@ public class AllTehillimFragment extends Fragment {
                     case SUCCESS:
                         selectionSpinner.setEnabled(true);
                         if (resource.data != null && resource.data.getContent() != null) {
-                            tehilimTextView.setText(resource.data.getContent());
+                            tehilimTextView.setText(cleanFootnotes(resource.data.getContent()));
                             Toast.makeText(getContext(), requireContext().getString(R.string.psalm_loaded), Toast.LENGTH_SHORT).show();
                         } else {
                             tehilimTextView.setText("No content found for this psalm.");
@@ -78,6 +82,7 @@ public class AllTehillimFragment extends Fragment {
                         break;
                 }
             }
+            else{tehilimTextView.setText(requireContext().getString(R.string.psalmSelect));}
         });
 
         selectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -87,7 +92,7 @@ public class AllTehillimFragment extends Fragment {
                 String psalmStr = (String) parent.getItemAtPosition(position);
                 int psalm;
 
-                if (langState.getString("langPrefs", "en").equals("he")) {
+                if (langState.getString("langPrefs", "en").equals("he")){
                     // Extract the number from the Hebrew string using Gematria
                     psalm = hebrewNumbersToGematria(psalmStr.substring(psalmStr.indexOf(" ") + 1));
                 } else {

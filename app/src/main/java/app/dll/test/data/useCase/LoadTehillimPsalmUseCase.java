@@ -1,5 +1,7 @@
 package app.dll.test.data.useCase;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import javax.inject.Inject;
@@ -45,6 +47,7 @@ public class LoadTehillimPsalmUseCase {
             if (localEntity != null) {
                 // Case 1: Data found locally. Immediately post SUCCESS.
                 result.postValue(Resource.success(localEntity));
+                Log.i("INFO", "loaded from local database");
             } else {
                 // Case 2: Data not found. Proceed to fetch from remote.
                 fetchFromRemoteAndSave(bookName, chapterNumber, language, result);

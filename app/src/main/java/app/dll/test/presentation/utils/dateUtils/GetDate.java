@@ -22,17 +22,16 @@ public class GetDate {
         return view.getResources().getString(R.string.today);
     }
     public static String getDayString(int today, Context context) {
-        switch (today) {
-            case 1: return context.getString(R.string.sunday);
-            case 2: return context.getString(R.string.monday);
-            case 3: return context.getString(R.string.tuesday);
-            case 4: return context.getString(R.string.wednesday);
-            case 5: return context.getString(R.string.thursday);
-            case 6: return context.getString(R.string.friday);
-            case 7: return context.getString(R.string.shabat);
-            default:
-                throw new IllegalArgumentException("Invalid day: " + today);
-        }
+        return switch (today) {
+            case 1 -> context.getString(R.string.sunday);
+            case 2 -> context.getString(R.string.monday);
+            case 3 -> context.getString(R.string.tuesday);
+            case 4 -> context.getString(R.string.wednesday);
+            case 5 -> context.getString(R.string.thursday);
+            case 6 -> context.getString(R.string.friday);
+            case 7 -> context.getString(R.string.shabat);
+            default -> throw new IllegalArgumentException("Invalid day: " + today);
+        };
     }
     public static int getDatDayInt(String day, Context context) {
 

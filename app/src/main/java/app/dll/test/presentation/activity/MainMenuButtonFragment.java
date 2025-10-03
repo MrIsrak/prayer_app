@@ -75,7 +75,7 @@ public class MainMenuButtonFragment extends Fragment {
         //Setting up the main menu buttons
         Button timetableButton = view.findViewById(R.id.time_table_btn);
         Button textPrayersButton = view.findViewById(R.id.text_prayers_btn);
-        Button tehilimButton = view.findViewById(R.id.tehelim_button);
+        Button tehillimButton = view.findViewById(R.id.tehelim_button);
         Button blessinButton = view.findViewById(R.id.blessings_button);
         ImageButton settingsButton = view.findViewById(R.id.settings_btn);
 
@@ -83,7 +83,7 @@ public class MainMenuButtonFragment extends Fragment {
 
         timetableButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_timetable_fragment));
         textPrayersButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_textPrayers_fragment));
-        tehilimButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_tehilim_fragment));
+        tehillimButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_tehillim_fragment));
         blessinButton.setOnClickListener(v -> navController.navigate(R.id.action_main_menu_button_to_blessings_fragment));
         settingsButton.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), SettingsActivity.class);
@@ -96,7 +96,7 @@ public class MainMenuButtonFragment extends Fragment {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top-level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.timetable_fragment, R.id.main_menu_button, R.id.tehilim_fragment)
+                R.id.timetable_fragment, R.id.main_menu_button, R.id.tehillim_fragment)
                 .build();
 
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

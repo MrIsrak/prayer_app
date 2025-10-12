@@ -1,9 +1,9 @@
 package app.dll.test.presentation.buttonsFragments.subFragments;
 
 import static app.dll.test.presentation.buttonsFragments.TimetableFragment.dates;
-import static app.dll.test.presentation.utils.dateUtils.GetDate.getDatDayInt;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getDayInt;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getToday;
 import static app.dll.test.presentation.utils.dateUtils.GetDate.getTodayString;
-import static app.dll.test.presentation.utils.dateUtils.GetDate.today;
 import static app.dll.test.presentation.userDataPrefs.userLocationData.GetLocation.getLocationName;
 import static app.dll.test.presentation.utils.dateUtils.GetPrayersTime.alosHashachar;
 import static app.dll.test.presentation.utils.dateUtils.GetPrayersTime.chatzot;
@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 import java.text.ParseException;
+import java.util.Calendar;
 
 import app.dll.test.R;
 import app.dll.test.presentation.utils.dateUtils.GetDate;
@@ -149,8 +150,7 @@ public class DailyZamanimFragment extends Fragment {
 
     private void checkDay(View view){
         TextView dayTextView = view.findViewById(R.id.week_day_tv);
-        GetDate.getToday();
-        if(day.equals(today)){dayTextView.setText(getTodayString(view));}
+        if(day.equals(getToday())){dayTextView.setText(getTodayString(getContext()));}
         dayTextView.setText(day);
     }
     private void setDay(View view, String text){
@@ -160,7 +160,7 @@ public class DailyZamanimFragment extends Fragment {
     private void setDate(View view){
         TextView dateTextView = view.findViewById(R.id.date_tv);
         day = getDay(view);
-        dateTextView.setText(dates.get(getDatDayInt(day, requireContext())-1));
+        dateTextView.setText(dates.get(getDayInt(day, requireContext())-1));
     }
     private String getDate(View view){
         TextView dateTextView = view.findViewById(R.id.date_tv);

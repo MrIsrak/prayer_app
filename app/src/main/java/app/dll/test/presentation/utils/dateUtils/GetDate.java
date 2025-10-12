@@ -1,82 +1,110 @@
 package app.dll.test.presentation.utils.dateUtils;
 
 import android.content.Context;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-
 import app.dll.test.R;
 
 public class GetDate {
-    public static int today;
-    public static List<String> days = new ArrayList<>();
-    public static void getToday(){
-        Calendar calendar = Calendar.getInstance();
-        today = calendar.get(Calendar.DAY_OF_WEEK);
+
+    // Get the current day of the week (1–7)
+    public static int getToday(Calendar calendar) {
+        return calendar.get(Calendar.DAY_OF_WEEK);
     }
-    public static String getTodayString(View view){
-        return view.getResources().getString(R.string.today);
+    public static int getToday() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
     }
-    public static String getDayString(int today, Context context) {
-        return switch (today) {
-            case 1 -> context.getString(R.string.sunday);
-            case 2 -> context.getString(R.string.monday);
-            case 3 -> context.getString(R.string.tuesday);
-            case 4 -> context.getString(R.string.wednesday);
-            case 5 -> context.getString(R.string.thursday);
-            case 6 -> context.getString(R.string.friday);
-            case 7 -> context.getString(R.string.shabat);
-            default -> throw new IllegalArgumentException("Invalid day: " + today);
+
+
+    // Returns the localized "Today" string
+    public static String getTodayString(Context context) {
+        return context.getString(R.string.today);
+    }
+
+    // Converts a day number (1–7) into a localized day name
+    public static String getDayString(int day, Context context) {
+        return switch (day) {
+            case Calendar.SUNDAY -> context.getString(R.string.sunday);
+            case Calendar.MONDAY -> context.getString(R.string.monday);
+            case Calendar.TUESDAY -> context.getString(R.string.tuesday);
+            case Calendar.WEDNESDAY -> context.getString(R.string.wednesday);
+            case Calendar.THURSDAY -> context.getString(R.string.thursday);
+            case Calendar.FRIDAY -> context.getString(R.string.friday);
+            case Calendar.SATURDAY -> context.getString(R.string.shabat);
+            default -> throw new IllegalArgumentException("Invalid day: " + day);
         };
     }
-    public static int getDatDayInt(String day, Context context) {
 
-        if(Objects.equals(context.getResources().getString(R.string.sunday), day)){return 1;}
-        else if(Objects.equals(context.getResources().getString(R.string.monday), day)){return 2;}
-        else if(Objects.equals(context.getResources().getString(R.string.tuesday), day)){return 3;}
-        else if(Objects.equals(context.getResources().getString(R.string.wednesday), day)){return 4;}
-        else if(Objects.equals(context.getResources().getString(R.string.thursday), day)){return 5;}
-        else if(Objects.equals(context.getResources().getString(R.string.friday), day)){return 6;}
-        else if(Objects.equals(context.getResources().getString(R.string.shabat), day)){return 7;}
-        else if(Objects.equals(context.getResources().getString(R.string.today), day)){
-            getToday();
-            return today;
-        }
-        else{throw new IllegalArgumentException("Invalid day: " + day);}
+    // Converts a localized day name back to its numeric value (1–7)
+    public static int getDayInt(String day, Context context) {
+        if (Objects.equals(context.getString(R.string.today), day))
+            return getToday();
+        if (Objects.equals(context.getString(R.string.sunday), day)) return Calendar.SUNDAY;
+        if (Objects.equals(context.getString(R.string.monday), day)) return Calendar.MONDAY;
+        if (Objects.equals(context.getString(R.string.tuesday), day)) return Calendar.TUESDAY;
+        if (Objects.equals(context.getString(R.string.wednesday), day)) return Calendar.WEDNESDAY;
+        if (Objects.equals(context.getString(R.string.thursday), day)) return Calendar.THURSDAY;
+        if (Objects.equals(context.getString(R.string.friday), day)) return Calendar.FRIDAY;
+        if (Objects.equals(context.getString(R.string.shabat), day)) return Calendar.SATURDAY;
 
+        throw new IllegalArgumentException("Invalid day: " + day);
     }
 
-    public static String daySwitch(String day, Context context, boolean fvrd) {
-        List<String> days = Arrays.asList(context.getResources().getString(R.string.sunday),
-                context.getResources().getString(R.string.monday),
-                context.getResources().getString(R.string.tuesday),
-                context.getResources().getString(R.string.wednesday),
-                context.getResources().getString(R.string.thursday),
-                context.getResources().getString(R.string.friday),
-                context.getResources().getString(R.string.shabat));
-        getToday(); // Ensure we get the current day.
+    // Returns a list of week day names
+    // If `replaceToday` is true, the current day will be replaced with "Today"
+    public static List<String> getDaysList(Context context, boolean replaceToday) {
+        List<String> days = new ArrayList<>(Arrays.asList(
+                context.getString(R.string.sunday),
+                context.getString(R.string.monday),
+                context.getString(R.string.tuesday),
+                context.getString(R.string.wednesday),
+                context.getString(R.string.thursday),
+                context.getString(R.string.friday),
+                context.getString(R.string.shabat)
+        ));
 
-        // Replace the current day with "Today".
-        String todayString = getDayString(today, context);
-        List<String> updatedDays = new ArrayList<>(days); // Copy list to avoid modifying the original.
-        updatedDays.set(days.indexOf(todayString), context.getResources().getString(R.string.today));
-
-        // Determine the next or previous day based on the boolean flag `fvrd`.
-        int index = updatedDays.indexOf(day);
-        String resultDay = "";
-
-        if (fvrd) {
-            // Move forward in the list.
-            resultDay = index + 1 == updatedDays.size() ? updatedDays.get(0) : updatedDays.get(index + 1);
-        } else {
-            // Move backward in the list.
-            resultDay = index - 1 < 0 ? updatedDays.get(updatedDays.size() - 1) : updatedDays.get(index - 1);
+        if (replaceToday) {
+            int todayIndex = getToday() - 1; // Calendar.SUNDAY = 1
+            days.set(todayIndex, context.getString(R.string.today));
         }
 
-        return resultDay;
+        return days;
+    }
+
+    // Switches to the next or previous day in the week
+    // If `forward` = true → move forward; if false → move backward
+    public static String daySwitch(String currentDay, Context context, boolean forward) {
+        List<String> days = getDaysList(context, true);
+        int index = days.indexOf(currentDay);
+        if (index == -1) return currentDay;
+
+        if (forward)
+            return days.get((index + 1) % days.size());
+        else
+            return days.get((index - 1 + days.size()) % days.size());
+    }
+
+    // --- Calendar helper methods ---
+
+    // Returns the month number (1–12)
+    // Plus 1 because Calendar.MONTH starts from 0
+    public static int getMonth(Calendar calendar) {
+        return calendar.get(Calendar.MONTH);
+    }
+    public static int getMonth() {
+        return Calendar.getInstance().get(Calendar.MONTH);
+    }
+
+    // Returns the number of days in the given month
+    public static int getDaysInMonth(Calendar calendar) {
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    // Returns the current year
+    public static int getYear(Calendar calendar) {
+        return calendar.get(Calendar.YEAR);
     }
 }

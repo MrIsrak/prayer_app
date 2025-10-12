@@ -1,10 +1,25 @@
 package app.dll.test.presentation.utils.dateUtils;
 
+import static android.text.format.DateUtils.getMonthString;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getDaysInMonth;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getMonth;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getToday;
+import static app.dll.test.presentation.utils.dateUtils.GetDate.getYear;
+import static app.dll.test.presentation.utils.dateUtils.GetJewishDate.getDaysInJewishMonth;
+import static app.dll.test.presentation.utils.dateUtils.GetJewishDate.getGregorianDateAndMonth;
+import static app.dll.test.presentation.utils.dateUtils.GetJewishDate.getJewishDayAndMonth;
+import static app.dll.test.presentation.utils.dateUtils.GetJewishDate.getJewishMonthName;
+
 import android.util.Log;
+import android.view.View;
 
 import com.kosherjava.zmanim.hebrewcalendar.JewishCalendar;
+import com.kosherjava.zmanim.hebrewcalendar.JewishDate;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -105,7 +120,7 @@ public class SpecialDetails {
 //    }
 
 
-
+    //TODO make this function works with view
     private static String getYomTovName(JewishCalendar jewishCalendar, String language) {
         if (jewishCalendar.isYomTov()) {
             String name;
@@ -267,4 +282,19 @@ public class SpecialDetails {
         return result;
     }
     //TODO Make reverse func
+
+    public static List<String> dayListInnitialization(List<String> days, View view){
+        Calendar calendar = Calendar.getInstance();
+
+        JewishDate jewishDate = new JewishDate(calendar);
+        JewishCalendar jewishCalendar = new JewishCalendar(calendar);
+
+        int countDays = getDaysInJewishMonth(jewishDate);
+        for(int i = 1; i <= countDays; i++){
+            days.add(getJewishDayAndMonth(getYear(calendar), getMonth(calendar), i, view) + " "
+                    + getGregorianDateAndMonth(jewishCalendar, jewishDate.getJewishYear(),
+                    jewishDate.getJewishMonth(), i));
+        }
+        return days;
+    }
 }

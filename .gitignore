@@ -13,3 +13,12 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Credentials - never commit
+client_secret*.json
+*.jks
+*.keystore
+.env
+
+# IDE
+/.idea/
